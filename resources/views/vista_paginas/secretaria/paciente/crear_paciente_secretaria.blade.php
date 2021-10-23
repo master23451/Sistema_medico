@@ -4,11 +4,10 @@
 
 @section('content_header')
     <h1>Pacientes</h1>
+    <p>Registrar a un nuevo paciente.</p>
 @stop
 
 @section('content')
-    <p>Registrar a un nuevo paciente.</p>
-
     <div>
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

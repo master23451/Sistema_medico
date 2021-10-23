@@ -4,11 +4,10 @@
 
 @section('content_header')
     <h1>Ficha de información de la secretaria</h1>
+    <h4>{{ $datos_secretaria->nombre }} {{ $datos_secretaria->apellidos }}</h4>
 @stop
 
 @section('content')
-    <h4>{{ $datos_secretaria->nombre }} {{ $datos_secretaria->apellidos }}</h4>
-
     <div>
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

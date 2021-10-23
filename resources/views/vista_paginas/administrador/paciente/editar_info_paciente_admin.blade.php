@@ -4,10 +4,10 @@
 
 @section('content_header')
     <h1>Ficha de informaón del paciente</h1>
+    <h4>{{ $dato_paciente->nombre }} {{ $dato_paciente->apellidos }}</h4>
 @stop
 
 @section('content')
-    <h4>{{ $dato_paciente->nombre }} {{ $dato_paciente->apellidos }}</h4>
     <div>
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
