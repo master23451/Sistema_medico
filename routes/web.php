@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 /*--------------------------------------------------------------------------------------------------------------------*/
+use App\Http\Controllers\Paginas_principal\PaginasPrincipalController;
+/*--------------------------------------------------------------------------------------------------------------------*/
 use App\Http\Controllers\Administrador\AdministradoresController;
 use App\Http\Controllers\Administrador\DoctorAdminController;
 use App\Http\Controllers\Administrador\SecretariaAdminController;
