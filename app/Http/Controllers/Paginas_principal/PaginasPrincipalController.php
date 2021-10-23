@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Paginas_principal;
 
 use App\Http\Controllers\Controller;
-use App\Models\inicio;
-use App\Models\mensaje_administrador;
+use App\Models\Inicio;
+use App\Models\Mensaje_administrador;
 use Illuminate\Http\Request;
 
 
@@ -15,6 +15,7 @@ class PaginasPrincipalController extends Controller
 
     public function indexInfoGeneralAdministrador(){
 
+        $inicio=Incio::all();
 
     }
 

@@ -27,6 +27,9 @@ Route::get('/', function () {
 });
 
 /*--------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------Ruta index Administrador-----------------------------------------------------*/
+Route::get('administrador/pagina_principal', [PaginasPrincipalController::class,'indexInfoGeneralAdministrador'])->name('administrador.index.infoGeneral');
+/*--------------------------------------------------------------------------------------------------------------------*/
 Route::resource('administrador/admin', AdministradoresController::class);
 Route::resource('administrador/doctor', DoctorAdminController::class);
 Route::resource('administrador/secretaria', SecretariaAdminController::class);

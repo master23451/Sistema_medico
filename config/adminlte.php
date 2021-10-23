@@ -258,7 +258,7 @@ return [
         ['header' => 'Administrador'],
         [
             'text' => 'Pagian principal',
-            'url'  => '#',
+            'route'  => 'administrador.index.infoGeneral',
             'icon' => 'fas fa-sticky-note',
         ],
         [
