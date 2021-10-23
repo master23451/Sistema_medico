@@ -4,10 +4,10 @@
 
 @section('content_header')
     <h1>Lista de doctores</h1>
+    <p>Doctores registrados en el sistema.</p>
 @stop
 
 @section('content')
-    <p>Doctores registrados en el sistema.</p>
     <!----------------------------------------------------------------------------------------------------------------->
     <a class="btn btn-success" href="{{ route('doctor.create') }}"><i class="fa fa-plus"></i> Registrar nuevo doctor</a>
     <br/>
