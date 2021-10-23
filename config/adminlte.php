@@ -263,8 +263,19 @@ return [
         ],
         [
             'text' => 'Administradores',
-            'url'  => '#',
             'icon' => 'fas fa-user-shield',
+            'submenu' => [
+              [
+                  'text' => 'Registrar nuevo administrador',
+                  'route'  => 'admin.create',
+                  'icon' => 'far fa-edit',
+              ],
+              [
+                  'text' => 'Lista de administradores',
+                  'route'  => 'admin.index',
+                  'icon' => 'fas fa-user-shield',
+              ],
+            ],
         ],
         [
             'text' => 'Doctores',

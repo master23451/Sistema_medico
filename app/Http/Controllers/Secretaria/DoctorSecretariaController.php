@@ -51,7 +51,7 @@ class DoctorSecretariaController extends Controller
     public function store(Request $request)
     {
         $doctor=new Doctor();
-        $doctor->id_consultorio=1;
+        $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');
         $doctor->apellidos=$request->input('apellido');
         $doctor->profile_photo_path=$request->file('archivo_img_doct')->store('public/fotos_perfil');
@@ -106,7 +106,7 @@ class DoctorSecretariaController extends Controller
     public function update(Request $request, $id)
     {
         $doctor=Doctor::find($id);
-        $doctor->id_consultorio=1;
+        $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');
         $doctor->apellidos=$request->input('apellido');
         $doctor->usuario=$request->input('usuario');
@@ -124,7 +124,7 @@ class DoctorSecretariaController extends Controller
 
         $doctor->update();
 
-        return redirect()->route('secretaria.doctor.index', $id)->with('modificado','ok');
+        return redirect()->route('secretaria.doctor.index')->with('modificado','ok');
 
     }
 
