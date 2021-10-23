@@ -15,12 +15,10 @@ class CreateMensajeAdministradsorTable extends Migration
     {
         Schema::create('mensaje_administradsor', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_administrador')->unsigned();
             $table->string('titulo',255)->nullable();
             $table->text('mensaje')->nullable();
             $table->string('imagen',255)->nullable();
-            $table->dateTime('fercha de publicacion')->nullable();
-            $table->foreign('id_administrador')->references('id')->on('administrador');
+            $table->dateTime('fecha_publicacion')->nullable();
             $table->timestamps();
         });
     }

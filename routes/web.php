@@ -28,7 +28,12 @@ Route::get('/', function () {
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------Ruta index Administrador-----------------------------------------------------*/
-Route::get('administrador/pagina_principal', [PaginasPrincipalController::class,'indexInfoGeneralAdministrador'])->name('administrador.index.infoGeneral');
+Route::get('administrador/post', [PaginasPrincipalController::class,'lista_post'])->name('administrador.lista.post');
+Route::get('administrador/post/crear', [PaginasPrincipalController::class,'crear_post'])->name('administrador.crear.post');
+Route::post('administrador/post', [PaginasPrincipalController::class,'guardar_post'])->name('administrador.guardar.post');
+Route::get('administrador/post/{id}/editar', [PaginasPrincipalController::class,'editar_post'])->name('administrador.editar.post');
+Route::put('administrador/post/{id}', [PaginasPrincipalController::class,'actualizar_post'])->name('administrador.actualizar.post');
+Route::delete('administrador/post/{id}', [PaginasPrincipalController::class,'eliminar_post'])->name('administrador.elimianr.post');
 /*--------------------------------------------------------------------------------------------------------------------*/
 Route::resource('administrador/admin', AdministradoresController::class);
 Route::resource('administrador/doctor', DoctorAdminController::class);

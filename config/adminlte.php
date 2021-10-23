@@ -258,8 +258,19 @@ return [
         ['header' => 'Administrador'],
         [
             'text' => 'Pagian principal',
-            'route'  => 'administrador.index.infoGeneral',
             'icon' => 'fas fa-sticky-note',
+            'submenu' => [
+              [
+                  'text' => 'Lista de post',
+                  'route'  => 'administrador.lista.post',
+                  'icon' => 'fas fa-list',
+              ],
+              [
+                  'text' => 'Crear post',
+                  'route'  => 'administrador.crear.post',
+                  'icon' => 'far fa-edit',
+              ],
+            ],
         ],
         [
             'text' => 'Administradores',
