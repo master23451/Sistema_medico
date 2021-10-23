@@ -262,7 +262,7 @@ return [
             'icon' => 'fas fa-sticky-note',
         ],
         [
-            'text' => 'Administrador',
+            'text' => 'Administradores',
             'url'  => '#',
             'icon' => 'fas fa-user-shield',
         ],
