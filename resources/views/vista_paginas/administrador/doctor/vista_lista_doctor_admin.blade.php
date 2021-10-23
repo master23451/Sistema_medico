@@ -1,0 +1,69 @@
+@extends('adminlte::page')
+
+@section('title', 'Doctores')
+
+@section('content_header')
+    <h1>Lista de doctores</h1>
+@stop
+
+@section('content')
+    <p>Doctores registrados en el sistema.</p>
+    <!----------------------------------------------------------------------------------------------------------------->
+    <a class="btn btn-success" href="{{ route('doctor.create') }}"><i class="fa fa-plus"></i> Registrar nuevo doctor</a>
+    <br/>
+    <br/>
+    <div class="container">
+        <table class="table table-striped" id="tablaDoctorAdmin">
+            <!----------------------------------------------------------------------------------------->
+            <thead>
+            <tr style="text-align: center;">
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Consultorio</th>
+                <th scope="col">Perfil</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($listado_doctores as $datos_doctor)
+                <tr style="text-align: center;">
+                    <td class="px-2 py-4">
+                        <div>{{ $datos_doctor->id  }}</div>
+                    </td>
+                    <td class="px-2 py-4">
+                        <div>
+                            <div>
+                                <img src="{{ Illuminate\Support\Facades\Storage::url($datos_doctor->profile_photo_path) }}" alt="{{ $datos_doctor->nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                            </div>
+                            <div>
+                                <div>{{ $datos_doctor->nombre }} {{ $datos_doctor->apellidos }}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-2 py-4">{{ $datos_doctor->usuario }}</td>
+                    <td class="px-2 py-4">{{ $datos_doctor->email }}</td>
+                    <td class="px-2 py-4">{{ $datos_doctor->n_consultorio }}</td>
+                    <td class="px-2 py-4">
+                        <a class="btn btn-warning" href="{{ route('doctor.edit', $datos_doctor->id) }}"><i class="fas fa-info-circle"></i> Info</a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+
+    <script>
+        $(document).ready( function () {
+            $('#tablaDoctorAdmin').DataTable();
+        } );
+    </script>
+@stop
