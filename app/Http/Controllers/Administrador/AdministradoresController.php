@@ -7,7 +7,7 @@ use App\Models\Administrador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class AdministradoresCotroller extends Controller
+class AdministradoresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -78,7 +78,7 @@ class AdministradoresCotroller extends Controller
     {
         $admin=Administrador::find($id);
         $vista=view('vista_paginas.administrador.admin.editar_info_admin')
-        ->with('dato_administrador',$admin);
+            ->with('dato_administrador',$admin);
 
         return $vista;
     }

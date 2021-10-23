@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 /*--------------------------------------------------------------------------------------------------------------------*/
-use App\Http\Controllers\Administrador\AdministradoresCotroller;
+use App\Http\Controllers\Administrador\AdministradoresController;
 use App\Http\Controllers\Administrador\DoctorAdminController;
 use App\Http\Controllers\Administrador\SecretariaAdminController;
 use App\Http\Controllers\Administrador\PacienteAdminController;
@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-Route::resource('administrador/admin', AdministradoresCotroller::class);
+Route::resource('administrador/admin', AdministradoresController::class);
 Route::resource('administrador/doctor', DoctorAdminController::class);
 Route::resource('administrador/secretaria', SecretariaAdminController::class);
 Route::resource('administrador/paciente', PacienteAdminController::class);
