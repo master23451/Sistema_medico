@@ -53,7 +53,10 @@ class PacienteSecretariaController extends Controller
         $paciente->numero_contacto=$request->input('num_contacto');
         $paciente->expediente=$request->input('expediente');
         $paciente->sexo=$request->input('sexo');
-        $paciente->profile_photo_path=$request->file('archivo_img_doct')->store('public/fotos_perfil');
+
+        if($request->hasFile('imgPerfilPacienteSecretaria')){
+            $paciente->profile_photo_path=$request->file('imgPerfilPacienteSecretaria')->store('public/fotos_perfil');
+        }
 
         $paciente->save();
 

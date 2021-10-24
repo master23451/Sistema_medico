@@ -27,8 +27,8 @@
                                             style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;">
                                     </div>
                                     <div class="mb-2 mt-2">
-                                        <button class="btn btn-secondary" id="file-image_doc" type="button"><i class="fas fa-portrait"></i> Elige una foto de perfil</button>
-                                        <input type="file" class="w-full form-control"  id="archivo_img_doct" name="archivo_img_doct" style="display: none"/>
+                                        <button class="btn btn-secondary" id="btnSelectImgPacienteSecretaria" type="button"><i class="fas fa-portrait"></i> Elige una foto de perfil</button>
+                                        <input type="file" class="form-control"  id="imgPerfilPacienteSecretaria" name="imgPerfilPacienteSecretaria" style="display: none"/>
                                     </div>
                                 </div>
                                 <!--------------------------------------------------------------------------------------------------------->
@@ -103,10 +103,10 @@
     <script> console.log('Hi!'); </script>
 
     <script type="text/javascript">
-        const archivoImgPaciente=document.getElementById('archivo_img_doct');
-        const fileImgBtnPaciente=document.getElementById('file-image_doc');
-        fileImgBtnPaciente.addEventListener("click", function (){
-            archivoImgPaciente.click();
+        const imgPerfilPacienteSecretaria=document.getElementById('imgPerfilPacienteSecretaria');
+        const btnSelectImgPacienteSecretaria=document.getElementById('btnSelectImgPacienteSecretaria');
+        btnSelectImgPacienteSecretaria.addEventListener("click", function (){
+            imgPerfilPacienteSecretaria.click();
         });
     </script>
 @stop

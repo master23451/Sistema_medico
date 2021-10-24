@@ -26,15 +26,15 @@
                                         style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;">
                                 </div>
                                 <div class="mb-2 mt-2">
-                                    <button class="btn btn-secondary" type="button" id="file-image"><i class="fas fa-portrait"></i> Elige una foto de perfil</button>
-                                    <input type="file" class="w-full hide"  id="archivo_img" name="archivo_img" style="display: none;"/>
+                                    <button class="btn btn-secondary" type="button" id="btnSelectImgSecretariaAdmin"><i class="fas fa-portrait"></i> Elige una foto de perfil</button>
+                                    <input type="file" class="form-control"  id="imgPerfilSecretariaAdmin" name="imgPerfilSecretariaAdmin" style="display: none;"/>
                                 </div>
                             </div>
                             <!---------------------------------------------------------------------------------------------------->
                             <div class="row">
                                 <div class="col">
                                     <label for="nombre">Nombre</label>
-                                    <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre o los nombres del doctor" class="form-control" />
+                                    <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre o los nombres del doctor" class="form-control"/>
                                 </div>
                                 <div class="col">
                                     <label for="apellido">Apellidos</label>
@@ -90,10 +90,10 @@
     <script> console.log('Hi!'); </script>
 
     <script type="text/javascript">
-        const archivoImgCrearSecret=document.getElementById('archivo_img');
-        const fileImgBtnCrearSecret=document.getElementById('file-image');
-        fileImgBtnCrearSecret.addEventListener("click", function (){
-            archivoImgCrearSecret.click();
+        const imgPerfilSecretariaAdmin=document.getElementById('imgPerfilSecretariaAdmin');
+        const btnSelectImgSecretariaAdmin=document.getElementById('btnSelectImgSecretariaAdmin');
+        btnSelectImgSecretariaAdmin.addEventListener("click", function (){
+            imgPerfilSecretariaAdmin.click();
         });
     </script>
 @stop

@@ -46,11 +46,14 @@ class SecretariaAdminController extends Controller
         $secretaria=new Secretaria();
         $secretaria->nombre=$request->input('nombre');
         $secretaria->apellidos=$request->input('apellido');
-        $secretaria->profile_photo_path=$request->file('archivo_img')->store('public/fotos_perfil');
         $secretaria->usuario=$request->input('usuario');
         $secretaria->contra=$request->input('contra');
         $secretaria->email=$request->input('email');
         $secretaria->numero_contacto=$request->input('num_contacto');
+
+        if($request->hasFile('imgPerfilSecretariaAdmin')){
+            $secretaria->profile_photo_path=$request->file('imgPerfilSecretariaAdmin')->store('public/fotos_perfil');
+        }
 
         $secretaria->save();
 

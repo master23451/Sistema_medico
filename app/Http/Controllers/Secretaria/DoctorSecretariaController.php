@@ -54,7 +54,6 @@ class DoctorSecretariaController extends Controller
         $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');
         $doctor->apellidos=$request->input('apellido');
-        $doctor->profile_photo_path=$request->file('archivo_img_doct')->store('public/fotos_perfil');
         $doctor->usuario=$request->input('usuario');
         $doctor->contra=$request->input('contra');
         $doctor->email=$request->input('email');
@@ -62,6 +61,11 @@ class DoctorSecretariaController extends Controller
         $doctor->sexo=$request->input('sexo');
         $doctor->horarioE=$request->input('horarioE');
         $doctor->horarioS=$request->input('horarioS');
+
+        if($request->hasFile('archivo_img_doct')){
+            $doctor->profile_photo_path=$request->file('archivo_img_doct')->store('public/fotos_perfil');
+        }
+
         $doctor->save();
 
         return redirect()->route('secretaria.doctor.edit', $doctor->id)->with('guardado','ok');

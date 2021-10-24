@@ -46,12 +46,16 @@ class AdministradoresController extends Controller
         $admin=new Administrador();
         $admin->nombre=$request->input('nombre');
         $admin->apellidos=$request->input('apellido');
-        $admin->profile_photo_path=$request->file('archivo_img_Admin')->store('public/fotos_perfil');
         $admin->usuario=$request->input('usuario');
         $admin->contra=$request->input('contra');
         $admin->email=$request->input('email');
         $admin->numero_contacto=$request->input('num_contacto');
         $admin->sexo=$request->input('sexo');
+
+        if($request->hasFile('archivo_img_Admin')){
+            $admin->profile_photo_path=$request->file('archivo_img_Admin')->store('public/fotos_perfil');
+        }
+
         $admin->save();
 
         return redirect()->route('admin.edit', $admin->id)->with('guardado','ok');
