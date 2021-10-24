@@ -24,7 +24,6 @@ class CreatePacienteTable extends Migration
             $table->string('email')->unique();
             $table->string('numero_contacto',10)->nullable();
             $table->string('sexo',10)->nullable();
-            $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });
     }

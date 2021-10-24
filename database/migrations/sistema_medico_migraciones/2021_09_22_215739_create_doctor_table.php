@@ -27,7 +27,6 @@ class CreateDoctorTable extends Migration
             $table->time('horarioE')->nullable();
             $table->time('horarioS')->nullable();
             $table->foreign('id_consultorio')->references('id')->on('consultorio');
-            $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });
     }

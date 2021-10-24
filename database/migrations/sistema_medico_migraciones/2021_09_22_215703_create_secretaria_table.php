@@ -22,7 +22,6 @@ class CreateSecretariaTable extends Migration
             $table->string('contra',250)->nullable();
             $table->string('email',50)->nullable()->unique();
             $table->string('numero_contacto',10)->nullable();
-            $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });
     }
