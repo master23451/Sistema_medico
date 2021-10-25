@@ -9,10 +9,12 @@ class Doctor extends Model
 {
     use HasFactory;
 
+    protected $primaryKey='id_doctor';
+
     protected $table = 'doctor';
 
     protected $fillable = [
-        "id",
+        "id_doctor",
         "id_consultorio",
         "nombre",
         "apellidos",
@@ -20,10 +22,12 @@ class Doctor extends Model
         "usuario",
         "contra",
         "email",
-        "numero_contacto",
+        "telefono",
+        "celular",
         "sexo",
-        "horarioE",
-        "horarioS"
+        "horarios",
+        "rol",
+        "status",
     ];
 
     protected $hidden=[

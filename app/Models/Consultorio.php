@@ -9,11 +9,15 @@ class Consultorio extends Model
 {
     use HasFactory;
 
+    protected $primaryKey='id_consultorio';
+
     protected $table = 'consultorio';
 
     protected $fillable = [
         "id",
-        "nombre"
+        "nombre",
+        "descripcion",
+        "status",
     ];
 
     protected $hidden=[

@@ -60,7 +60,7 @@ class DoctorAdminController extends Controller
         if($request->hasFile('archivo_img_doct')){
             $doctor->profile_photo_path=$request->file('archivo_img_doct')->store('public/fotos_perfil');
         }
-        
+
         $doctor->save();
 
         return redirect()->route('doctor.edit',  $doctor->id)->with('guardado','ok');
@@ -112,8 +112,7 @@ class DoctorAdminController extends Controller
         $doctor->email=$request->input('email');
         $doctor->numero_contacto=$request->input('num_contacto');
         $doctor->sexo=$request->input('sexo');
-        $doctor->horarioE=$request->input('horarioE');
-        $doctor->horarioS=$request->input('horarioS');
+
 
         if($request->hasFile('archivo_img_doct')){
             Storage::delete($doctor->profile_photo_path);

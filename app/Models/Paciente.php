@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Paciente extends Model
 {
     use HasFactory;
-    
+
+    protected $primaryKey='id_paciente';
+
     protected $table='paciente';
 
     protected $fillable = [
-        "id",
+        "id_paciente",
         "nombre",
         "apellidos",
         "expediente",
@@ -20,8 +22,11 @@ class Paciente extends Model
         "usuario",
         "contra",
         "email",
-        "numero_contacto",
+        "telefono",
+        "celular",
         "sexo",
+        "rol",
+        "status",
     ];
 
     protected $hidden=[

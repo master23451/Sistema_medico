@@ -15,7 +15,7 @@ class CreateSecretariaTable extends Migration
     {
         Schema::create('secretaria', function (Blueprint $table) {
 
-            $table->bigIncrements('identificador');
+            $table->bigIncrements('id_secretaria');
             $table->string('nombre',100)->nullable();
             $table->string('apellidos',100)->nullable();
             $table->string('profile_photo_path',100)->nullable();
