@@ -9,10 +9,10 @@ class Administrador extends Model
 {
     use HasFactory;
 
-    protected $table = 'id_administrador';
+    protected $table = 'administrador';
 
     protected $fillable = [
-        "id_administrador",
+        "id",
         "nombre",
         "apellidos",
         "profile_photo_path",

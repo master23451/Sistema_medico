@@ -47,15 +47,16 @@ class PacienteSecretariaController extends Controller
         $paciente=new Paciente();
         $paciente->nombre=$request->input('nombre');
         $paciente->apellidos=$request->input('apellido');
-        $paciente->usuario=$request->input('usuario');
-        $paciente->contra=$request->input('contra');
+        $paciente->usuario=$request->input('nombre').rand();
         $paciente->email=$request->input('email');
-        $paciente->numero_contacto=$request->input('num_contacto');
+        $paciente->telefono=$request->input('telefono');
+        $paciente->celular=$request->input('celular');
         $paciente->expediente=$request->input('expediente');
         $paciente->sexo=$request->input('sexo');
+        $paciente->rol="Paciente";
 
-        if($request->hasFile('imgPerfilPacienteSecretaria')){
-            $paciente->profile_photo_path=$request->file('imgPerfilPacienteSecretaria')->store('public/fotos_perfil');
+        if($request->hasFile('inputImgPerfil')){
+            $paciente->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
 
         $paciente->save();
@@ -100,30 +101,24 @@ class PacienteSecretariaController extends Controller
     {
 
         $paciente = Paciente::find($id);
+        $paciente->nombre=$request->input('nombre');
+        $paciente->apellidos=$request->input('apellido');
+        $paciente->usuario=$request->input('usuario');
+        $paciente->email=$request->input('email');
+        $paciente->telefono=$request->input('telefono');
+        $paciente->celular=$request->input('celular');
+        $paciente->expediente=$request->input('expediente');
+        $paciente->sexo=$request->input('sexo');
+        $paciente->rol="Paciente";
 
-        if($paciente->updated_at<=Carbon::tomorrow()){
-
-            $paciente->nombre=$request->input('nombre');
-            $paciente->apellidos=$request->input('apellido');
-            $paciente->usuario=$request->input('usuario');
-            $paciente->contra=$request->input('contra');
-            $paciente->email=$request->input('email');
-            $paciente->numero_contacto=$request->input('num_contacto');
-            $paciente->expediente=$request->input('expediente');
-            $paciente->sexo=$request->input('sexo');
-
-            if($request->hasFile('archivo_img_editar_paciente')){
-                Storage::delete($paciente->profile_photo_path);
-                $paciente->profile_photo_path=$request->file('archivo_img_editar_paciente')->store('public/fotos_perfil');
-            }
-
-            $paciente->update();
-
-            return redirect()->route('secretaria.paciente.index')->with('modificado','ok');
-
-        }else{
-            return redirect()->route('secretaria.paciente.edit', $id)->with('bloqueo','m-block');
+        if($request->hasFile('inputImgPerfil')){
+            Storage::delete($paciente->profile_photo_path);
+            $paciente->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
+
+        $paciente->update();
+
+        return redirect()->route('secretaria.paciente.edit', $id)->with('bloqueo','m-block');
     }
 
     /**

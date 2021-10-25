@@ -15,7 +15,7 @@ class CreateDoctorTable extends Migration
     {
         Schema::create('doctor', function (Blueprint $table) {
 
-            $table->bigIncrements('id_doctor');
+            $table->id();
             $table->bigInteger('id_consultorio')->unsigned();
             $table->string('nombre',100)->nullable();
             $table->string('apellidos',100)->nullable();
@@ -26,10 +26,10 @@ class CreateDoctorTable extends Migration
             $table->string('telefono',10)->nullable();
             $table->string('celular',10)->nullable();
             $table->string('sexo',20)->nullable();
-            $table->bigInteger('horarios')->nullable()->unsigned();
+            $table->time('horarios')->nullable();
             $table->string('rol',20)->nullable();
             $table->tinyInteger('status')->default('1');
-            $table->foreign('id_consultorio')->references('id_consultorio')->on('consultorio');
+            $table->foreign('id_consultorio')->references('id')->on('consultorio');
             $table->timestamps();
         });
     }

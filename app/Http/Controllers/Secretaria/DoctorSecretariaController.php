@@ -54,21 +54,23 @@ class DoctorSecretariaController extends Controller
         $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');
         $doctor->apellidos=$request->input('apellido');
-        $doctor->usuario=$request->input('usuario');
-        $doctor->contra=$request->input('contra');
+        $doctor->usuario=$request->input('nombre').rand();
         $doctor->email=$request->input('email');
-        $doctor->numero_contacto=$request->input('num_contacto');
+        $doctor->telefono=$request->input('telefono');
+        $doctor->celular=$request->input('celular');
         $doctor->sexo=$request->input('sexo');
-        $doctor->horarioE=$request->input('horarioE');
-        $doctor->horarioS=$request->input('horarioS');
+        $doctor->horarios=$request->input('horarios');
+        $doctor->rol="Doctor";
 
-        if($request->hasFile('archivo_img_doct')){
-            $doctor->profile_photo_path=$request->file('archivo_img_doct')->store('public/fotos_perfil');
+        if($request->hasFile('inputImgPerfil')){
+            $doctor->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
 
         $doctor->save();
 
-        return redirect()->route('secretaria.doctor.edit', $doctor->id)->with('guardado','ok');
+
+        return redirect()->route('secretaria.doctor.edit',$doctor->id)->with('guardado','ok');
+
 
     }
 
@@ -114,20 +116,20 @@ class DoctorSecretariaController extends Controller
         $doctor->nombre=$request->input('nombre');
         $doctor->apellidos=$request->input('apellido');
         $doctor->usuario=$request->input('usuario');
-        $doctor->contra=$request->input('contra');
         $doctor->email=$request->input('email');
-        $doctor->numero_contacto=$request->input('num_contacto');
+        $doctor->telefono=$request->input('telefono');
+        $doctor->celular=$request->input('celular');
         $doctor->sexo=$request->input('sexo');
-        $doctor->horarioE=$request->input('horarioE');
-        $doctor->horarioS=$request->input('horarioS');
+        $doctor->horarios=$request->input('horarios');
+        $doctor->rol="Doctor";
 
-        if($request->hasFile('archivo_img_doct')){
+        if($request->hasFile('inputImgPerfil')){
             Storage::delete($doctor->profile_photo_path);
-            $doctor->profile_photo_path=$request->file('archivo_img_doct')->store('public/fotos_perfil');
+            $doctor->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
 
         $doctor->update();
-
+        
         return redirect()->route('secretaria.doctor.index')->with('modificado','ok');
 
     }

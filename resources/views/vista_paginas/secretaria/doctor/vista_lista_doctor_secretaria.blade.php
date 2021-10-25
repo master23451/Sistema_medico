@@ -1,18 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Doctorers || Secretaria')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Doctores</h1>
     <p>Doctores registrados en el sistema.</p>
+    <a class="btn btn-success" href="{{ route('secretaria.doctor.create') }}"><i class="fa fa-plus"></i> Registrar nuevo doctor</a>
+    <br/>
 @stop
 
 @section('content')
     <!----------------------------------------------------------------------------------------------------------------->
-    <a class="btn btn-success" href="{{ route('secretaria.doctor.create') }}"><i class="fa fa-plus"></i> Registrar nuevo doctor</a>
-    <br/>
-    <br/>
-    <div class="container">
+    <div class="container-fluid">
         <table class="table table-striped" id="tablaDoctorSecretaria">
             <!----------------------------------------------------------------------------------------->
             <thead>
@@ -29,7 +28,7 @@
             @foreach ($listado_doctores as $datos_doctor)
                 <tr style="text-align: center;">
                     <td class="px-2 py-4">
-                        <div>{{ $datos_doctor->id  }}</div>
+                        <div>{{ $datos_doctor->id }}</div>
                     </td>
                     <td class="px-2 py-4">
                         <div>
@@ -45,7 +44,7 @@
                     <td class="px-2 py-4">{{ $datos_doctor->email }}</td>
                     <td class="px-2 py-4">{{ $datos_doctor->n_consultorio }}</td>
                     <td class="px-2 py-4">
-                        <a class="btn btn-warning" href="{{ route('secretaria.doctor.edit', $datos_doctor->id) }}"><i class="fas fa-info-circle"></i> Info</a>
+                        <a class="btn btn-warning" href="{{ route('secretaria.doctor.edit',  $datos_doctor->id) }}"><i class="fas fa-info-circle"></i> Info</a>
                     </td>
                 </tr>
             @endforeach

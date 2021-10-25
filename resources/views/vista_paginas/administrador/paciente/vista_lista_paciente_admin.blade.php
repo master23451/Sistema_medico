@@ -5,14 +5,13 @@
 @section('content_header')
     <h1>Pacientes</h1>
     <p>Pacientes registrados en el sistema.</p>
-@stop
-
-@section('content')
     <!--------------------------------------------------------------------------------------------->
     <a class="btn btn-success ml-3" href="{{ route('paciente.create') }}"><i class="fa fa-plus"></i> Registrar nuevo paciente</a>
     <br/>
-    <br>
     <!--------------------------------------------------------------------------------------------->
+@stop
+
+@section('content')
     <div class="container">
         <table class="table table-striped" id="tablaPacienteAdmin">
             <!----------------------------------------------------------------------------------------->

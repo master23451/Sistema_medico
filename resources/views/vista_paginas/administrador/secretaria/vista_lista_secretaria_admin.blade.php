@@ -5,15 +5,15 @@
 @section('content_header')
     <h1>Lista de secretaria</h1>
     <p>Secretarias registradas en el sistema.</p>
-@stop
-
-@section('content')
     <!--------------------------------------------------------------------------------------------->
     <a class="btn btn-success ml-3" href="{{ route('secretaria.create') }}"><i class="fa fa-plus"></i> Registrar nuevo paciente</a>
     <br/>
     <br>
     <!--------------------------------------------------------------------------------------------->
-    <div class="container">
+@stop
+
+@section('content')
+    <div class="container-fluid">
         <table class="table table-striped" id="tablaSecretariaAdmin">
             <!----------------------------------------------------------------------------------------->
             <thead>

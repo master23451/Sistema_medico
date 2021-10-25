@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpedienteTable extends Migration
+class CreateCitaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreateExpedienteTable extends Migration
      */
     public function up()
     {
-        Schema::create('expediente', function (Blueprint $table) {
+        Schema::create('cita', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_doctor')->unsigned();
             $table->bigInteger('id_consultorio')->unsigned();
             $table->bigInteger('id_paciente')->unsigned();
-            $table->text('archivo');
-            $table->foreign('id_doctor')->references('id_doctor')->on('doctor');
-            $table->foreign('id_consultorio')->references('id_consultorio')->on('consultorio');
-            $table->foreign('id_paciente')->references('id_paciente')->on('paciente');
+            $table->string('nombre',100);
+            $table->string('apellidos', 150);
+            $table->text('documento');
+            $table->dateTime('inicio');
+            $table->dateTime('final');
+            $table->foreign('id_doctor')->references('id')->on('doctor');
+            $table->foreign('id_consultorio')->references('id')->on('consultorio');
+            $table->foreign('id_paciente')->references('id')->on('paciente');
             $table->timestamps();
         });
     }
@@ -33,6 +37,6 @@ class CreateExpedienteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expediente');
+        Schema::dropIfExists('cita');
     }
 }

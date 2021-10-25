@@ -26,7 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*--------------------------------------------------------------------------------------------------------------------*/
+
 /*---------------------------------------Ruta index Administrador-----------------------------------------------------*/
 Route::get('administrador/post', [PaginasPrincipalController::class,'lista_post'])->name('administrador.lista.post');
 Route::get('administrador/post/crear', [PaginasPrincipalController::class,'crear_post'])->name('administrador.crear.post');
@@ -35,6 +35,7 @@ Route::get('administrador/post/{id}/editar', [PaginasPrincipalController::class,
 Route::put('administrador/post/{id}', [PaginasPrincipalController::class,'actualizar_post'])->name('administrador.actualizar.post');
 Route::delete('administrador/post/{id}', [PaginasPrincipalController::class,'eliminar_post'])->name('administrador.elimianr.post');
 /*--------------------------------------------------------------------------------------------------------------------*/
+
 Route::resource('administrador/admin', AdministradoresController::class);
 Route::resource('administrador/doctor', DoctorAdminController::class);
 Route::resource('administrador/secretaria', SecretariaAdminController::class);

@@ -9,12 +9,10 @@ class Paciente extends Model
 {
     use HasFactory;
 
-    protected $primaryKey='id_paciente';
-
     protected $table='paciente';
 
     protected $fillable = [
-        "id_paciente",
+        "id",
         "nombre",
         "apellidos",
         "expediente",

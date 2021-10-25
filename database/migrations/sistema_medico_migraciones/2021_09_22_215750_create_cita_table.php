@@ -23,9 +23,9 @@ class CreateCitaTable extends Migration
             $table->text('documento');
             $table->dateTime('inicio');
             $table->dateTime('final');
-            $table->foreign('id_doctor')->references('id')->on('doctor');
-            $table->foreign('id_consultorio')->references('id')->on('consultorio');
-            $table->foreign('id_paciente')->references('id')->on('paciente');
+            $table->foreign('id_doctor')->references('id_doctor')->on('info_doctor');
+            $table->foreign('id_consultorio')->references('id_consultorio')->on('info_doctor');
+            $table->foreign('id_paciente')->references('id_paciente')->on('paciente');
             $table->timestamps();
         });
     }

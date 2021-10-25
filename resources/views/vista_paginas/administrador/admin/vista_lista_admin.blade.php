@@ -5,14 +5,14 @@
 @section('content_header')
     <h1>Lista de administradores</h1>
     <p>Administradores registrados en el sistema.</p>
-@stop
-
-@section('content')
     <!----------------------------------------------------------------------------------------------------------------->
     <a class="btn btn-success" href="{{ route('admin.create') }}"><i class="fa fa-plus"></i> Registrar nuevo administrador</a>
     <br/>
-    <br/>
-    <div class="container">
+@stop
+
+@section('content')
+
+    <div class="container-fluid">
         <table class="table table-striped" id="tablaAdmin">
             <!----------------------------------------------------------------------------------------->
             <thead>

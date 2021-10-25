@@ -9,5 +9,5 @@ class Vw_doctor_consultorio extends Model
 {
     use HasFactory;
 
-    protected $table='vw_medico_consultorio';
+    protected $table='vw_doctor_consultorio';
 }

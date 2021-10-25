@@ -46,14 +46,16 @@ class AdministradoresController extends Controller
         $admin=new Administrador();
         $admin->nombre=$request->input('nombre');
         $admin->apellidos=$request->input('apellido');
-        $admin->usuario=$request->input('usuario');
-        $admin->contra=$request->input('contra');
+        $admin->usuario=$request->input('nombre').rand();
         $admin->email=$request->input('email');
-        $admin->numero_contacto=$request->input('num_contacto');
+        $admin->telefono=$request->input('telefono');
+        $admin->celular=$request->input('celular');
         $admin->sexo=$request->input('sexo');
+        $admin->rol='administrador';
 
-        if($request->hasFile('archivo_img_Admin')){
-            $admin->profile_photo_path=$request->file('archivo_img_Admin')->store('public/fotos_perfil');
+
+        if($request->hasFile('inputImgPerfil')){
+            $admin->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
 
         $admin->save();
@@ -100,14 +102,15 @@ class AdministradoresController extends Controller
         $admin->nombre=$request->input('nombre');
         $admin->apellidos=$request->input('apellido');
         $admin->usuario=$request->input('usuario');
-        $admin->contra=$request->input('contra');
         $admin->email=$request->input('email');
-        $admin->numero_contacto=$request->input('num_contacto');
+        $admin->telefono=$request->input('telefono');
+        $admin->celular=$request->input('celular');
         $admin->sexo=$request->input('sexo');
+        $admin->rol='administrador';
 
-        if($request->hasFile('archivo_img_Admin')){
+        if($request->hasFile('inputImgPerfil')){
             Storage::delete($admin->profile_photo_path);
-            $admin->profile_photo_path=$request->file('archivo_img_Admin')->store('public/fotos_perfil');
+            $admin->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
 
         $admin->update();

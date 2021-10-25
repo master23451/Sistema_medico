@@ -9,12 +9,10 @@ class Secretaria extends Model
 {
     use HasFactory;
 
-    protected $primaryKey='id_secretaria';
-
     protected $table = 'secretaria';
 
     protected $fillable = [
-        "id_secretaria",
+        "id",
         "nombre",
         "apellidos",
         "profile_photo_path",

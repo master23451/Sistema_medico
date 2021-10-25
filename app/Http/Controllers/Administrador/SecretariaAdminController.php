@@ -17,7 +17,6 @@ class SecretariaAdminController extends Controller
     public function index()
     {
         $secretaria=Secretaria::all();
-
         $vista=view('vista_paginas.administrador.secretaria.vista_lista_secretaria_admin')
         ->with('datos_Secretaria',$secretaria);
 
@@ -46,13 +45,14 @@ class SecretariaAdminController extends Controller
         $secretaria=new Secretaria();
         $secretaria->nombre=$request->input('nombre');
         $secretaria->apellidos=$request->input('apellido');
-        $secretaria->usuario=$request->input('usuario');
-        $secretaria->contra=$request->input('contra');
+        $secretaria->usuario=$request->input('nombre').rand();
         $secretaria->email=$request->input('email');
-        $secretaria->numero_contacto=$request->input('num_contacto');
+        $secretaria->telefono=$request->input('telefono');
+        $secretaria->celular=$request->input('celular');
+        $secretaria->rol="Secretaria";
 
-        if($request->hasFile('imgPerfilSecretariaAdmin')){
-            $secretaria->profile_photo_path=$request->file('imgPerfilSecretariaAdmin')->store('public/fotos_perfil');
+        if($request->hasFile('inputImgPerfil')){
+            $secretaria->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
 
         $secretaria->save();
@@ -99,14 +99,14 @@ class SecretariaAdminController extends Controller
         $secretaria->nombre=$request->input('nombre');
         $secretaria->apellidos=$request->input('apellido');
         $secretaria->usuario=$request->input('usuario');
-        $secretaria->contra=$request->input('contra');
         $secretaria->email=$request->input('email');
-        $secretaria->numero_contacto=$request->input('num_contacto');
+        $secretaria->telefono=$request->input('telefono');
+        $secretaria->celular=$request->input('celular');
+        $secretaria->rol="Secretaria";
 
-        if($request->hasFile('archivo_img_editar_secretaria')){
-
+        if($request->hasFile('inputImgPerfil')){
             Storage::delete($secretaria->profile_photo_path);
-            $secretaria->profile_photo_path=$request->file('archivo_img_editar_secretaria')->store('public/fotos_perfil');
+            $secretaria->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
 
         }
 

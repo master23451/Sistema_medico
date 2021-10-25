@@ -15,7 +15,7 @@ class CreateAdministradorTable extends Migration
     {
         Schema::create('administrador', function (Blueprint $table) {
 
-            $table->bigIncrements('id_administrador');
+           $table->id();
             $table->string('nombre',100)->nullable();
             $table->string('apellidos',100)->nullable();
             $table->string('profile_photo_path',100)->nullable();

@@ -15,7 +15,7 @@ class CreatePacienteTable extends Migration
     {
         Schema::create('paciente', function (Blueprint $table) {
 
-            $table->bigIncrements('id_paciente');
+            $table->id();
             $table->string('nombre',100)->nullable();
             $table->string('apellidos', 150)->nullable();
             $table->string('expediente', 255)->nullable();

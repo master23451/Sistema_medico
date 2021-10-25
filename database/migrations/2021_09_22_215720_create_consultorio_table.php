@@ -14,7 +14,7 @@ class CreateConsultorioTable extends Migration
     public function up()
     {
         Schema::create('consultorio', function (Blueprint $table) {
-            $table->bigIncrements('id_consultorio');
+            $table->id();
             $table->string('nombre',50)->nullable();
             $table->string('descripcion',255)->nullable();
             $table->tinyInteger('status')->default('1');

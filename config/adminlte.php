@@ -275,66 +275,22 @@ return [
         [
             'text' => 'Administradores',
             'icon' => 'fas fa-user-shield',
-            'submenu' => [
-              [
-                  'text' => 'Registrar nuevo administrador',
-                  'route'  => 'admin.create',
-                  'icon' => 'far fa-edit',
-              ],
-              [
-                  'text' => 'Lista de administradores',
-                  'route'  => 'admin.index',
-                  'icon' => 'fas fa-user-shield',
-              ],
-            ],
+            'route' => 'admin.index'
         ],
         [
             'text' => 'Doctores',
-            'icon' => 'fas fa-user-md',
-            'submenu' => [
-               [
-                   'text' => 'Registrar nuevo doctor',
-                   'route'  => 'doctor.create',
-                   'icon' => 'far fa-edit',
-               ],
-                [
-                    'text' => 'Lista de doctores',
-                    'route'  => 'doctor.index',
-                    'icon' => 'fas fa-user-md',
-                ],
-            ],
+            'icon' => 'fas fa-stethoscope',
+            'route' => 'doctor.index'
         ],
         [
             'text' => 'Secretarias',
             'icon' => 'fas fa-user-nurse',
-            'submenu' => [
-                [
-                    'text' => 'Registrar nueva secretaria',
-                    'route'  => 'secretaria.create',
-                    'icon' => 'far fa-edit',
-                ],
-                [
-                    'text' => 'Lista de secretarias',
-                    'route'  => 'secretaria.index',
-                    'icon' => 'fas fa-user-nurse',
-                ],
-            ],
+            'route' => 'secretaria.index'
         ],
         [
             'text' => 'Pacientes',
             'icon' => 'fas fa-hospital-user',
-            'submenu' => [
-                [
-                    'text' => 'Registrar nuevo paciente',
-                    'route'  => 'paciente.create',
-                    'icon' => 'far fa-edit',
-                ],
-                [
-                    'text' => 'Lista de pacientes',
-                    'route'  => 'paciente.index',
-                    'icon' => 'fas fa-hospital-user',
-                ],
-            ],
+            'route' => 'paciente.index'
         ],
         [
             'text' => 'Consultorios',
@@ -354,42 +310,19 @@ return [
         ],
         [
             'text' => 'Doctores',
-            'icon' => 'fas fa-user-md',
-            'submenu' => [
-                [
-                    'text' => 'Registrar nuevo doctor',
-                    'route'  => 'secretaria.doctor.create',
-                    'icon' => 'far fa-edit',
-                ],
-                [
-                    'text' => 'Lista de doctores',
-                    'route'  => 'secretaria.doctor.index',
-                    'icon' => 'fas fa-user-md'
-                ],
-            ],
+            'route'  => 'secretaria.doctor.index',
+            'icon' => 'fas fa-stethoscope',
         ],
         [
-            'text' => 'Paciente',
+            'text' => 'Pacientes',
             'icon' => 'fas fa-hospital-user',
-            'submenu' => [
-                [
-                    'text' => 'Registrar nuevo paciente',
-                    'route'  => 'secretaria.paciente.create',
-                    'icon' => 'far fa-edit',
-                ],
-                [
-                    'text' => 'Lista de pacientes',
-                    'route'  => 'secretaria.paciente.index',
-                    'icon' => 'fas fa-hospital-user',
-                ],
-            ],
+            'route' => 'secretaria.paciente.index'
         ],
         [
             'text' => 'Consultorios',
             'url'  => '#',
             'icon' => 'fas fa-clinic-medical',
         ],
-        ['header' => 'Doctores'],
         /*[
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
