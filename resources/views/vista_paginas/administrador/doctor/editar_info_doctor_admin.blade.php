@@ -23,7 +23,9 @@
                     <img
                         src="{{ Illuminate\Support\Facades\Storage::url($datos_doctor->profile_photo_path)}}"
                         alt="{{ $datos_doctor->nombre }}"
-                        style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;">
+                        style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                         id="perfilImgPreview"
+                    >
                 </div>
                 <div class="mb-2 mt-2">
                     <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
@@ -61,7 +63,6 @@
                        placeholder="Ingrese un correo electronico" class="form-control"
                        value="{{$datos_doctor->email}}"/>
             </div>
-            <br>
             <!--------------------------------------------------------------------------------------------------------->
             <div class="row">
                 <div class="col">
@@ -101,7 +102,9 @@
                     <select id="consultorio" name="consultorio" class="form-control">
                         <option value="">Seleccionar...</option>
                         @foreach($consultorios as $item_consultorio)
-                            <option value="{{ $item_consultorio->id }}">{{ $item_consultorio->nombre }}</option>
+                            <option value="{{ $item_consultorio->id }}" @if( $item_consultorio->id ==  $datos_doctor->id_consultorio) selected @endif>
+                                    {{  $item_consultorio->nombre }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -140,14 +143,29 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-
     <script type="text/javascript">
         const inputImgPerfil=document.getElementById('inputImgPerfil');
         const btnSelectImgPerfil=document.getElementById('btnSelectImgPerfil');
 
         btnSelectImgPerfil.addEventListener("click", function (){
             inputImgPerfil.click()
+        });
+    </script>
+
+    <script type="text/javascript">
+        function readImage (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#perfilImgPreview').attr('src', e.target.result); // Renderizamos la imagen
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#inputImgPerfil").change(function () {
+            // Código a ejecutar cuando se detecta un cambio de archivO
+            readImage(this);
         });
     </script>
 
