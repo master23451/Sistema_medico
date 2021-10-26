@@ -5,13 +5,13 @@
 @section('content_header')
     <h1>Mensajes</h1>
     <p>Lista de mensajes del administrador.</p>
+    <!----------------------------------------------------------------------------------------------------------------->
+    <a class="btn btn-success" href="{{ route('administrador.crear.post') }}"><i class="fa fa-plus"></i> Registrar nuevo post</a>
+    <br/>
+    <!----------------------------------------------------------------------------------------------------------------->
 @stop
 
 @section('content')
-    <!----------------------------------------------------------------------------------------------------------------->
-    <a class="btn btn-success" href="{{ route('administrador.crear.post') }}"><i class="fa fa-plus"></i> Registrar nuevo administrador</a>
-    <br/>
-    <br/>
     <div class="container">
         <table class="table table-striped" id="tablaPostAdmin">
             <!----------------------------------------------------------------------------------------->
@@ -46,8 +46,6 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-
     <script>
         $(document).ready( function () {
             $('#tablaPostAdmin').DataTable();

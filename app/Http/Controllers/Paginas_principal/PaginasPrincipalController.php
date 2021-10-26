@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Paginas_principal;
 
 use App\Http\Controllers\Controller;
-use App\Models\Inicio;
 use App\Models\Mensaje_administrador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -50,7 +49,7 @@ class PaginasPrincipalController extends Controller
         $post=new Mensaje_administrador();
         $post->titulo=$request->input('titulo_post');
         $post->mensaje=$request->input('texto_descrip');
-        $post->imagen=$request->file('img_post')->store('public/imagen_post');
+        $post->imagen=$request->file('inputImgPost')->store('public/imagen_post');
         $post->fecha_publicacion=$request->input('fecha_publicacion');
 
         $post->save();
@@ -75,9 +74,9 @@ class PaginasPrincipalController extends Controller
         $post->mensaje=$request->input('texto_descrip');
         $post->fecha_publicacion=$request->input('fecha_publicacion');
 
-        if($request->hasFile('img_post')){
+        if($request->hasFile('inputImgPost')){
             Storage::delete($post->imagen);
-            $post->imagen=$request->file('img_post')->store('public/imagen_post');
+            $post->imagen=$request->file('inputImgPost')->store('public/imagen_post');
         }
 
         $post->save();

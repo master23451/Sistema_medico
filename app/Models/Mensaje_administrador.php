@@ -9,5 +9,5 @@ class Mensaje_administrador extends Model
 {
     use HasFactory;
 
-    Protected $table='mensaje_administrador';
+    Protected $table='mensaje_administradsor';
 }
