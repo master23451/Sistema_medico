@@ -73,4 +73,16 @@
             $('#tablaPacienteAdmin').DataTable();
         } );
     </script>
+
+    @if(session('eliminado')=='ok')
+        <script>
+            Swal.fire({
+                title: 'Eliminado',
+                text: 'El paciente se elimino de manera correcta del sistema',
+                icon: 'success',
+                confirmButtonColor: '#d01414',
+                confirmButtonText: 'Aceptar'
+            })
+        </script>
+    @endif
 @stop
