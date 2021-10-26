@@ -51,6 +51,7 @@ class SecretariaAdminController extends Controller
         $secretaria->celular=$request->input('celular');
         $secretaria->rol="Secretaria";
 
+
         if($request->hasFile('inputImgPerfil')){
             $secretaria->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
         }
@@ -103,6 +104,7 @@ class SecretariaAdminController extends Controller
         $secretaria->telefono=$request->input('telefono');
         $secretaria->celular=$request->input('celular');
         $secretaria->rol="Secretaria";
+        $secretaria->status=$request->input('status');
 
         if($request->hasFile('inputImgPerfil')){
             Storage::delete($secretaria->profile_photo_path);

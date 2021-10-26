@@ -38,19 +38,18 @@
                         <label for="apellido">Apellidos</label>
                         <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos" class="form-control" value="{{ $datos_secretaria->apellidos }}"/>
                     </div>
+                    <div class="col">
+                        <label for="usuario">Usuario</label>
+                        <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario" class="form-control" value="{{ $datos_secretaria->usuario }}"/>
+                    </div>
                 </div>
                 <!------------------------------------------------------------------------------>
                 <br>
-                <div class="col">
-                    <label for="usuario">Usuario</label>
-                    <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario" class="form-control" value="{{ $datos_secretaria->usuario }}"/>
-                </div>
-                <div class="col">
+                <div class="mb-4">
                     <label for="email">E-mail</label>
                     <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $datos_secretaria->email }}"/>
                 </div>
                 <!------------------------------------------------------------------------------>
-                <br/>
                 <div class="row">
                     <div class="col">
                         <label for="telefono">Numero de telefono</label>
@@ -63,6 +62,25 @@
                                placeholder="Ingrese un numero de celular" class="form-control" value="{{ $datos_secretaria->celular }}"/>
                     </div>
                 </div>
+                <!----------------------------------------------------------------------------------------------------->
+                <br>
+                <div class="mb-4">
+                    <label for="status">Estatus</label>
+                    <select id="status" name="status" class="form-control" style="width: 49%">
+                        <option value="" disabled>Seleccionar...</option>
+                        @switch($datos_secretaria->status)
+                            @case(1)
+                            <option value="1" selected>Activo</option>
+                            <option value="0">Desactivado</option>
+                            @break
+                            @case(0)
+                            <option value="1">Activo</option>
+                            <option value="0" selected>Desactivado</option>
+                            @break
+                        @endswitch
+                    </select>
+                </div>
+                <!----------------------------------------------------------------------------------------------------->
                 <div class="mb-4">
                     <hr/>
                     <button type="submit" class="btn btn-success" style="flex: auto"><i class="fas fa-save"></i> Guardar</button>

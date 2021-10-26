@@ -122,6 +122,7 @@ class DoctorSecretariaController extends Controller
         $doctor->sexo=$request->input('sexo');
         $doctor->horarios=$request->input('horarios');
         $doctor->rol="Doctor";
+        $doctor->status=$request->input('status');
 
         if($request->hasFile('inputImgPerfil')){
             Storage::delete($doctor->profile_photo_path);
@@ -129,7 +130,7 @@ class DoctorSecretariaController extends Controller
         }
 
         $doctor->update();
-        
+
         return redirect()->route('secretaria.doctor.index')->with('modificado','ok');
 
     }

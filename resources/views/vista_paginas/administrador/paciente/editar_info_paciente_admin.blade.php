@@ -39,18 +39,16 @@
                    <label for="apellido">Apellidos</label>
                    <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos" class="form-control" value="{{ $dato_paciente->apellidos }}"/>
                </div>
-           </div>
-           <!--------------------------------------------------------------------------------------------------------->
-           <br/>
-           <div class="row">
                <div class="col">
                    <label for="usuario">Usuario</label>
                    <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario" class="form-control" value="{{ $dato_paciente->usuario }}"/>
                </div>
-               <div class="col">
-                   <label for="email">E-mail</label>
-                   <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $dato_paciente->email }}"/>
-               </div>
+           </div>
+           <!--------------------------------------------------------------------------------------------------------->
+           <br/>
+           <div class="col">
+               <label for="email">E-mail</label>
+               <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $dato_paciente->email }}"/>
            </div>
            <!--------------------------------------------------------------------------------------------------------->
            <br/>
@@ -73,7 +71,7 @@
            <div class="mb-4">
                <label for="sexo">Sexo</label>
                <select id="sexo" name="sexo" class="form-control">
-                   <option selected disabled>Seleccionar...</option>
+                   <option  disabled>Seleccionar...</option>
                    @switch($dato_paciente->sexo)
                        @case('Hombre')
                        <option value="Hombre" selected>Hombre</option>
@@ -86,6 +84,24 @@
                    @endswitch
                </select>
            </div>
+           <!--------------------------------------------------------------------------------------------->
+           <div class="mb-4">
+               <label for="status">Estatus</label>
+               <select id="status" name="status" class="form-control" style="width: 49%">
+                   <option value="" disabled>Seleccionar...</option>
+                   @switch($dato_paciente->status)
+                       @case(1)
+                       <option value="1" selected>Activo</option>
+                       <option value="0">Desactivado</option>
+                       @break
+                       @case(0)
+                       <option value="1">Activo</option>
+                       <option value="0" selected>Desactivado</option>
+                       @break
+                   @endswitch
+               </select>
+           </div>
+           <!--------------------------------------------------------------------------------------------->
            <hr>
            <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Guardar</button>
            <a class="btn btn-secondary" href="{{ route('paciente.index') }}"><i class="fas fa-arrow-circle-left"></i> Cancelar</a>

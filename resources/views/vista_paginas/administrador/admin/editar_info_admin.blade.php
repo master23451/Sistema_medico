@@ -75,7 +75,7 @@
             <div class="mb-4">
                 <label for="sexo">Sexo</label>
                 <select id="sexo" name="sexo" class="form-control">
-                    <option selected>Seleccionar...</option>
+                    <option disabled>Seleccionar...</option>
                     @switch($dato_administrador->sexo)
                         @case('Hombre')
                         <option value="Hombre" selected>Hombre</option>
@@ -84,6 +84,23 @@
                         @case('Mujer')
                         <option value="Hombre">Hombre</option>
                         <option value="Mujer" selected>Mujer</option>
+                        @break
+                    @endswitch
+                </select>
+            </div>
+            <!--------------------------------------------------------------------------------------------------------->
+            <div class="mb-4">
+                <label for="status">Estatus</label>
+                <select id="status" name="status" class="form-control" style="width: 49%">
+                    <option value="" disabled>Seleccionar...</option>
+                    @switch($dato_administrador->status)
+                        @case(1)
+                        <option value="1" selected>Activo</option>
+                        <option value="0">Desactivado</option>
+                        @break
+                        @case(0)
+                        <option value="1">Activo</option>
+                        <option value="0" selected>Desactivado</option>
                         @break
                     @endswitch
                 </select>

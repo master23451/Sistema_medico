@@ -73,7 +73,7 @@
             <div class="mb-4">
                 <label for="sexo">Sexo</label>
                 <select id="sexo" name="sexo" class="form-control">
-                    <option selected disabled>Seleccionar...</option>
+                    <option disabled>Seleccionar...</option>
                     @switch($dato_paciente->sexo)
                         @case('Hombre')
                         <option value="Hombre" selected>Hombre</option>

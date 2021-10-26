@@ -43,6 +43,7 @@ class AdministradoresController extends Controller
      */
     public function store(Request $request)
     {
+
         $admin=new Administrador();
         $admin->nombre=$request->input('nombre');
         $admin->apellidos=$request->input('apellido');
@@ -52,6 +53,7 @@ class AdministradoresController extends Controller
         $admin->celular=$request->input('celular');
         $admin->sexo=$request->input('sexo');
         $admin->rol='administrador';
+
 
 
         if($request->hasFile('inputImgPerfil')){
@@ -98,6 +100,7 @@ class AdministradoresController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $admin=Administrador::find($id);
         $admin->nombre=$request->input('nombre');
         $admin->apellidos=$request->input('apellido');
@@ -107,6 +110,7 @@ class AdministradoresController extends Controller
         $admin->celular=$request->input('celular');
         $admin->sexo=$request->input('sexo');
         $admin->rol='administrador';
+        $admin->status=$request->input('status');
 
         if($request->hasFile('inputImgPerfil')){
             Storage::delete($admin->profile_photo_path);

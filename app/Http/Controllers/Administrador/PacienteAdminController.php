@@ -107,6 +107,7 @@ class PacienteAdminController extends Controller
         $paciente->expediente=$request->input('expediente');
         $paciente->sexo=$request->input('sexo');
         $paciente->rol="Paciente";
+        $paciente->status=$request->input('status');
 
         if($request->hasFile('inputImgPerfil')){
             Storage::delete($paciente->profile_photo_path);

@@ -83,7 +83,7 @@
             <div class="mb-4">
                 <label for="sexo">Sexo</label>
                 <select id="sexo" name="sexo" class="form-control">
-                    <option selected>Seleccionar...</option>
+                    <option disabled>Seleccionar...</option>
                     @switch($datos_doctor->sexo)
                         @case('Hombre')
                         <option value="Hombre" selected>Hombre</option>
@@ -116,6 +116,24 @@
                     <input id="horarios" name="horarios" type="time" class="form-control"
                            value="{{ $datos_doctor->horarios }}"/>
                 </div>
+            </div>
+            <!--------------------------------------------------------------------------------------------------------->
+            <br>
+            <div class="mb-4">
+                <label for="status">Estatus</label>
+                <select id="status" name="status" class="form-control" style="width: 49%">
+                    <option value="" disabled>Seleccionar...</option>
+                    @switch($datos_doctor->status)
+                        @case(1)
+                        <option value="1" selected>Activo</option>
+                        <option value="0">Desactivado</option>
+                        @break
+                        @case(0)
+                        <option value="1">Activo</option>
+                        <option value="0" selected>Desactivado</option>
+                        @break
+                    @endswitch
+                </select>
             </div>
             <!--------------------------------------------------------------------------------------------------------->
             <div class="mb-4">
