@@ -17,7 +17,7 @@ class PacienteSecretariaController extends Controller
      */
     public function index()
     {
-        $paciente=Paciente::where('status',1)->get();
+        $paciente=Paciente::all();
         $vista=view('vista_paginas.secretaria.paciente.vista_lista_paciente_secretaria')
         ->with('datos_paciente', $paciente);
 

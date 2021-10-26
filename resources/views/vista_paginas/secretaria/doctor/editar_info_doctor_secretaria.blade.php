@@ -146,16 +146,6 @@
             </div>
         </form>
         <!------------------------------------------------------------------------------------------------->
-        <form action="{{ route('secretaria.doctor.destroy', $datos_doctor->id) }}" method="post">
-            @csrf
-            @method('delete')
-            <div class="px-2 py-1">
-                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </div>
-        </form>
-    </div>
-    <!------------------------------------------------------------------------------------------------->
-    <br/>
 @stop
 
 @section('css')

@@ -21,6 +21,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">E-mail</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Perfil</th>
             </tr>
             </thead>
@@ -42,6 +43,16 @@
                     </td>
                     <td class="px-2 py-4">{{ $datosAdmin->usuario }}</td>
                     <td class="px-2 py-4">{{ $datosAdmin->email }}</td>
+                    <td class="px-2 py-4">
+                        @switch($datosAdmin->status)
+                            @case(1)
+                            <span style="color: #50c986">Activo</span>
+                            @break
+                            @case(0)
+                            <span style="color: #d01414">Desactivado</span>
+                            @break
+                        @endswitch
+                    </td>
                     <td class="px-2 py-4">
                         <a class="btn btn-warning" href="{{ route('admin.edit', $datosAdmin->id) }}"><i class="fas fa-info-circle"></i> Info</a>
                     </td>

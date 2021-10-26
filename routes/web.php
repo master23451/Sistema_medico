@@ -46,7 +46,6 @@ Route::get('Secretaria/doctor/crear', [DoctorSecretariaController::class, 'creat
 Route::post('Secretaria/doctor', [DoctorSecretariaController::class, 'store'])->name('secretaria.doctor.store');
 Route::get('Secretaria/doctor/{id}/editar', [DoctorSecretariaController::class, 'edit'])->name('secretaria.doctor.edit');
 Route::put('Secretaria/doctor/{id}', [DoctorSecretariaController::class, 'update'])->name('secretaria.doctor.update');
-Route::delete('Secretaria/doctor/{id}', [DoctorSecretariaController::class, 'destroy'])->name('secretaria.doctor.destroy');
 /*--------------------------------------------------------------------------------------------------------------------*/
 Route::get('secretaria/paciente', [PacienteSecretariaController::class, 'index'])->name('secretaria.paciente.index');
 Route::get('secretaria/paciente/crear', [PacienteSecretariaController::class, 'create'])->name('secretaria.paciente.create');

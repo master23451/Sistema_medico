@@ -19,7 +19,7 @@ class DoctorSecretariaController extends Controller
     public function index()
     {
 
-        $doctor=Vw_doctor_consultorio::where('status',1)->get();
+        $doctor=Vw_doctor_consultorio::all();
         $vista=view('vista_paginas.secretaria.doctor.vista_lista_doctor_secretaria')
         ->with('listado_doctores', $doctor);
 
@@ -143,12 +143,6 @@ class DoctorSecretariaController extends Controller
      */
     public function destroy($id)
     {
-        $doctor=Doctor::find($id);
-
-        Storage::delete($doctor->profile_photo_path);
-        $doctor->delete();
-
-        return redirect()->route('secretaria.doctor.index')->with('eliminado','ok');
 
     }
 }
