@@ -79,6 +79,7 @@
                            value="{{ $datos_doctor->celular }}"/>
                 </div>
             </div>
+            <br>
             <div class="mb-4">
                 <label for="sexo">Sexo</label>
                 <select id="sexo" name="sexo" class="form-control">

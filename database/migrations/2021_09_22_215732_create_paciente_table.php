@@ -18,7 +18,7 @@ class CreatePacienteTable extends Migration
             $table->id();
             $table->string('nombre',100)->nullable();
             $table->string('apellidos', 150)->nullable();
-            $table->string('expediente', 255)->nullable();
+            $table->string('expediente', 255)->nullable()->unique();
             $table->string('profile_photo_path',255)->nullable();
             $table->string('usuario',100)->nullable();
             $table->string('contra',250)->nullable();

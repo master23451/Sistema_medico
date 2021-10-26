@@ -48,7 +48,7 @@
                <!--------------------------------------------------------------------------------------------------------->
                <div class="mb-4">
                    <label for="expediente">Expediente</label>
-                   <input class="form-control w-full" id="expediente" name="expediente" placeholder="Ingrese el numero del expediente correspondiente">
+                   <input class="form-control" id="expediente" name="expediente" placeholder="Ingrese el numero del expediente correspondiente">
                </div>
                <!--------------------------------------------------------------------------------------------------------->
                <div class="row">
