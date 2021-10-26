@@ -19,7 +19,7 @@ class DoctorSecretariaController extends Controller
     public function index()
     {
 
-        $doctor=Vw_doctor_consultorio::all();
+        $doctor=Vw_doctor_consultorio::where('status',1)->get();
         $vista=view('vista_paginas.secretaria.doctor.vista_lista_doctor_secretaria')
         ->with('listado_doctores', $doctor);
 
