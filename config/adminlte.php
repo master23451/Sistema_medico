@@ -30,8 +30,8 @@ return [
     |
     */
 
-    'use_ico_only' => false,
-    'use_full_favicon' => false,
+    'use_ico_only' => true,
+    'use_full_favicon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -64,8 +64,8 @@ return [
     |
     */
 
-    'usermenu_enabled' => false,
-    'usermenu_header' => false,
+    'usermenu_enabled' => true,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -88,7 +88,7 @@ return [
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => null,
+    'layout_dark_mode' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -187,8 +187,8 @@ return [
     |
     */
 
-    'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'use_route_url' => true,
+    'dashboard_url' => 'admin.index',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -241,11 +241,6 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
             'can' =>'hola'
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
         ],
         [
             'text'        => 'pages',

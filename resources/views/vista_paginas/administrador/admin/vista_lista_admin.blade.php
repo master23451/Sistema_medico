@@ -11,7 +11,6 @@
 @stop
 
 @section('content')
-
     <div class="container-fluid">
         <table class="table table-striped" id="tablaAdmin">
             <!----------------------------------------------------------------------------------------->
