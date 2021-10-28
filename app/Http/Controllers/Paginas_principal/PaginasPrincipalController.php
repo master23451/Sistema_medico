@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Paginas_principal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mensaje_administrador;
+use App\Models\Vistas\Vw_contador_doctor;
+use App\Models\Vistas\Vw_contador_paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +17,13 @@ class PaginasPrincipalController extends Controller
 
     public function indexInfoGeneralAdministrador(){
 
-
+        $contador_paciente=Vw_contador_paciente::all();
+        $contador_doctores=Vw_contador_doctor::all();
+        $post=Mensaje_administrador::orderBy('id', 'asc')->first();
+        return view('vista_paginas.administrador.index_admin')
+            ->with('contador_Paciente',$contador_paciente)
+            ->with('contador_doctor', $contador_doctores)
+            ->with('ver_post',$post);
     }
 
     public function editarInfoGneral(){
@@ -32,7 +40,7 @@ class PaginasPrincipalController extends Controller
     public function lista_post(){
 
         $post=Mensaje_administrador::all();
-        $vista=view('vista_paginas.administrador.indexes.lista_post')
+        $vista=view('vista_paginas.administrador.post.lista_post')
         ->with('lista_post', $post);
         return $vista;
 
@@ -40,7 +48,7 @@ class PaginasPrincipalController extends Controller
 
     public function crear_post(){
 
-        $vista=view('vista_paginas.administrador.indexes.crear_post');
+        $vista=view('vista_paginas.administrador.post.crear_post');
         return $vista;
     }
 
@@ -60,7 +68,7 @@ class PaginasPrincipalController extends Controller
     public function editar_post($id){
 
         $post=Mensaje_administrador::find($id);
-        $vista=view('vista_paginas.administrador.indexes.editar_post')
+        $vista=view('vista_paginas.administrador.post.editar_post')
         ->with('dato_post',$post);
 
         return $vista;
@@ -92,6 +100,12 @@ class PaginasPrincipalController extends Controller
         $post->delete();
 
         return redirect()->route('administrador.lista.post')->with('eliminado','ok');
+    }
+
+    public function vista_post($id){
+
+        $post=Mensaje_administrador::find($id);
+        return view('vista_paginas.administrador.post.ver_post')->with('ver_post',$post);
     }
     /*----------------------------------------------------------------------------------------------------------------*/
     public function indexSecretaria(){

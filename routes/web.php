@@ -32,12 +32,16 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
 Route::get('login', [SeguridadController::class,'vistaLogin'])->name('login');
 Route::post('login', [SeguridadController::class,'loginIngresar'])->name('login');
 Route::post('logout', [SeguridadController::class,'logout'])->name('logout');
+/*--------------------------------------------------Indexes-----------------------------------------------------------*/
+Route::get('administrador/index', [PaginasPrincipalController::class,'indexInfoGeneralAdministrador'])->name('administrador.index')->middleware('auth');
+/*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------Ruta index Administrador-----------------------------------------------------*/
 Route::get('administrador/post', [PaginasPrincipalController::class,'lista_post'])->name('administrador.lista.post')->middleware('auth');
 Route::get('administrador/post/crear', [PaginasPrincipalController::class,'crear_post'])->name('administrador.crear.post')->middleware('auth');
 Route::post('administrador/post', [PaginasPrincipalController::class,'guardar_post'])->name('administrador.guardar.post')->middleware('auth');
 Route::get('administrador/post/{id}/editar', [PaginasPrincipalController::class,'editar_post'])->name('administrador.editar.post')->middleware('auth');
 Route::put('administrador/post/{id}', [PaginasPrincipalController::class,'actualizar_post'])->name('administrador.actualizar.post')->middleware('auth');
+Route::get('administrador/post/{id}', [PaginasPrincipalController::class,'vista_post'])->name('administrador.ver.post')->middleware('auth');
 Route::delete('administrador/post/{id}', [PaginasPrincipalController::class,'eliminar_post'])->name('administrador.elimianr.post')->middleware('auth');
 /*--------------------------------------------------------------------------------------------------------------------*/
 

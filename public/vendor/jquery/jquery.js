@@ -1084,7 +1084,7 @@ function createPositionalPseudo( fn ) {
 				matchIndexes = fn( [], seed.length, argument ),
 				i = matchIndexes.length;
 
-			// Match elements found at the specified indexes
+			// Match elements found at the specified post
 			while ( i-- ) {
 				if ( seed[ ( j = matchIndexes[ i ] ) ] ) {
 					seed[ j ] = !( matches[ j ] = seed[ j ] );
@@ -1980,7 +1980,7 @@ Expr = Sizzle.selectors = {
 								// Fallback to seeking `elem` from the start
 								( diff = nodeIndex = 0 ) || start.pop() ) ) {
 
-								// When found, cache indexes on `parent` and break
+								// When found, cache post on `parent` and break
 								if ( node.nodeType === 1 && ++diff && node === elem ) {
 									uniqueCache[ type ] = [ dirruns, nodeIndex, diff ];
 									break;
@@ -3569,7 +3569,7 @@ jQuery.Callbacks = function( options ) {
 					while ( ( index = jQuery.inArray( arg, list, index ) ) > -1 ) {
 						list.splice( index, 1 );
 
-						// Handle firing indexes
+						// Handle firing post
 						if ( index <= firingIndex ) {
 							firingIndex--;
 						}

@@ -253,6 +253,11 @@ return [
         ['header' => 'Administrador'],
         [
             'text' => 'Pagian principal',
+            'route' => 'administrador.index',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
+        [
+            'text' => 'Post',
             'icon' => 'fas fa-sticky-note',
             'submenu' => [
               [
