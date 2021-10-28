@@ -8,122 +8,126 @@
 @stop
 
 @section('content')
-    <!------------------------------------------------------------------------------------------------->
-    <div class="container-fluid">
-        <form action="{{ route('admin.update', $dato_administrador->id) }}" method="post"
-              enctype="multipart/form-data">
-        @csrf
-        @method('put')
-        <!-------------------------------Seleccion de fotos-------------------------------------------------------->
-            <div class="px-2 py-4">
-                <h5>Foto de perfil</h5>
-                <div>
-                    <img
-                        src="{{ Illuminate\Support\Facades\Storage::url($dato_administrador->profile_photo_path)}}"
-                        alt="{{ $dato_administrador->nombre }}"
-                        style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                        id="perfilImgPreview"
-                    >
+<div class="card">
+    <div class="card-body">
+        <!------------------------------------------------------------------------------------------------->
+        <div class="container-fluid">
+            <form action="{{ route('admin.update', $dato_administrador->id) }}" method="post"
+                  enctype="multipart/form-data">
+            @csrf
+            @method('put')
+            <!-------------------------------Seleccion de fotos-------------------------------------------------------->
+                <div class="px-2 py-4">
+                    <h5>Foto de perfil</h5>
+                    <div>
+                        <img
+                            src="{{ Illuminate\Support\Facades\Storage::url($dato_administrador->profile_photo_path)}}"
+                            alt="{{ $dato_administrador->nombre }}"
+                            style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                            id="perfilImgPreview"
+                        >
+                    </div>
+                    <div class="mb-2 mt-2">
+                        <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
+                                class="fas fa-portrait" style=""></i> Cambiar foto de perfil
+                        </button>
+                        <input type="file" class="form-control" id="inputImgPerfil"
+                               name="inputImgPerfil" style="display: none"/>
+                    </div>
                 </div>
-                <div class="mb-2 mt-2">
-                    <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
-                            class="fas fa-portrait" style=""></i> Cambiar foto de perfil
-                    </button>
-                    <input type="file" class="form-control" id="inputImgPerfil"
-                           name="inputImgPerfil" style="display: none"/>
+                <!--------------------------------------------------------------------------------------------------------->
+                <div class="row">
+                    <div class="col">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" name="nombre" type="text"
+                               placeholder="Ingrese el nombre o los nombres del doctor" class="form-control"
+                               value="{{$dato_administrador->nombre}}"/>
+                    </div>
+                    <div class="col">
+                        <label for="apellido">Apellidos</label>
+                        <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos"
+                               class="form-control" value="{{$dato_administrador->apellidos}}"/>
+                    </div>
+                    <div class="col">
+                        <label for="usuario">Usuario</label>
+                        <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario"
+                               class="form-control" value="{{ $dato_administrador->usuario }}"/>
+                    </div>
                 </div>
-            </div>
-            <!--------------------------------------------------------------------------------------------------------->
-            <div class="row">
-                <div class="col">
-                    <label for="nombre">Nombre</label>
-                    <input id="nombre" name="nombre" type="text"
-                           placeholder="Ingrese el nombre o los nombres del doctor" class="form-control"
-                           value="{{$dato_administrador->nombre}}"/>
-                </div>
-                <div class="col">
-                    <label for="apellido">Apellidos</label>
-                    <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos"
-                           class="form-control" value="{{$dato_administrador->apellidos}}"/>
-                </div>
-                <div class="col">
-                    <label for="usuario">Usuario</label>
-                    <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario"
-                           class="form-control" value="{{ $dato_administrador->usuario }}"/>
-                </div>
-            </div>
-            <!--------------------------------------------------------------------------------------------------------->
-            <br>
-            <div class="mb-4">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email"
+                <!--------------------------------------------------------------------------------------------------------->
+                <br>
+                <div class="mb-4">
+                    <label for="email">E-mail</label>
+                    <input id="email" name="email" type="email"
                            placeholder="Ingrese un correo electronico" class="form-control"
                            value="{{$dato_administrador->email}}" />
-            </div>
-            <!--------------------------------------------------------------------------------------------------------->
-            <div class="row">
-                <div class="col">
-                    <label for="telefono">Numero de telefono</label>
-                    <input id="num_contacto" name="num_contacto" type="tel" maxlength="10" placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $dato_administrador->telefono }}"/>
                 </div>
-                <div class="col">
-                    <label for="celular">Numero de celualar</label>
-                    <input id="celular" name="celular" type="tel" maxlength="10" placeholder="Ingrese un numero de celular" class="form-control" value="{{ $dato_administrador->celular }}"/>
+                <!--------------------------------------------------------------------------------------------------------->
+                <div class="row">
+                    <div class="col">
+                        <label for="telefono">Numero de telefono</label>
+                        <input id="num_contacto" name="num_contacto" type="tel" maxlength="10" placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $dato_administrador->telefono }}"/>
+                    </div>
+                    <div class="col">
+                        <label for="celular">Numero de celualar</label>
+                        <input id="celular" name="celular" type="tel" maxlength="10" placeholder="Ingrese un numero de celular" class="form-control" value="{{ $dato_administrador->celular }}"/>
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="mb-4">
-                <label for="sexo">Sexo</label>
-                <select id="sexo" name="sexo" class="form-control">
-                    <option disabled>Seleccionar...</option>
-                    @switch($dato_administrador->sexo)
-                        @case('Hombre')
-                        <option value="Hombre" selected>Hombre</option>
-                        <option value="Mujer">Mujer</option>
-                        @break
-                        @case('Mujer')
-                        <option value="Hombre">Hombre</option>
-                        <option value="Mujer" selected>Mujer</option>
-                        @break
-                    @endswitch
-                </select>
-            </div>
-            <!--------------------------------------------------------------------------------------------------------->
-            <div class="mb-4">
-                <label for="status">Estatus</label>
-                <select id="status" name="status" class="form-control" style="width: 49%">
-                    <option value="" disabled>Seleccionar...</option>
-                    @switch($dato_administrador->status)
-                        @case(1)
-                        <option value="1" selected>Activo</option>
-                        <option value="0">Desactivado</option>
-                        @break
-                        @case(0)
-                        <option value="1">Activo</option>
-                        <option value="0" selected>Desactivado</option>
-                        @break
-                    @endswitch
-                </select>
-            </div>
-            <!--------------------------------------------------------------------------------------------------------->
-            <div class="mb-4">
-                <hr/>
-                <button type="submit" class="btn btn-success" style="flex: auto"><i
-                        class="fas fa-save"></i> Guardar
-                </button>
-                <a class="btn-secondary btn" href="{{ route('admin.index') }}"><i
-                        class="fas fa-arrow-circle-left"></i> Regresar</a>
-            </div>
-        </form>
-        <!------------------------------------------------------------------------------------------------->
-        <form action="{{ route('admin.destroy', $dato_administrador->id) }}" method="post">
-            @csrf
-            @method('delete')
-            <div class="px-2 py-1">
-                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </div>
-        </form>
+                <br>
+                <div class="mb-4">
+                    <label for="sexo">Sexo</label>
+                    <select id="sexo" name="sexo" class="form-control">
+                        <option disabled>Seleccionar...</option>
+                        @switch($dato_administrador->sexo)
+                            @case('Hombre')
+                            <option value="Hombre" selected>Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                            @break
+                            @case('Mujer')
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer" selected>Mujer</option>
+                            @break
+                        @endswitch
+                    </select>
+                </div>
+                <!--------------------------------------------------------------------------------------------------------->
+                <div class="mb-4">
+                    <label for="status">Estatus</label>
+                    <select id="status" name="status" class="form-control" style="width: 49%">
+                        <option value="" disabled>Seleccionar...</option>
+                        @switch($dato_administrador->status)
+                            @case(1)
+                            <option value="1" selected>Activo</option>
+                            <option value="0">Desactivado</option>
+                            @break
+                            @case(0)
+                            <option value="1">Activo</option>
+                            <option value="0" selected>Desactivado</option>
+                            @break
+                        @endswitch
+                    </select>
+                </div>
+                <!--------------------------------------------------------------------------------------------------------->
+                <div class="mb-4">
+                    <hr/>
+                    <button type="submit" class="btn btn-success" style="flex: auto"><i
+                            class="fas fa-save"></i> Guardar
+                    </button>
+                    <a class="btn-secondary btn" href="{{ route('admin.index') }}"><i
+                            class="fas fa-arrow-circle-left"></i> Regresar</a>
+                </div>
+            </form>
+            <!------------------------------------------------------------------------------------------------->
+            <form action="{{ route('admin.destroy', $dato_administrador->id) }}" method="post">
+                @csrf
+                @method('delete')
+                <div class="px-2 py-1">
+                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 @stop
 
 @section('css')

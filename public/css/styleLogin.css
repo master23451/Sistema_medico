@@ -1,19 +1,19 @@
 body{
-    background-color: #19c8ce;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .formulario{
-    background: rgba(0,.0,.0,.1);
+    /*background: rgba(0,.0,.0,.1);*/
+    background: #ffffff;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.556);
 }
 
 .form-control{
-    background: rgba(0,.0,.0,.3);
+   background: rgba(0,.0,.0,.3);
     border-style: none;
     transition: 0.5s ease-in;
     outline: none;
@@ -28,14 +28,13 @@ body{
 }
 
 .form-control::placeholder{
-    color: #ffffff;
+    color: #000000;
 }
 
 .ingresar{
     background: #1951ce;
     font-size: 18px;
-    font-weight: 700;
-    width: 350px;
+    font-weight: 700!important;
     color: #ffffff;
     box-shadow: 0 0 20px rgb(243, 245, 241);
     transition: 0.5s ease-in;
