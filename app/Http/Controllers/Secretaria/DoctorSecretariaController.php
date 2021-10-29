@@ -50,6 +50,18 @@ class DoctorSecretariaController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'inputImgPerfil' => ['image'],
+            'consultorio' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'email' => ['required', 'email'],
+            'telefono' => 'required',
+            'celular' => 'required',
+            'sexo' => 'required',
+        ]);
+
         $doctor=new Doctor();
         $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');
@@ -111,6 +123,20 @@ class DoctorSecretariaController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'inputImgPerfil' => ['image',],
+            'consultorio' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'usuario' => 'required',
+            'email' => ['required', 'email',],
+            'telefono' => 'required',
+            'celular' => 'required',
+            'sexo' => 'required',
+            'status' => 'required'
+        ]);
+
         $doctor=Doctor::find($id);
         $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');

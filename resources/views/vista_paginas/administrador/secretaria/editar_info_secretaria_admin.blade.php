@@ -10,12 +10,14 @@
 @section('content')
   <div class="card">
       <div class="card-body">
+          <H4>Datos personales</H4>
+          <hr>
           <div class="container-fluid">
               <form action="{{ route('secretaria.update', $datos_secretaria->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
               @csrf
               @method('put')
               <!------------------------------------------------------>
-                  <div class="px-2 py-4">
+                  <div class="mb-4">
                       <h5>Foto de perfil</h5>
                       <div>
                           <img
@@ -27,48 +29,69 @@
                       </div>
                       <div class="mb-2 mt-2">
                           <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i class="fas fa-portrait"></i> Cambiar foto de perfil</button>
-                          <input type="file" class="w-full form-control" id="inputImgPerfil" name="inputImgPerfil" style="display: none"/>
+                          <input type="file" class="form-control" id="inputImgPerfil" name="inputImgPerfil" style="display: none" accept="image/*"/>
+                          @error('inputImgPerfil')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                   </div>
                   <!------------------------------------------------------------------------------>
                   <div class="row">
                       <div class="col">
                           <label for="nombre">Nombre</label>
-                          <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre o los nombres de la secretaria" class="form-control" value="{{ $datos_secretaria->nombre }}"/>
+                          <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre o los nombres de la secretaria" class="form-control" value="{{ $datos_secretaria->nombre }}" required/>
+                          @error('nombre')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                       <div class="col">
                           <label for="apellido">Apellidos</label>
-                          <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos" class="form-control" value="{{ $datos_secretaria->apellidos }}"/>
+                          <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos" class="form-control" value="{{ $datos_secretaria->apellidos }}" required/>
+                          @error('apellido')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                       <div class="col">
                           <label for="usuario">Usuario</label>
-                          <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario" class="form-control" value="{{ $datos_secretaria->usuario }}"/>
+                          <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario" class="form-control" value="{{ $datos_secretaria->usuario }}" required/>
+                          @error('usuario')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                   </div>
                   <!------------------------------------------------------------------------------>
                   <br>
                   <div class="mb-4">
                       <label for="email">E-mail</label>
-                      <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $datos_secretaria->email }}"/>
+                      <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $datos_secretaria->email }}" required/>
+                      @error('email')
+                      <small><span style="color: #d01414;">{{ $message }}</span></small>
+                      @enderror
                   </div>
                   <!------------------------------------------------------------------------------>
                   <div class="row">
                       <div class="col">
                           <label for="telefono">Telefono</label>
                           <input id="telefono" name="telefono" type="tel" maxlength="10"
-                                 placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $datos_secretaria->telefono }}"/>
+                                 placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $datos_secretaria->telefono }}" required/>
+                          @error('telefono')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                       <div class="col">
                           <label for="celular">Celular</label>
                           <input id="celular" name="celular" type="tel" maxlength="10"
-                                 placeholder="Ingrese un numero de celular" class="form-control" value="{{ $datos_secretaria->celular }}"/>
+                                 placeholder="Ingrese un numero de celular" class="form-control" value="{{ $datos_secretaria->celular }}" required/>
+                          @error('celular')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                   </div>
                   <!----------------------------------------------------------------------------------------------------->
                   <br>
                   <div class="mb-4">
                       <label for="status">Estatus</label>
-                      <select id="status" name="status" class="form-control" style="width: 49%">
+                      <select id="status" name="status" class="form-control" style="width: 49%" required>
                           <option value="" disabled>Seleccionar...</option>
                           @switch($datos_secretaria->status)
                               @case(1)
@@ -81,6 +104,9 @@
                               @break
                           @endswitch
                       </select>
+                      @error('status')
+                      <small><span style="color: #d01414;">{{ $message }}</span></small>
+                      @enderror
                   </div>
                   <!----------------------------------------------------------------------------------------------------->
                   <div class="mb-4">

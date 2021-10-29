@@ -6,7 +6,7 @@
     <h1>Pacientes</h1>
     <p>Pacientes registrados en el sistema.</p>
     <!--------------------------------------------------------------------------------------------->
-    <a class="btn btn-success ml-3" href="{{ route('paciente.create') }}"><i class="fa fa-plus"></i> Registrar nuevo paciente</a>
+    <a class="btn btn-success" href="{{ route('paciente.create') }}"><i class="fa fa-plus"></i> Registrar nuevo paciente</a>
     <br/>
     <!--------------------------------------------------------------------------------------------->
 @stop
@@ -14,7 +14,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="container">
+        <div class="container-fluid">
             <table class="table table-striped" id="tablaPacienteAdmin">
                 <!----------------------------------------------------------------------------------------->
                 <thead>

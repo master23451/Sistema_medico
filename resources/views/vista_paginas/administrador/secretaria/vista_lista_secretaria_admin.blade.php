@@ -6,9 +6,8 @@
     <h1>Lista de secretaria</h1>
     <p>Secretarias registradas en el sistema.</p>
     <!--------------------------------------------------------------------------------------------->
-    <a class="btn btn-success ml-3" href="{{ route('secretaria.create') }}"><i class="fa fa-plus"></i> Registrar nuevo paciente</a>
+    <a class="btn btn-success" href="{{ route('secretaria.create') }}"><i class="fa fa-plus"></i> Registrar nuevo paciente</a>
     <br/>
-    <br>
     <!--------------------------------------------------------------------------------------------->
 @stop
 

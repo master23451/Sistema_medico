@@ -42,6 +42,16 @@ class SecretariaAdminController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'inputImgPerfil' => ['image',],
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'email' => ['required', 'email'],
+            'telefono' => 'required',
+            'celular' => 'required',
+        ]);
+
         $secretaria=new Secretaria();
         $secretaria->nombre=$request->input('nombre');
         $secretaria->apellidos=$request->input('apellido');
@@ -96,6 +106,18 @@ class SecretariaAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'inputImgPerfil' => ['image',],
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'usuario' => 'required',
+            'email' => ['required', 'email'],
+            'telefono' => 'required',
+            'celular' => 'required',
+            'status' => 'required',
+        ]);
+
+
         $secretaria=Secretaria::find($id);
         $secretaria->nombre=$request->input('nombre');
         $secretaria->apellidos=$request->input('apellido');

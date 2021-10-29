@@ -43,6 +43,16 @@ class AdministradoresController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'inputImgPerfil' => ['image',],
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'email' => ['required', 'email'],
+            'telefono' => 'required',
+            'celular' => 'required',
+            'sexo' => 'required',
+        ]);
+
 
         $admin=new Administrador();
         $admin->nombre=$request->input('nombre');
@@ -100,6 +110,18 @@ class AdministradoresController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'inputImgPerfil' => ['image',],
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'usuario' => 'required',
+            'email' => ['required', 'email'],
+            'telefono' => 'required',
+            'celular' => 'required',
+            'sexo' => 'required',
+            'status' => 'required',
+        ]);
 
         $admin=Administrador::find($id);
         $admin->nombre=$request->input('nombre');

@@ -42,6 +42,18 @@ class PacienteAdminController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'inputImgPerfil' => ['image',],
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'email' => ['required', 'email'],
+            'telefono1' => 'required',
+            'celular1' => 'required',
+            'expediente' => 'required',
+            'sexo' => 'required',
+        ]);
+
         $paciente=new Paciente();
         $paciente->nombre=$request->input('nombre');
         $paciente->apellidos=$request->input('apellido');
@@ -97,6 +109,20 @@ class PacienteAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'inputImgPerfil' => ['image',],
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'usuario' => 'required',
+            'email' => ['required', 'email'],
+            'telefono' => 'required',
+            'celular' => 'required',
+            'expediente' => 'required',
+            'sexo' => 'required',
+            'status' => 'required',
+        ]);
+        
         $paciente = Paciente::find($id);
         $paciente->nombre=$request->input('nombre');
         $paciente->apellidos=$request->input('apellido');

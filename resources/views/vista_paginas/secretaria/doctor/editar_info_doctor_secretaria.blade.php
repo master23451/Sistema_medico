@@ -10,6 +10,8 @@
 @section('content')
   <div class="card">
       <div class="card-body">
+          <h4>Datos personales</h4>
+          <hr>
           <!------------------------------------------------------------------------------------------------->
           <div class="container-fluid">
               <form action="{{ route('secretaria.doctor.update', $datos_doctor->id) }}" method="post"
@@ -17,24 +19,24 @@
               @csrf
               @method('put')
               <!-------------------------------Seleccion de fotos-------------------------------------------------------->
-                  <h5>Datos personales</h5>
-                  <hr>
-                  <div class="px-2 py-4">
+                  <div class="mb-4">
                       <h4>Foto de perfil</h4>
                       <div>
                           <img
                               src="{{ Illuminate\Support\Facades\Storage::url($datos_doctor->profile_photo_path)}}"
                               alt="{{ $datos_doctor->nombre }}"
                               style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                              id="perfilImgPreview"
-                          >
+                              id="perfilImgPreview">
                       </div>
                       <div class="mb-2 mt-2">
                           <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
                                   class="fas fa-portrait" style=""></i> Cambiar foto de perfil
                           </button>
                           <input type="file" class="form-control" id="inputImgPerfil"
-                                 name="inputImgPerfil" style="display: none"/>
+                                 name="inputImgPerfil" style="display: none" accept="image/*"/>
+                          @error('inputImgPerfil')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                   </div>
                   <!--------------------------------------------------------------------------------------------------------->
@@ -43,18 +45,27 @@
                           <label for="nombre">Nombre</label>
                           <input id="nombre" name="nombre" type="text"
                                  placeholder="Ingrese el nombre o los nombres del doctor" class="form-control"
-                                 value="{{$datos_doctor->nombre}}"/>
+                                 value="{{$datos_doctor->nombre}}" required/>
+                          @error('nombre')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                       <div class="col">
                           <label for="apellido">Apellidos</label>
                           <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos"
-                                 class="form-control" value="{{$datos_doctor->apellidos}}"/>
+                                 class="form-control" value="{{$datos_doctor->apellidos}}" required/>
+                          @error('apellido')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                       <div class="col">
                           <label for="usuario">Usuario</label>
                           <input id="usuario" name="usuario" type="text"
                                  placeholder="Ingrese un usuario" class="form-control"
-                                 value="{{$datos_doctor->usuario}}"/>
+                                 value="{{$datos_doctor->usuario}}" required/>
+                          @error('usuario')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                   </div>
                   <!--------------------------------------------------------------------------------------------------------->
@@ -63,7 +74,10 @@
                       <label for="email">E-mail</label>
                       <input id="email" name="email" type="email"
                              placeholder="Ingrese un correo electronico" class="form-control"
-                             value="{{$datos_doctor->email}}"/>
+                             value="{{$datos_doctor->email}}" required/>
+                      @error('email')
+                      <small><span style="color: #d01414;">{{ $message }}</span></small>
+                      @enderror
                   </div>
                   <br>
                   <!--------------------------------------------------------------------------------------------------------->
@@ -72,19 +86,25 @@
                           <label for="telefono">Telefono</label>
                           <input id="telefono" name="telefono" type="tel" maxlength="10"
                                  placeholder="Ingrese un numero de telefono" class="form-control"
-                                 value="{{ $datos_doctor->telefono }}"/>
+                                 value="{{ $datos_doctor->telefono }}" required/>
+                          @error('telefono')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                       <div class="col">
                           <label for="celular">Celular</label>
                           <input id="celular" name="celular" type="tel" maxlength="10"
                                  placeholder="Ingrese un numero de celular" class="form-control"
-                                 value="{{ $datos_doctor->celular }}"/>
+                                 value="{{ $datos_doctor->celular }}" required/>
+                          @error('celular')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                   </div>
                   <br>
                   <div class="mb-4">
                       <label for="sexo">Sexo</label>
-                      <select id="sexo" name="sexo" class="form-control">
+                      <select id="sexo" name="sexo" class="form-control" required>
                           <option disabled>Seleccionar...</option>
                           @switch($datos_doctor->sexo)
                               @case('Hombre')
@@ -97,20 +117,26 @@
                               @break
                           @endswitch
                       </select>
+                      @error('sexo')
+                      <small><span style="color: #d01414;">{{ $message }}</span></small>
+                      @enderror
                   </div>
                   <h5>Datos laborales</h5>
                   <hr>
                   <div class="row">
                       <div class="col">
                           <label for="consultorio">Consultorio</label>
-                          <select id="consultorio" name="consultorio" class="form-control">
-                              <option value="">Seleccionar...</option>
+                          <select id="consultorio" name="consultorio" class="form-control" required>
+                              <option value="" disabled>Seleccionar...</option>
                               @foreach($consultorios as $item_consultorio)
                                   <option value="{{ $item_consultorio->id }}" @if( $item_consultorio->id ==  $datos_doctor->id_consultorio) selected @endif>
                                       {{  $item_consultorio->nombre }}
                                   </option>
                               @endforeach
                           </select>
+                          @error('consultorio')
+                          <small><span style="color: #d01414;">{{ $message }}</span></small>
+                          @enderror
                       </div>
                       <!----------------Horarios------------------------------------>
                       <div class="col">
@@ -123,7 +149,7 @@
                   <br>
                   <div class="mb-4">
                       <label for="status">Estatus</label>
-                      <select id="status" name="status" class="form-control" style="width: 49%">
+                      <select id="status" name="status" class="form-control" style="width: 49%" required>
                           <option value="" disabled>Seleccionar...</option>
                           @switch($datos_doctor->status)
                               @case(1)
@@ -136,6 +162,9 @@
                               @break
                           @endswitch
                       </select>
+                      @error('status')
+                      <small><span style="color: #d01414;">{{ $message }}</span></small>
+                      @enderror
                   </div>
                   <!--------------------------------------------------------------------------------------------------------->
                   <div class="mb-4">
