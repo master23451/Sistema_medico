@@ -13,7 +13,7 @@
         <!------------------------------------------------------------------------------------------------->
         <div class="container-fluid">
             <form action="{{ route('admin.update', $dato_administrador->id) }}" method="post"
-                  enctype="multipart/form-data">
+                  enctype="multipart/form-data" id="modificar_datos">
             @csrf
             @method('put')
             <!-------------------------------Seleccion de fotos-------------------------------------------------------->
@@ -110,19 +110,19 @@
                 <!--------------------------------------------------------------------------------------------------------->
                 <div class="mb-4">
                     <hr/>
-                    <button type="submit" class="btn btn-success" style="flex: auto"><i
-                            class="fas fa-save"></i> Guardar
+                    <button type="submit" class="btn btn-warning" style="flex: auto"><i
+                            class="fas fa-save"></i> Modificar
                     </button>
                     <a class="btn-secondary btn" href="{{ route('admin.index') }}"><i
                             class="fas fa-arrow-circle-left"></i> Regresar</a>
                 </div>
             </form>
             <!------------------------------------------------------------------------------------------------->
-            <form action="{{ route('admin.destroy', $dato_administrador->id) }}" method="post">
+            <form action="{{ route('admin.destroy', $dato_administrador->id) }}" method="post" id="borrar_datos">
                 @csrf
                 @method('delete')
-                <div class="px-2 py-1">
-                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <div class="mb-4">
+                    <button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar definitivamente</button>
                 </div>
             </form>
         </div>
@@ -167,6 +167,62 @@
             Swal.fire({
                 title: 'Guardado',
                 text: 'El administrador se registro correctamente',
+                icon: 'success',
+                confirmButtonColor: '#5dd91a',
+                confirmButtonText: 'Aceptar'
+            })
+        </script>
+    @endif
+
+    <script>
+        $('#borrar_datos').submit(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de eliminar la informacion?',
+                text: "Ya no podra recuperara la informacion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        $('#modificar_datos').submit(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de modificar los datos?',
+                text: "Ya no podra reveretir esta accion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Modificar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    @if(session('modificado') == 'ok')
+        <script>
+            Swal.fire({
+                title: 'Modificado',
+                text: 'Los datos del administrador se han actualizado correctamente',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'

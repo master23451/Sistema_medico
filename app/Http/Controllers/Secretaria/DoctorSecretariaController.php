@@ -131,7 +131,7 @@ class DoctorSecretariaController extends Controller
 
         $doctor->update();
 
-        return redirect()->route('secretaria.doctor.index')->with('modificado','ok');
+        return redirect()->route('secretaria.doctor.edit',$id)->with('modificado','ok');
 
     }
 

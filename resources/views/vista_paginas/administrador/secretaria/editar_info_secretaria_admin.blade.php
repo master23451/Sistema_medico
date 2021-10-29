@@ -11,7 +11,7 @@
   <div class="card">
       <div class="card-body">
           <div class="container-fluid">
-              <form action="{{ route('secretaria.update', $datos_secretaria->id) }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('secretaria.update', $datos_secretaria->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
               @csrf
               @method('put')
               <!------------------------------------------------------>
@@ -85,16 +85,16 @@
                   <!----------------------------------------------------------------------------------------------------->
                   <div class="mb-4">
                       <hr/>
-                      <button type="submit" class="btn btn-success" style="flex: auto"><i class="fas fa-save"></i> Guardar</button>
+                      <button type="submit" class="btn btn-warning" style="flex: auto"><i class="fas fa-save"></i> Modificar</button>
                       <a class="btn-secondary btn" href="{{ route('secretaria.index') }}"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
                   </div>
               </form>
               <!--------------------------------------------------------------------------------------------->
-              <form action="{{ route('secretaria.destroy',  $datos_secretaria->id) }}" method="post">
+              <form action="{{ route('secretaria.destroy',  $datos_secretaria->id) }}" method="post" id="borrar_datos">
                   @csrf
                   @method('delete')
-                  <div class="px-2 py-1">
-                      <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                  <div class="mb-4">
+                      <button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar definitivamente</button>
                   </div>
               </form>
           </div>
@@ -138,6 +138,62 @@
             Swal.fire({
                 title: 'Guardado',
                 text: 'La secretaria se registro correctamente',
+                icon: 'success',
+                confirmButtonColor: '#5dd91a',
+                confirmButtonText: 'Aceptar'
+            })
+        </script>
+    @endif
+
+    <script>
+        $('#borrar_datos').submit(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de eliminar la informacion?',
+                text: "Ya no podra recuperara la informacion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        $('#modificar_datos').submit(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de modificar los datos?',
+                text: "Ya no podra reveretir esta accion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Modificar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    @if(session('modificado') == 'ok')
+        <script>
+            Swal.fire({
+                title: 'Modificado',
+                text: 'Los datos de la secretaria se han actualizado correctamente',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'

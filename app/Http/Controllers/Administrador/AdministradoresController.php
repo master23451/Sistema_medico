@@ -119,7 +119,7 @@ class AdministradoresController extends Controller
 
         $admin->update();
 
-        return redirect()->route('admin.index')->with('modificado','ok');
+        return redirect()->route('admin.edit',  $id)->with('modificado','ok');
     }
 
     /**

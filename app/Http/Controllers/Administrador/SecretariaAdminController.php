@@ -114,7 +114,7 @@ class SecretariaAdminController extends Controller
 
         $secretaria->update();
 
-        return redirect()->route('secretaria.index')->with('modificado','ok');
+        return redirect()->route('secretaria.edit',  $id)->with('modificado','ok');
 
     }
 

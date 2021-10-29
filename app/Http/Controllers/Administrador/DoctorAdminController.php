@@ -124,7 +124,7 @@ class DoctorAdminController extends Controller
 
         $doctor->update();
 
-        return redirect()->route('doctor.edit',$doctor->id)->with('modificado','ok');
+        return redirect()->route('doctor.edit',$id)->with('modificado','ok');
     }
 
     /**

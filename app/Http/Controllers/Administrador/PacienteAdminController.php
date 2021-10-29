@@ -116,7 +116,7 @@ class PacienteAdminController extends Controller
 
         $paciente->update();
 
-        return redirect()->route('paciente.index')->with('modificado','ok');
+        return redirect()->route('paciente.edit', $id)->with('modificado','ok');
 
     }
 

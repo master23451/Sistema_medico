@@ -12,7 +12,7 @@
        <div class="card-body">
            <div class="container-fluid">
                <!--------------------------------------------------------------------------------------------->
-               <form action="{{ route('secretaria.paciente.update', $dato_paciente->id) }}" method="post" enctype="multipart/form-data">
+               <form action="{{ route('secretaria.paciente.update', $dato_paciente->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
                @csrf
                @method('put')
                <!--------------------------------------------------------------------------------------------------------->
@@ -89,7 +89,7 @@
                        </select>
                    </div>
                    <hr>
-                   <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Guardar</button>
+                   <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Modificar</button>
                    <a class="btn btn-secondary" href="{{ route('secretaria.paciente.index') }}"><i class="fas fa-arrow-circle-left"></i> Cancelar</a>
                </form>
                <!--------------------------------------------------------------------------------------------->
@@ -139,4 +139,38 @@
             })
         </script>
     @endif
+
+           <script>
+               $('#modificar_datos').submit(function (e) {
+                   e.preventDefault();
+
+                   Swal.fire({
+                       title: '¿Esta seguro de modificar los datos?',
+                       text: "Ya no podra reveretir esta accion",
+                       icon: 'warning',
+                       showCancelButton: true,
+                       confirmButtonColor: '#5dd91a',
+                       cancelButtonColor: '#d33',
+                       confirmButtonText: 'Modificar',
+                       cancelButtonText: 'Cancelar'
+                   }).then((result) => {
+                       if (result.value) {
+                           this.submit();
+                       }
+                   });
+
+               });
+           </script>
+
+           @if(session('modificado') == 'ok')
+               <script>
+                   Swal.fire({
+                       title: 'Modificado',
+                       text: 'Los datos del paciente se han actualizado correctamente',
+                       icon: 'success',
+                       confirmButtonColor: '#5dd91a',
+                       confirmButtonText: 'Aceptar'
+                   })
+               </script>
+   @endif
 @stop

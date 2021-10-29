@@ -12,7 +12,7 @@
     <div class="card-body">
         <div class="container-fluid">
             <!--------------------------------------------------------------------------------------------->
-            <form action="{{ route('paciente.update', $dato_paciente->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('paciente.update', $dato_paciente->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
             @csrf
             @method('put')
             <!--------------------------------------------------------------------------------------------------------->
@@ -105,16 +105,16 @@
                 </div>
                 <!--------------------------------------------------------------------------------------------->
                 <hr>
-                <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Guardar</button>
+                <button class="btn btn-warning" type="submit"><i class="fas fa-save"></i> Modificar</button>
                 <a class="btn btn-secondary" href="{{ route('paciente.index') }}"><i class="fas fa-arrow-circle-left"></i> Cancelar</a>
             </form>
             <br>
             <!--------------------------------------------------------------------------------------------->
-            <form action="{{ route('paciente.destroy', $dato_paciente->id) }}" method="post">
+            <form action="{{ route('paciente.destroy', $dato_paciente->id) }}" method="post" id="borrar_datos">
                 @csrf
                 @method('delete')
-                <div class="px-2 py-1">
-                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <div class="mb-4">
+                    <button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar definitivamente</button>
                 </div>
             </form>
         </div>
@@ -158,6 +158,62 @@
             Swal.fire({
                 title: 'Guardado',
                 text: 'El paciente se registro correctamente',
+                icon: 'success',
+                confirmButtonColor: '#5dd91a',
+                confirmButtonText: 'Aceptar'
+            })
+        </script>
+    @endif
+
+    <script>
+        $('#borrar_datos').submit(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de eliminar la informacion?',
+                text: "Ya no podra recuperara la informacion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        $('#modificar_datos').submit(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de modificar los datos?',
+                text: "Ya no podra reveretir esta accion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Modificar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    @if(session('modificado') == 'ok')
+        <script>
+            Swal.fire({
+                title: 'Modificado',
+                text: 'Los datos del paciente se han actualizado correctamente',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'

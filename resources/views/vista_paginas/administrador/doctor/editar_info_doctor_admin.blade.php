@@ -13,7 +13,7 @@
         <!------------------------------------------------------------------------------------------------->
         <div class="container-fluid">
             <form action="{{ route('doctor.update', $datos_doctor->id) }}" method="post"
-                  enctype="multipart/form-data">
+                  enctype="multipart/form-data" id="modificar_datos">
             @csrf
             @method('put')
             <!-------------------------------Seleccion de fotos-------------------------------------------------------->
@@ -127,11 +127,11 @@
                         @switch($datos_doctor->status)
                             @case(1)
                             <option value="1" selected>Activo</option>
-                            <option value="0">Desactivado</option>
+                            <option value="0">Inactivo</option>
                             @break
                             @case(0)
                             <option value="1">Activo</option>
-                            <option value="0" selected>Desactivado</option>
+                            <option value="0" selected>Inactivo</option>
                             @break
                         @endswitch
                     </select>
@@ -139,19 +139,19 @@
                 <!--------------------------------------------------------------------------------------------------------->
                 <div class="mb-4">
                     <hr/>
-                    <button type="submit" class="btn btn-success" style="flex: auto"><i
-                            class="fas fa-save"></i> Guardar
+                    <button type="submit" class="btn btn-warning" style="flex: auto"><i
+                            class="fas fa-save"></i> Modificar
                     </button>
                     <a class="btn-secondary btn" href="{{ route('doctor.index') }}"><i
                             class="fas fa-arrow-circle-left"></i> Regresar</a>
                 </div>
             </form>
             <!------------------------------------------------------------------------------------------------->
-            <form action="{{ route('doctor.destroy', $datos_doctor->id) }}" method="post">
+            <form action="{{ route('doctor.destroy', $datos_doctor->id) }}" method="post" id="borrar_datos">
                 @csrf
                 @method('delete')
-                <div class="px-2 py-1">
-                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <div class="mb-4">
+                    <button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar definitivamente</button>
                 </div>
             </form>
         </div>
@@ -196,6 +196,62 @@
             Swal.fire({
                 title: 'Guardado',
                 text: 'El doctor se registro correctamente',
+                icon: 'success',
+                confirmButtonColor: '#5dd91a',
+                confirmButtonText: 'Aceptar'
+            })
+        </script>
+    @endif
+
+    <script>
+        $('#borrar_datos').submit(function (e) {
+           e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de eliminar la informacion?',
+                text: "Ya no podra recuperara la informacion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                  this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        $('#modificar_datos').submit(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Esta seguro de modificar los datos?',
+                text: "Ya no podra reveretir esta accion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#5dd91a',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Modificar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    this.submit();
+                }
+            });
+
+        });
+    </script>
+
+    @if(session('modificado') == 'ok')
+        <script>
+            Swal.fire({
+                title: 'Modificado',
+                text: 'Los datos del doctor se han actualizado correctamente',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'

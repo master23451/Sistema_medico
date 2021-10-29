@@ -52,7 +52,7 @@
                                 <span style="color: #50c986">Activo</span>
                                 @break
                                 @case(0)
-                                <span style="color: #d01414">Desactivado</span>
+                                <span style="color: #d01414">Inactivo</span>
                                 @break
                             @endswitch
                         </td>

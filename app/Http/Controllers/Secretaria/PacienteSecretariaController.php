@@ -119,7 +119,7 @@ class PacienteSecretariaController extends Controller
 
         $paciente->update();
 
-        return redirect()->route('secretaria.paciente.edit', $id)->with('bloqueo','m-block');
+        return redirect()->route('secretaria.paciente.edit', $id)->with('modificado','ok');
     }
 
     /**
