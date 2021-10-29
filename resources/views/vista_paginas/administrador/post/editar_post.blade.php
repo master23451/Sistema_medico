@@ -24,7 +24,7 @@
                      </div>
                      <div class="col">
                          <label for="fecha_publicacion">Fecha de publicacion</label>
-                         <input id="fecha_publicacion" name="fecha_publicacion" type="datetime-local"  class="form-control" dataformatas="yyyy-MM-ddThh:mm" value="{{ $dato_post->fecha_publicacion }}"/>
+                         <input id="fecha_publicacion" name="fecha_publicacion" type="date"  class="form-control" dataformatas="yyyy-MM-ddThh:mm" value="{{ $dato_post->fecha_publicacion }}"/>
                      </div>
                  </div>
                  <!--------------------------------------------------------------------------------------------------------->

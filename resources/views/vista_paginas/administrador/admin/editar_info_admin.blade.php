@@ -65,11 +65,11 @@
                 <!--------------------------------------------------------------------------------------------------------->
                 <div class="row">
                     <div class="col">
-                        <label for="telefono">Numero de telefono</label>
+                        <label for="telefono">Telefono</label>
                         <input id="num_contacto" name="num_contacto" type="tel" maxlength="10" placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $dato_administrador->telefono }}"/>
                     </div>
                     <div class="col">
-                        <label for="celular">Numero de celualar</label>
+                        <label for="celular">Celualar</label>
                         <input id="celular" name="celular" type="tel" maxlength="10" placeholder="Ingrese un numero de celular" class="form-control" value="{{ $dato_administrador->celular }}"/>
                     </div>
                 </div>

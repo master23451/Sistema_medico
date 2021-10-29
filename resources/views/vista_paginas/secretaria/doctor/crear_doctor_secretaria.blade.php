@@ -57,12 +57,12 @@
                 <br/>
                 <div class="row">
                     <div class="col">
-                        <label for="telefono">Numero de telefono</label>
+                        <label for="telefono">Telefono</label>
                         <input id="telefono" name="telefono" type="tel" maxlength="10"
                                placeholder="Ingrese un numero de telefono" class="form-control"/>
                     </div>
                     <div class="col">
-                        <label for="celular">Numero de celular</label>
+                        <label for="celular">Celular</label>
                         <input id="celular" name="celular" type="tel" maxlength="10"
                                placeholder="Ingrese un numero de celular" class="form-control"/>
                     </div>

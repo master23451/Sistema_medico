@@ -48,7 +48,7 @@
                 </div>
                 <!--------------------------------------------------------------------------------------------------------->
                 <br/>
-                <div class="col">
+                <div class="mb-4">
                     <label for="email">E-mail</label>
                     <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $dato_paciente->email }}"/>
                 </div>
@@ -61,11 +61,11 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label for="telefono">Numero de telefono</label>
+                        <label for="telefono">Telefono</label>
                         <input id="telefono" name="telefono" type="tel" maxlength="10" placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $dato_paciente->telefono }}"/>
                     </div>
                     <div class="col">
-                        <label for="celular">Numero de telefono</label>
+                        <label for="celular">Celular</label>
                         <input id="celular" name="celular" type="tel" maxlength="10" placeholder="Ingrese un numero de celular" class="form-control" value="{{ $dato_paciente->celular }}"/>
                     </div>
                 </div>

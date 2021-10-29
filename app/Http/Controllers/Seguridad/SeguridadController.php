@@ -24,7 +24,7 @@ class SeguridadController extends Controller
         if(Auth::attempt($credenciales,$recordar)){
             $request->session()->regenerate();
 
-           return  redirect()->route('admin.index');
+           return  redirect()->route('administrador.index');
         }
 
         return  redirect()->route('login')->with('errorlogon','error');
