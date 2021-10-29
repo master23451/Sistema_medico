@@ -47,8 +47,8 @@ class PacienteAdminController extends Controller
         $paciente->apellidos=$request->input('apellido');
         $paciente->usuario=$request->input('nombre').rand();
         $paciente->email=$request->input('email');
-        $paciente->telefono=$request->input('telefono');
-        $paciente->celular=$request->input('celular');
+        $paciente->telefono=$request->input('telefono1');
+        $paciente->celular=$request->input('celular1');
         $paciente->expediente=$request->input('expediente');
         $paciente->sexo=$request->input('sexo');
         $paciente->rol="Paciente";

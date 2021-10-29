@@ -55,12 +55,12 @@
                   <!--------------------------------------------------------------------------------------------------------->
                   <div class="row">
                       <div class="col">
-                          <label for="telefono">Telefono</label>
-                          <input id="telefono" name=telefono" type="tel" maxlength="10" placeholder="Ingrese un numero de telefono" class="form-control"/>
+                          <label for="telefono1">Telefono</label>
+                          <input id="telefono1" name="telefono1" type="tel" maxlength="10" placeholder="ingrese un numero de telefono" class="form-control">
                       </div>
                       <div class="col">
-                          <label for="celular">Celular</label>
-                          <input id="celular" name=celular" type="tel" maxlength="10" placeholder="Ingrese un numero de celular" class="form-control"/>
+                          <label for="celular1">Celular</label>
+                          <input name="celular1" id="celular1" type="tel" maxlength="10" placeholder="Ingrese un numero de celular" class="form-control"/>
                       </div>
                   </div>
                   <!--------------------------------------------------------------------------------------------------------->
