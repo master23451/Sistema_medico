@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-/*--------------------------------------------------------------------------------------------------------------------*/
-use App\Http\Controllers\Seguridad\SeguridadController;
-/*--------------------------------------------------------------------------------------------------------------------*/
+
 use App\Http\Controllers\Paginas_principal\PaginasPrincipalController;
 /*--------------------------------------------------------------------------------------------------------------------*/
 use App\Http\Controllers\Administrador\AdministradoresController;
@@ -28,10 +26,7 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
     return view('welcome');
 });*/
 
-/*---------------------------------------Tutas de seguridad-----------------------------------------------------*/
-Route::get('login', [SeguridadController::class,'vistaLogin'])->name('login');
-Route::post('login', [SeguridadController::class,'loginIngresar'])->name('login');
-Route::post('logout', [SeguridadController::class,'logout'])->name('logout');
+
 /*--------------------------------------------------Indexes-----------------------------------------------------------*/
 Route::get('administrador/index', [PaginasPrincipalController::class,'indexInfoGeneralAdministrador'])->name('administrador.index')->middleware('auth');
 /*--------------------------------------------------------------------------------------------------------------------*/

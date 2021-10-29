@@ -5,6 +5,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('bootstrap-5.1.1/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styleLogin.css') }}" id="{{ rand() }}">
+
 </head>
 <body style='background-image: url("{{ asset('img/banner-login.jpg') }}")'>
 <div class="container">
@@ -17,7 +18,7 @@
                     <h1 class="text-black">Bienvenido</h1>
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
-                    <input name="email" id="email" type="text" autofocus value="" placeholder="Ingrese su correo electronico" class="form-control" required>
+                    <input name="email" id="email" type="email" autofocus value="{{ old('email') }}" placeholder="Ingrese su correo electronico" class="form-control" required>
                     @error('email')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
@@ -26,10 +27,6 @@
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
                     <button  type="submit" class="btn btn-success">Ingresar</button>
-                </div>
-                <div class="form-group mx-sm-4 pt-3">
-                    <input type="checkbox" name="recordar" id="recordar" class="checkbox_input" checked/>
-                    <label for="recordar" class="checkbox_label">Recurda mi sesión</label>
                 </div>
             </form>
         </div>
