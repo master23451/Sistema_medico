@@ -33,6 +33,7 @@ Route::get('administrador/index', [PaginasPrincipalController::class,'indexInfoG
 
 /*---------------------------------------Ruta del mensajes administrador----------------------------------------------*/
 Route::middleware('auth')->group(function(){
+    
     Route::get('administrador/post', [PaginasPrincipalController::class,'lista_post'])->name('administrador.lista.post');
     Route::get('administrador/post/crear', [PaginasPrincipalController::class,'crear_post'])->name('administrador.crear.post');
     Route::post('administrador/post', [PaginasPrincipalController::class,'guardar_post'])->name('administrador.guardar.post');
