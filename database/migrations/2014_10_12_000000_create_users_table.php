@@ -25,9 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('telefono',10)->nullable();
             $table->string('celular',10)->nullable();
             $table->string('sexo',20)->nullable();
-            $table->time('horarios')->nullable();
-            $table->string('rol',20)->nullable();
+            $table->bigInteger('consultorio_id')->unsigned()->nullable();
+            $table->bigInteger('rol')->unsigned()->nullable();
             $table->tinyInteger('status')->default('1');
+            $table->foreign('rol')->references('id')->on('roles');
             $table->timestamps();
         });
     }

@@ -65,7 +65,7 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => true,
+    'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -88,7 +88,7 @@ return [
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => false,
+    'layout_dark_mode' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -147,8 +147,8 @@ return [
 
     'sidebar_mini' => 'lg',
     'sidebar_collapse' => false,
-    'sidebar_collapse_auto_size' => true,
-    'sidebar_collapse_remember' => false,
+    'sidebar_collapse_auto_size' => false,
+    'sidebar_collapse_remember' => true,
     'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
@@ -170,8 +170,8 @@ return [
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
-    'right_sidebar_slide' => true,
-    'right_sidebar_push' => true,
+    'right_sidebar_slide' => false,
+    'right_sidebar_push' => false,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => true,
-    'dashboard_url' => 'admin.index',
+    'dashboard_url' => 'usuario.index',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -250,15 +250,17 @@ return [
             'label_color' => 'success',
             'can' => 'hola',
         ],
-        ['header' => 'Administrador'],
+        ['header' => 'Administrador', 'can' => 'loginAdministrador'],
         [
             'text' => 'Pagian principal',
             'route' => 'administrador.index',
             'icon' => 'fas fa-tachometer-alt',
+            'can' => 'loginAdministrador',
         ],
         [
             'text' => 'Post',
             'icon' => 'fas fa-sticky-note',
+            'can' => 'loginAdministrador',
             'submenu' => [
               [
                   'text' => 'Lista de post',
@@ -273,14 +275,16 @@ return [
             ],
         ],
         [
+            'text' => 'Usuarios',
+            'route' => 'usuario.index',
+            'icon' => 'fas fa-user-shield',
+            'can' => 'loginAdministrador',
+        ],
+        [
             'text' => 'Personal',
             'icon' => 'fas fa-users',
+            'can' => 'loginAdministrador',
             'submenu' => [
-                [
-                    'text' => 'Administradores',
-                    'icon' => 'fas fa-user-shield',
-                    'route' => 'admin.index'
-                ],
                 [
                     'text' => 'Doctores',
                     'icon' => 'fas fa-stethoscope',
@@ -297,38 +301,45 @@ return [
         [
             'text' => 'Pacientes',
             'icon' => 'fas fa-hospital-user',
-            'route' => 'paciente.index'
+            'route' => 'paciente.index',
+            'can' => 'loginAdministrador',
         ],
         [
             'text' => 'Consultorios',
             'url'  => '#',
             'icon' => 'fas fa-clinic-medical',
+            'can' => 'loginAdministrador',
         ],
-        ['header' => 'Secretarias'],
+        ['header' => 'Secretarias', 'can' => 'loginSecretaria',],
         [
             'text' => 'Pagina principal',
             'url'  => '#',
             'icon' => 'fas fa-sticky-note',
+            'can' => 'loginSecretaria',
         ],
         [
             'text' => 'Citas',
             'url'  => '#',
             'icon' => 'far fa-address-book',
+            'can' => 'loginSecretaria',
         ],
         [
             'text' => 'Doctores',
             'route'  => 'secretaria.doctor.index',
             'icon' => 'fas fa-stethoscope',
+            'can' => 'loginSecretaria',
         ],
         [
             'text' => 'Pacientes',
             'icon' => 'fas fa-hospital-user',
-            'route' => 'secretaria.paciente.index'
+            'route' => 'secretaria.paciente.index',
+            'can' => 'loginSecretaria',
         ],
         [
             'text' => 'Consultorios',
             'url'  => '#',
             'icon' => 'fas fa-clinic-medical',
+            'can' => 'loginSecretaria',
         ],
         /*[
             'text'    => 'multilevel',
