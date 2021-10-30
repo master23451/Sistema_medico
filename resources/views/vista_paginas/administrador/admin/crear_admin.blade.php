@@ -78,7 +78,7 @@
                 <div class="mb-4">
                     <label for="sexo">Sexo</label>
                     <select id="sexo" name="sexo" class="form-control" required>
-                        <option>Seleccionar...</option>
+                        <option selected disabled>Seleccionar...</option>
                         <option value="Hombre">Hombre</option>
                         <option value="Mujer">Mujer</option>
                     </select>

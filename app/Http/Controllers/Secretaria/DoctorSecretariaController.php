@@ -57,8 +57,8 @@ class DoctorSecretariaController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'email' => ['required', 'email'],
-            'telefono' => 'required',
-            'celular' => 'required',
+            'telefono' => ['required', 'integer'],
+            'celular' => ['required', 'integer'],
             'sexo' => 'required',
         ]);
 
@@ -131,8 +131,8 @@ class DoctorSecretariaController extends Controller
             'apellido' => 'required',
             'usuario' => 'required',
             'email' => ['required', 'email',],
-            'telefono' => 'required',
-            'celular' => 'required',
+            'telefono' => ['required', 'integer'],
+            'celular' => ['required', 'integer'],
             'sexo' => 'required',
             'status' => 'required'
         ]);

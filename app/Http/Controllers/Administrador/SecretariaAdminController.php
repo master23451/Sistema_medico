@@ -48,8 +48,8 @@ class SecretariaAdminController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'email' => ['required', 'email'],
-            'telefono' => 'required',
-            'celular' => 'required',
+            'telefono' => ['required', 'integer'],
+            'celular' => ['required', 'integer'],
         ]);
 
         $secretaria=new Secretaria();
@@ -112,8 +112,8 @@ class SecretariaAdminController extends Controller
             'apellido' => 'required',
             'usuario' => 'required',
             'email' => ['required', 'email'],
-            'telefono' => 'required',
-            'celular' => 'required',
+            'telefono' => ['required', 'integer'],
+            'celular' => ['required', 'integer'],
             'status' => 'required',
         ]);
 

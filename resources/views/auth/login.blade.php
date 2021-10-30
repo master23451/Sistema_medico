@@ -28,6 +28,14 @@
                 <div class="form-group mx-sm-4 pt-3">
                     <button  type="submit" class="btn btn-success">Ingresar</button>
                 </div>
+                <div class="form-check mr-auto ml-3 mt-3">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
+                        <span class="form-check-sign">
+                  <span class="check"></span>
+                </span>
+                    </label>
+                </div>
             </form>
         </div>
     </div>

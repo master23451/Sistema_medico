@@ -48,8 +48,8 @@ class PacienteAdminController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'email' => ['required', 'email'],
-            'telefono1' => 'required',
-            'celular1' => 'required',
+            'telefono1' => ['required', 'integer'],
+            'celular1' => ['required', 'integer'],
             'expediente' => 'required',
             'sexo' => 'required',
         ]);
@@ -116,13 +116,13 @@ class PacienteAdminController extends Controller
             'apellido' => 'required',
             'usuario' => 'required',
             'email' => ['required', 'email'],
-            'telefono' => 'required',
-            'celular' => 'required',
+            'telefono' => ['required', 'integer'],
+            'celular' => ['required', 'integer'],
             'expediente' => 'required',
             'sexo' => 'required',
             'status' => 'required',
         ]);
-        
+
         $paciente = Paciente::find($id);
         $paciente->nombre=$request->input('nombre');
         $paciente->apellidos=$request->input('apellido');

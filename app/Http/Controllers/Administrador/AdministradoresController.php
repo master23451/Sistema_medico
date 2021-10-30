@@ -48,8 +48,8 @@ class AdministradoresController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'email' => ['required', 'email'],
-            'telefono' => 'required',
-            'celular' => 'required',
+            'telefono' => ['required', 'integer'],
+            'celular' => ['required', 'integer'],
             'sexo' => 'required',
         ]);
 
@@ -117,8 +117,8 @@ class AdministradoresController extends Controller
             'apellido' => 'required',
             'usuario' => 'required',
             'email' => ['required', 'email'],
-            'telefono' => 'required',
-            'celular' => 'required',
+            'telefono' => ['required', 'integer'],
+            'celular' => ['required', 'integer'],
             'sexo' => 'required',
             'status' => 'required',
         ]);
