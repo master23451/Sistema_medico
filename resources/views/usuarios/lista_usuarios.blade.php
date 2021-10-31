@@ -47,7 +47,24 @@
                         </td>
                         <td class="px-2 py-4">{{ $itemUsuarion->user }}</td>
                         <td class="px-2 py-4">{{ $itemUsuarion->email }}</td>
-                        <td class="px-2 py-4"><span class="badge badge-warning">{{ $itemUsuarion->nombre_rol }}</span></td>
+                        <td class="px-2 py-4"><span
+                            @switch($itemUsuarion->rol)
+                                @case(1)
+                                     class="badge badge-warning"
+                                @break
+                                @case(2)
+                                class="badge badge-info"
+                                @break
+                                @case(3)
+                                class="badge badge-success"
+                                @break
+                                @case(4)
+                                class="badge badge-primary"
+                                @break
+                                @default
+                                class="badge badge-light"
+                            @endswitch
+                            >{{ $itemUsuarion->nombre_rol }}</span></td>
                         <td class="px-2 py-4">
                             @switch($itemUsuarion->status)
                                 @case(1)
