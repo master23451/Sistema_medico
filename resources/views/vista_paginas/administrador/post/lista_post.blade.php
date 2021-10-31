@@ -2,6 +2,8 @@
 
 @section('title', 'Admin || Post')
 
+@section('plugins.Datatables', true)
+
 @section('content_header')
     <h1>Mensajes</h1>
     <p>Lista de mensajes del administrador.</p>
@@ -53,7 +55,24 @@
 @section('js')
     <script>
         $(document).ready( function () {
-            $('#tablaPostAdmin').DataTable();
-        } );
+            $('#tablaPostAdmin').DataTable({
+                responsive: true,
+                language:{
+                    sLengthMenu: "Mostrar _MENU_ Registros",
+                    sZeroRecords:  "No se encontraron registros",
+                    info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    sInfoFiltered: "(Filtrado de un total de _MAX_ registros)",
+                    sSearch: "Buscar:",
+                    oPaginate: {
+                        sFirst: "Primero",
+                        sLast: "Ultimo",
+                        sNext: "Siguiente",
+                        sPrevious: "Anterior"
+                    },
+                    sProcessing: "Procesando",
+                }
+            });
+        });
     </script>
 @stop
