@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Registrarse</title>
     <link rel="stylesheet" href="{{ asset('bootstrap-5.1.1/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styleLogin.css') }}" id="{{ rand() }}">
 
@@ -18,7 +18,7 @@
                     <h1 class="text-black">Bienvenido</h1>
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
-                    <input name="name" id="name" type="name" autofocus value="{{ old('name') }}" placeholder="Ingrese un nombre de usuario" class="form-control" required>
+                    <input name="name" id="name" type="name" autofocus value="{{ old('name') }}" placeholder="Ingrese un nombre nombre" class="form-control" required>
                     @error('name')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
@@ -34,7 +34,7 @@
                     @error('password_confirmation')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
-                    <button  type="submit" class="btn btn-success" style="width: 35%">Ingresar</button>
+                    <button  type="submit" class="btn btn-secondary" style="width: 35%">Registrarse</button>
                     <a href="{{ 'login' }}" style="padding-left: 10px; text-decoration: none; color: #000000">¿Usted ya tiene una cuenta?</a>
                 </div>
             </form>
