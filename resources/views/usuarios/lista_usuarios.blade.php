@@ -2,6 +2,8 @@
 
 @section('title', 'Usuarios')
 
+@section('plugins.Datatables', true)
+
 @section('content_header')
     <h1>Usuarios</h1>
     <p>Usuarios registrados en el sistema</p>
@@ -28,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($datos_usuario as $itemUsuarion)
+                @foreach($datos_usuario as $itemUsuarion)
                     <tr style="text-align: center;">
                         <td class="px-2 py-4">
                             <div>{{ $itemUsuarion->id  }}</div>
@@ -45,14 +47,14 @@
                         </td>
                         <td class="px-2 py-4">{{ $itemUsuarion->user }}</td>
                         <td class="px-2 py-4">{{ $itemUsuarion->email }}</td>
-                        <td class="px-2 py-4"><span style="color: #0a53be">{{ $itemUsuarion->nombre_rol }}</span></td>
+                        <td class="px-2 py-4"><span class="badge badge-warning">{{ $itemUsuarion->nombre_rol }}</span></td>
                         <td class="px-2 py-4">
                             @switch($itemUsuarion->status)
                                 @case(1)
-                                <span style="color: #50c986">Activo</span>
+                                <span class="badge badge-success">Activo</span>
                                 @break
                                 @case(0)
-                                <span style="color: #d01414">Inactivo</span>
+                                <span class="badge badge-danger">Inactivo</span>
                                 @break
                             @endswitch
                         </td>
@@ -74,7 +76,36 @@
 @section('js')
     <script>
         $(document).ready( function () {
-            $('#tablaUsuarios').DataTable();
-        } );
+            $('#tablaUsuarios').DataTable({
+                responsive: true,
+                language:{
+                 sLengthMenu: "Mostrar _MENU_ Registros",
+                    sZeroRecords:  "No se encontraron registros",
+                    info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    sInfoFiltered: "(Filtrado de un total de _MAX_ registros)",
+                    sSearch: "Buscar:",
+                    oPaginate: {
+                     sFirst: "Primero",
+                     sLast: "Ultimo",
+                     sNext: "Siguiente",
+                     sPrevious: "Anterior"
+                    },
+                    sProcessing: "Procesando",
+                }
+            });
+        });
     </script>
+
+    @if(session('eliminado')=='ok')
+        <script>
+            Swal.fire({
+                title: 'Eliminado',
+                text: 'El usuario se elimino correctamente del sistema',
+                icon: 'success',
+                confirmButtonColor: '#d01414',
+                confirmButtonText: 'Aceptar'
+            })
+        </script>
+    @endif
 @stop

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -42,4 +43,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function adminlte_image(){
+        return Storage::url(Auth()->user()->profile_photo_path);
+    }
+
+    public function adminlte_desc(){
+        $roles=Roles::all();
+        $user_rol="";
+        foreach ($roles as $rol){
+            if($rol->id == Auth()->user()->rol){
+                $user_rol=$rol->nombre;
+            }
+        }
+        return $user_rol;
+    }
+
+    public function adminlte_profile_url(){
+        return 'usuario.index';
+    }
 }

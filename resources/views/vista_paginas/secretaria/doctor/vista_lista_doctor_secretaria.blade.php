@@ -2,6 +2,8 @@
 
 @section('title', 'Doctorers || Secretaria')
 
+@section('plugins.Datatables', true)
+
 @section('content_header')
     <h1>Doctores</h1>
     <p>Doctores registrados en el sistema.</p>
