@@ -29,7 +29,7 @@
                     <button  type="submit" class="btn btn-success" style="width: 100%">Ingresar</button>
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
-                    <a  href="#" class="btn btn-warning" style="width: 100%">Registrar</a>
+                    <a  href="#" class="btn btn-warning" style="width: 50%">Registrar</a>
                 </div>
                 <div class="form-check mr-auto ml-3 mt-3">
                     <label class="form-check-label">
