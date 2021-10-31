@@ -18,17 +18,17 @@
                     <h1 class="text-black">Bienvenido</h1>
                     <h5 class="text-black">Restablecer contraseña</h5>
                 </div>
-                @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
-                        {{ session('status') }}
-                    </div>
-                @endif
                 <div class="form-group mx-sm-4 pt-4">
                     <input name="email" id="email" type="email" autofocus value="{{ old('email') }}" placeholder="Ingrese su correo electronico" class="form-control" required>
                     @error('email')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
+                @if (session('status'))
+                    <div class="text-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <div class="form-group mx-sm-4 pt-3">
-                    <button  type="submit" class="btn btn-danger" style="width: 65%">Restablecer contraseña</button>
+                    <button id="btnsubmit" type="submit" class="btn btn-danger" style="width: 65%">Validar correo</button>
                 </div>
                 <hr>
                 <div class="form-group mx-sm-4 pt-3">
@@ -38,5 +38,12 @@
         </div>
     </div>
 </div>
+
+@if (session('status'))
+    <script>
+        document.getElementById('btnsubmit').style.display ='none';
+        document.getElementById('email').style.display ='none';
+    </script>
+@endif
 </body>
 </html>
