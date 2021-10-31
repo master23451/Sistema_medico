@@ -102,6 +102,9 @@
                                 <option value="Hombre">Hombre</option>
                                 <option value="Mujer" selected>Mujer</option>
                                 @break
+                                @default
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
                             @endswitch
                         </select>
                         @error('sexo')

@@ -31,7 +31,7 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
 
 });*/
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'verified'], function(){
 
     Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
     Route::get('administrador/usuario/crear', [Usuario::class, 'create'])->name('usuario.create');

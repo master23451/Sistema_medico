@@ -101,6 +101,9 @@
                                 <option value="Hombre">Hombre</option>
                                 <option value="Mujer" selected>Mujer</option>
                                 @break
+                                @default
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
                             @endswitch
                         </select>
                         @error('sexo')
@@ -113,8 +116,8 @@
                     @endphp
                     <div class="mb-4">
                         <label for="rol">Rol</label>
-                        <select id="rol" name="rol" class="form-control" required>
-                            <option value="" disabled>Seleccionar...</option>
+                        <select id="rol" name="rol" class="form-control" required @can('loginAdministrador')  @else disabled @endcan>
+                            <option disabled>Seleccionar...</option>
                             @foreach($roles as $itemrol)
                                 <option value="{{ $itemrol->id }}" @if( $itemrol->id ==  Auth()->user()->rol) selected @endif>
                                     {{  $itemrol->nombre }}
@@ -129,7 +132,7 @@
                     <div class="mb-4">
                         <label for="status">Estatus</label>
                         <select id="status" name="status" class="form-control" style="width: 49%" required>
-                            <option value="" disabled>Seleccionar...</option>
+                            <option disabled>Seleccionar...</option>
                             @switch(Auth()->user()->status)
                                 @case(1)
                                 <option value="1" selected>Activo</option>

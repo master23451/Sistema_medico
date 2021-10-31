@@ -50,7 +50,7 @@
                         <td class="px-2 py-4"><span
                             @switch($itemUsuarion->rol)
                                 @case(1)
-                                     class="badge badge-warning"
+                                class="badge badge-warning"
                                 @break
                                 @case(2)
                                 class="badge badge-info"

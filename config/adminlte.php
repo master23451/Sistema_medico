@@ -127,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-white-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -250,7 +250,7 @@ return [
             'label_color' => 'success',
             'can' => '#',
         ],
-        ['header' => 'Administrador', 'can' => 'loginAdministrador'],
+        ['header' => 'Administrador', 'can' => 'loginAdministrador', 'classes'   => 'text-yellow text-center'],
         [
             'text' => 'Pagian principal',
             'route' => 'administrador.index',
@@ -310,7 +310,7 @@ return [
             'icon' => 'fas fa-clinic-medical',
             'can' => 'loginAdministrador',
         ],
-        ['header' => 'Secretarias', 'can' => 'loginSecretaria',],
+        ['header' => 'Secretarias', 'can' => 'loginSecretaria', 'classes'   => 'text-info text-center'],
         [
             'text' => 'Pagina principal',
             'url'  => '#',
