@@ -21,14 +21,22 @@
                 <!-------------------------------Seleccion de fotos-------------------------------------------------------->
                     <div class="mb-4">
                         <h5>Foto de perfil</h5>
-                        <div>
+                       @if($usuario->profile_photo_path != '')
+                            <div>
+                                <img
+                                    src="{{ Illuminate\Support\Facades\Storage::url($usuario->profile_photo_path)}}"
+                                    alt="{{ $usuario->name }}"
+                                    style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                                    id="perfilImgPreview">
+                            </div>
+                        @else
                             <img
-                                src="{{ Illuminate\Support\Facades\Storage::url($usuario->profile_photo_path)}}"
+                                src="https://ui-avatars.com/api/?name={{ $usuario->name }}"
                                 alt="{{ $usuario->name }}"
                                 style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview"
-                            >
-                        </div>
+                                id="perfilImgPreview">
+                        @endif
+
                         <div class="mb-2 mt-2">
                             <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
                                     class="fas fa-portrait" style=""></i> Cambiar foto de perfil

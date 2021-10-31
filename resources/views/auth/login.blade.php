@@ -25,17 +25,15 @@
                     <input name="password" id="password" type="text" placeholder="Ingrese su contraseña" class="form-control" required>
                     @error('password')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
-                    <button  type="submit" class="btn btn-success" style="width: 65%">Ingresar</button>
-                    <a  href="{{ route('register') }}" class="btn btn-secondary" style="width: 33.5%">Registrar</a>
-                </div>
-                <div class="form-check mr-auto ml-3 mt-3">
+                <div class="form-group mx-sm-4 pt-4">
                     <label class="form-check-label">
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recuerdame') }}
-                        <span class="form-check-sign">
-                  <span class="check"></span>
-                </span>
+                        <span class="form-check-sign"><span class="check"></span></span>
                     </label>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <button  type="submit" class="btn btn-success" style="width: 65%">Entrar</button>
+                    <a  href="{{ route('register') }}" class="btn btn-secondary" style="width: 33.5%">Registrar</a>
                 </div>
             </form>
         </div>

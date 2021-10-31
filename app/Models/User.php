@@ -45,7 +45,12 @@ class User extends Authenticatable
     ];
 
     public function adminlte_image(){
-        return Storage::url(Auth()->user()->profile_photo_path);
+        if(Auth()->user()->profile_photo_path != ''){
+
+            return Storage::url(Auth()->user()->profile_photo_path);
+        }
+
+        return 'https://ui-avatars.com/api/?name='.Auth()->user()->name;
     }
 
     public function adminlte_desc(){

@@ -20,11 +20,10 @@
                         <h5>Foto de perfil</h5>
                         <div>
                             <img
-                                src=""
+                                src="https://ui-avatars.com/api/?name={{ __('SIN') }}"
                                 alt="sin imagen"
                                 style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview"
-                            >
+                                id="perfilImgPreview">
                         </div>
                         <div class="mb-2 mt-2">
                             <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i class="fas fa-portrait"></i> Elige una foto de perfil</button>

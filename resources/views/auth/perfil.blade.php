@@ -21,12 +21,19 @@
                     <div class="mb-4">
                         <h5>Foto de perfil</h5>
                         <div>
-                            <img
-                                src="{{ Illuminate\Support\Facades\Storage::url(Auth()->user()->profile_photo_path)}}"
-                                alt="{{ Auth()->user()->name }}"
-                                style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview"
-                            >
+                            @if(Auth()->user()->profile_photo_path != '')
+                                <img
+                                    src="{{ Illuminate\Support\Facades\Storage::url(Auth()->user()->profile_photo_path)}}"
+                                    alt="{{ Auth()->user()->name }}"
+                                    style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                                    id="perfilImgPreview">
+                            @else
+                                <img
+                                    src="https://ui-avatars.com/api/?name={{Auth()->user()->name}}"
+                                    alt="{{ Auth()->user()->name }}"
+                                    style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                                    id="perfilImgPreview">
+                            @endif
                         </div>
                         <div class="mb-2 mt-2">
                             <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
