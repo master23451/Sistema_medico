@@ -26,11 +26,14 @@
                     @error('password')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
-                    <button  type="submit" class="btn btn-success">Ingresar</button>
+                    <button  type="submit" class="btn btn-success" style="width: 100%">Ingresar</button>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <a  href="#" class="btn btn-warning" style="width: 100%">Registrar</a>
                 </div>
                 <div class="form-check mr-auto ml-3 mt-3">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recuerdame') }}
                         <span class="form-check-sign">
                   <span class="check"></span>
                 </span>

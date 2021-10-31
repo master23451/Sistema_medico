@@ -27,18 +27,11 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
     return view('welcome');
 });*/
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function (){
-    Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
-    Route::get('administrador/usuario/crear', [Usuario::class, 'create'])->name('usuario.create');
-    Route::post('administrador/usuario/guardado', [Usuario::class, 'store'])->name('usuario.store');
-    Route::get('administrador/usuario/{id}/editar', [Usuario::class, 'edit'])->name('usuario.edit');
-    Route::put('administrador/usuario/{id}/modificado', [Usuario::class, 'update'])->name('usuario.update');
-    Route::delete('administrador/usuario/{id}/eliminado', [Usuario::class, 'destroy'])->name('usuario.destroy');
-});
+/*Route::middleware(['auth:sanctum', 'verified'])->group(function (){
 
+});*/
 
-
-Route::group(['middleware' => 'auth'], function (){
+Route::group(['middleware' => 'auth'], function(){
 
     Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
     Route::get('administrador/usuario/crear', [Usuario::class, 'create'])->name('usuario.create');
@@ -46,7 +39,11 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('administrador/usuario/{id}/editar', [Usuario::class, 'edit'])->name('usuario.edit');
     Route::put('administrador/usuario/{id}/modificado', [Usuario::class, 'update'])->name('usuario.update');
     Route::delete('administrador/usuario/{id}/eliminado', [Usuario::class, 'destroy'])->name('usuario.destroy');
+    Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
+    /*--------------------------------------------------------------------------------------------------------------------*/
+    Route::get('usuario/perfil', [Usuario::class, 'editPerfil'])->name('perfil');
 });
+
 
 /*--------------------------------------------------Indexes-----------------------------------------------------------*/
 Route::get('administrador/index', [PaginasPrincipalController::class,'indexInfoGeneralAdministrador'])->name('administrador.index')->middleware('auth');

@@ -175,4 +175,11 @@ class UserController extends Controller
 
         }
     }
+
+    public function editPerfil(){
+
+        $vista=view('auth.perfil');
+        return $vista;
+
+    }
 }
