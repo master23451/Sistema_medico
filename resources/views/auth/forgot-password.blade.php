@@ -30,10 +30,6 @@
                 <div class="form-group mx-sm-4 pt-3">
                     <button id="btnsubmit" type="submit" class="btn btn-danger" style="width: 65%">Validar correo</button>
                 </div>
-                <hr>
-                <div class="form-group mx-sm-4 pt-3">
-                    <a href="{{ 'login' }}" class="btn btn-secondary">Regresar al login</a>
-                </div>
             </form>
         </div>
     </div>
