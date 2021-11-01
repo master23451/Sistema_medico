@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\RegistrarUsuarioNotificacion;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Roles;
 use App\Models\Vistas\Vw_usuario_roles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    use Notifiable;
+
     /**
      * Display a listing of the resource.
      *
@@ -53,6 +58,8 @@ class UserController extends Controller
         if(Gate::authorize('loginAdministrador')){
 
             $user=new User();
+            $roles=Roles::all();
+            $rolAsignado='';
 
             $request->validate([
                 'inputImgPerfil' => ['image'],
@@ -67,6 +74,7 @@ class UserController extends Controller
             $user->name=$request->input('nombre');
             $user->user=$request->input('nombre').rand();
             $user->email=$request->input('email');
+            $user->password=Hash::make('12345678');
             $user->telefono=$request->input('telefono');
             $user->celular=$request->input('celular');
             $user->sexo=$request->input('sexo');
@@ -78,9 +86,20 @@ class UserController extends Controller
                 $user->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
             }
 
-            $user->save();
 
-            return redirect()->route('usuario.edit', $user->id)->with('guardado','ok');
+            if($user->save()){
+
+                foreach ($roles as $item){
+                    if($item->id == $request->input('rol')){
+                        $rolAsignado=$item->nombre;
+                    }
+                }
+                $user->notify(new RegistrarUsuarioNotificacion($user->email=$request->input('email'), $rolAsignado));
+
+                return redirect()->route('usuario.edit', $user->id)->with('guardado','ok');
+            }
+
+            return redirect()->route('usuario.create')->with('form_error','error');
         }
     }
 

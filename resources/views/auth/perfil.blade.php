@@ -125,7 +125,7 @@
                     @can('loginAdministrador')
                         <p class="text-blck">Seleccione un tipo de usuario.</p>
                     @else
-                        <p class="text-danger">El unico que puede modificar esta opcion es el administrador.</p>
+                        <p class="text-danger">Opción bloqueada para este usuario comuniquese con el administrador.</p>
                     @endcan
                     <select id="rol" name="rol" class="form-control" required @can('loginAdministrador')  @else disabled @endcan>
                         <option disabled>Seleccionar...</option>
@@ -145,7 +145,7 @@
                     @can('loginAdministrador')
                         <p class="text-blck">Seleccione el estado del usuario.</p>
                     @else
-                        <p class="text-danger">El unico que puede modificar esta opcion es el administrador.</p>
+                        <p class="text-danger">Opción bloqueada para este usuario comuniquese con el administrador.</p>
                     @endcan
                     <select id="status" name="status" class="form-control" style="width: 49%" @can('loginAdministrador')  @else disabled @endcan>
                         <option disabled>Seleccionar...</option>

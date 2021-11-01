@@ -37,9 +37,15 @@
                         </td>
                         <td class="px-2 py-4">
                             <div>
-                                <div>
-                                    <img src="{{ Illuminate\Support\Facades\Storage::url($itemUsuarion -> profile_photo_path) }}" alt="{{ $itemUsuarion -> nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
-                                </div>
+                                @if($itemUsuarion -> profile_photo_path != '')
+                                    <div>
+                                        <img src="{{ Illuminate\Support\Facades\Storage::url($itemUsuarion -> profile_photo_path) }}" alt="{{ $itemUsuarion -> nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                    </div>
+                                @else
+                                    <div>
+                                        <img src="https://ui-avatars.com/api/?name={{$itemUsuarion->name}}" alt="{{ $itemUsuarion -> name }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                    </div>
+                                @endif
                                 <div>
                                     <div>{{ $itemUsuarion->name }}</div>
                                 </div>

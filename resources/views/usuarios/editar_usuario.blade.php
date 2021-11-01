@@ -213,7 +213,7 @@
         <script>
             Swal.fire({
                 title: 'Guardado',
-                text: 'El administrador se registro correctamente',
+                text: 'El administrador se registro correctamente. Se envio un correo al usuario nuevo',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'
@@ -269,7 +269,7 @@
         <script>
             Swal.fire({
                 title: 'Modificado',
-                text: 'Los datos del administrador se han actualizado correctamente',
+                text: 'Los datos del usuario se han actualizado correctamente.',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'
