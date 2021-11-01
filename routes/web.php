@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Paginas_principal\PaginasPrincipalController;
 use App\Http\Controllers\UserController as Usuario;
+use App\Http\Controllers\HomeController as Home;
 /*--------------------------------------------------------------------------------------------------------------------*/
 use App\Http\Controllers\Administrador\DoctorAdminController;
 use App\Http\Controllers\Administrador\SecretariaAdminController;
@@ -33,6 +33,8 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
 
 Route::group(['middleware' => 'verified'], function(){
 
+    Route::get('home',  [Home::class, 'index'])->name('home');
+    /*----------------------------------------------------------------------------------------------------------------*/
     Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
     Route::get('administrador/usuario/crear', [Usuario::class, 'create'])->name('usuario.create');
     Route::post('administrador/usuario/guardado', [Usuario::class, 'store'])->name('usuario.store');
@@ -40,7 +42,7 @@ Route::group(['middleware' => 'verified'], function(){
     Route::put('administrador/usuario/{id}/modificado', [Usuario::class, 'update'])->name('usuario.update');
     Route::delete('administrador/usuario/{id}/eliminado', [Usuario::class, 'destroy'])->name('usuario.destroy');
     Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
-    /*--------------------------------------------------------------------------------------------------------------------*/
+    /*----------------------------------------------------------------------------------------------------------------*/
     Route::get('usuario/perfil', [Usuario::class, 'editPerfil'])->name('perfil');
 });
 
