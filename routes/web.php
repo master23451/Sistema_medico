@@ -44,6 +44,8 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
     /*----------------------------------------------------------------------------------------------------------------*/
     Route::get('usuario/perfil', [Usuario::class, 'editPerfil'])->name('perfil');
+    Route::put('usuario/perfil{id}/actualizar', [Usuario::class, 'actualizar_perfil'])->name('usuario.perfil.update');
+    Route::delete('usuario/perfil{id}/eliminar', [Usuario::class, 'eliminar_perfil'])->name('usuario.perfil.destroy');
 });
 
 

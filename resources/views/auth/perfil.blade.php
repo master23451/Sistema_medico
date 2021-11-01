@@ -12,7 +12,7 @@
             <h4>Actualizar datos personales</h4>
             <hr>
             <!------------------------------------------------------------------------------------------------->
-            <form action="{{ route('usuario.update', Auth()->user()->id) }}" method="post"
+            <form action="{{ route('usuario.perfil.update', Auth()->user()->id) }}" method="post"
                   enctype="multipart/form-data" id="modificar_datos">
             @csrf
             @method('put')
@@ -39,7 +39,7 @@
                                 class="fas fa-portrait" style=""></i> Cambiar foto de perfil
                         </button>
                         <input type="file" class="form-control" id="inputImgPerfil"
-                               name="inputImgPerfil" style="display: none" accept="image/*"/>
+                               name="inputImgPerfil"  accept="image/*" style="display: none"/>
                         @error('inputImgPerfil')
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
@@ -182,7 +182,7 @@
                 @method('put')
                 <div class="form-group">
                     <label for="current_password" class="form-label">{{ __('Contraseña actual') }}</label>
-                    <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" required autofocus>
+                    <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" required>
                     @error('current_password', 'updatePassword')
                     <small><span style="color: #d01414;">{{ $message }}</span></small>
                     @enderror
@@ -209,7 +209,7 @@
             <!--------------------------------------------------------------------------------------------------------->
             <h6>Eliminar perfil</h6>
             <hr/>
-            <form action="{{ route('usuario.destroy', Auth()->user()->id) }}" method="post" id="borrar_datos">
+            <form action="{{ route('usuario.perfil.destroy', Auth()->user()->id) }}" method="post" id="borrar_datos">
                 @csrf
                 @method('delete')
                 <div class="mb-4">
@@ -269,8 +269,8 @@
             e.preventDefault();
 
             Swal.fire({
-                title: '¿Esta seguro de eliminar la informacion?',
-                text: "Ya no podra recuperara la informacion",
+                title: '¿Eliminar perfil del usuario?',
+                text: "El perfil se borrara permanentemente y saldra de la sesion",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#5dd91a',
@@ -353,9 +353,21 @@
                 confirmButtonText: 'Aceptar'
             })
         </script>
-
+        verification.notice
        <!-- <div class="alert alert-success" role="alert">
 
         </div> -->
+    @endif
+
+    @if (session('status') == "password-updated")
+        <script>
+            Swal.fire({
+                title: 'Contraseña',
+                text: 'La contraseña se actualizo correctamente',
+                icon: 'success',
+                confirmButtonColor: '#5dd91a',
+                confirmButtonText: 'Aceptar'
+            })
+        </script>
     @endif
 @stop

@@ -48,5 +48,9 @@
         </div>
     </div>
 </div>
+<br/>
+@if(session('eliminado')=='ok')
+    <div class="alert alert-success" role="alert">{{ __('Usuario eliminado correctamente') }}</div>
+@endif
 </body>
 </html>

@@ -8,6 +8,7 @@ use App\Models\Roles;
 use App\Models\Vistas\Vw_usuario_roles;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -51,17 +52,18 @@ class UserController extends Controller
     {
         if(Gate::authorize('loginAdministrador')){
 
+            $user=new User();
+
             $request->validate([
                 'inputImgPerfil' => ['image'],
                 'nombre' => 'required',
-                'email' => ['required', 'email'],
+                'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
                 'telefono' => ['required', 'integer'],
                 'celular' => ['required', 'integer'],
                 'sexo' => 'required',
                 'rol' => 'required',
             ]);
 
-            $user=new User();
             $user->name=$request->input('nombre');
             $user->user=$request->input('nombre').rand();
             $user->email=$request->input('email');
@@ -123,11 +125,13 @@ class UserController extends Controller
     {
         if(Gate::authorize('loginAdministrador')){
 
+            $user=User::find($id);
+
             $request->validate([
                 'inputImgPerfil' => ['image'],
                 'nombre' => 'required',
                 'usuario' => 'required',
-                'email' => ['required', 'email'],
+                'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
                 'telefono' => ['required', 'integer'],
                 'celular' => ['required', 'integer'],
                 'sexo' => 'required',
@@ -135,7 +139,6 @@ class UserController extends Controller
                 'status' => 'required',
             ]);
 
-            $user=User::find($id);
             $user->name=$request->input('nombre');
             $user->user=$request->input('usuario');
             $user->email=$request->input('email');
@@ -180,6 +183,53 @@ class UserController extends Controller
 
         $vista=view('auth.perfil');
         return $vista;
+
+    }
+
+    public function actualizar_perfil(Request $request, $id){
+
+            $user=User::find($id);
+
+            $request->validate([
+                'inputImgPerfil' => ['image'],
+                'nombre' => 'required',
+                'usuario' => 'required',
+                'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+                'telefono' => ['required', 'integer'],
+                'celular' => ['required', 'integer'],
+                'sexo' => 'required',
+                'rol' => 'required',
+                'status' => 'required',
+            ]);
+
+            $user->name=$request->input('nombre');
+            $user->user=$request->input('usuario');
+            $user->email=$request->input('email');
+            $user->telefono=$request->input('telefono');
+            $user->celular=$request->input('celular');
+            $user->sexo=$request->input('sexo');
+            $user->status=$request->input('status');
+            $user->rol=$request->input('rol');
+
+
+            if($request->hasFile('inputImgPerfil')){
+                Storage::delete($user->profile_photo_path);
+                $user->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
+            }
+
+
+            $user->update();
+
+            return redirect()->route('perfil')->with('modificado','ok');
+    }
+
+    public function eliminar_perfil($id){
+
+        $usuario=User::find($id);
+        Storage::delete($usuario->profile_photo_path);
+        $usuario->delete();
+
+        return redirect()->route('login')->with('eliminado','ok');
 
     }
 }
