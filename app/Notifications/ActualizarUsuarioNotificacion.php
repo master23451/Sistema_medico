@@ -7,23 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RegistrarUsuarioNotificacion extends Notification
+class ActualizarUsuarioNotificacion extends Notification
 {
     use Queueable;
-
-    protected $email, $rol;
-
+    protected $usuarioAdmin, $usuario;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($email, $rol)
+    public function __construct($usuarioAdmin, $usuario)
     {
-        $this->email=$email;
-        $this->rol=$rol;
-
+        $this->usuarioAdmin=$usuarioAdmin;
+        $this->usuario=$usuario;
     }
 
     /**
@@ -46,15 +43,15 @@ class RegistrarUsuarioNotificacion extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Registro de nuevo usuario')
-                    ->greeting('Hola. Nuevo usuario')
-                    ->line('Este correo es para avisar que su registro se realizo de manera correcta.')
-                    ->line('Contraseña temporal: 12345678')
-                    ->line('Se recomienda cambiar su contraseña los mas rapido posible')
-                    ->line('Rol asigando por el administrador: '.$this->rol)
-                    ->action('Ir a la pagina', url('/login'))
-                    ->line('Gracias por su preferencia!')
-                    ->salutation('Clinica Especialistas de tlaxcala');
+            ->subject('Actualizacion de datos del usuario')
+            ->greeting('Hola. usuario '.$this->usuario)
+            ->line('Este correo es para avisar que su datos se actalizaron de manera correcta.')
+            ->line('El administrador: '.$this->usuarioAdmin.' fue el encargado de cambiar los datos.')
+            ->line('Si usted no autorizo el cambio de datos se le recomienda acudir a la clinica.')
+            ->line('De lo contrario haga caso caso omiso a este correo.')
+            ->action('Ir a la pagina', url('/login'))
+            ->line('Gracias por su preferencia!')
+            ->salutation('Clinica Especialistas de tlaxcala');
     }
 
     /**

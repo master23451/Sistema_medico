@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\ActualizarUsuarioNotificacion;
+use App\Notifications\EliminarUsuarioNotificacion;
 use App\Notifications\RegistrarUsuarioNotificacion;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -174,9 +176,14 @@ class UserController extends Controller
             }
 
 
-            $user->update();
+            if($user->update()){
 
-            return redirect()->route('usuario.edit', $id)->with('modificado','ok');
+                $user->notify(new ActualizarUsuarioNotificacion(Auth()->user()->user, $user->name=$request->input('nombre')));
+
+                return redirect()->route('usuario.edit', $id)->with('modificado','ok');
+            }
+
+            return redirect()->route('usuario.edit', $id)->with('form_error','error');
         }
     }
 
@@ -189,12 +196,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         if(Gate::authorize('loginAdministrador')){
-            $usuario=User::find($id);
-            Storage::delete($usuario->profile_photo_path);
-            $usuario->delete();
+            $user=User::find($id);
+            Storage::delete($user->profile_photo_path);
 
-            return redirect()->route('usuario.index')->with('eliminado','ok');
+            if($user->delete()){
 
+                $user->notify(new EliminarUsuarioNotificacion(Auth()->user()->user, $user->name));
+
+                return redirect()->route('usuario.index')->with('eliminado','ok');
+            }
+
+            return redirect()->route('usuario.index')->with('form_error','error');
         }
     }
 
