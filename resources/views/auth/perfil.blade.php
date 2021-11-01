@@ -125,7 +125,7 @@
                     @can('loginAdministrador')
                         <p class="text-blck">Seleccione un tipo de usuario.</p>
                     @else
-                        <p class="text-danger">El unico que puede editar este campo es el administrador.</p>
+                        <p class="text-danger">El unico que puede modificar esta opcion es el administrador.</p>
                     @endcan
                     <select id="rol" name="rol" class="form-control" required @can('loginAdministrador')  @else disabled @endcan>
                         <option disabled>Seleccionar...</option>
@@ -142,7 +142,12 @@
                     <!--------------------------------------------------------------------------------------------------------->
                 <div class="mb-4">
                     <label for="status">Estatus</label>
-                    <select id="status" name="status" class="form-control" style="width: 49%" required>
+                    @can('loginAdministrador')
+                        <p class="text-blck">Seleccione el estado del usuario.</p>
+                    @else
+                        <p class="text-danger">El unico que puede modificar esta opcion es el administrador.</p>
+                    @endcan
+                    <select id="status" name="status" class="form-control" style="width: 49%" @can('loginAdministrador')  @else disabled @endcan>
                         <option disabled>Seleccionar...</option>
                         @switch(Auth()->user()->status)
                             @case(1)
@@ -179,19 +184,22 @@
                     <label for="current_password" class="form-label">{{ __('Contraseña actual') }}</label>
                     <input id="current_password" type="password" class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" name="current_password" required autofocus>
                     @error('current_password', 'updatePassword')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    <small><span style="color: #d01414;">{{ $message }}</span></small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="password" class="form-label">{{ __('Nueva contraseña') }}</label>
                     <input id="password" type="password" class="form-control @error('password', 'updatePassword') is-invalid @enderror" name="password" required autocomplete="new-password">
                     @error('password', 'updatePassword')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    <small><span style="color: #d01414;">{{ $message }}</span></small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="password-confirm" class="form-label">{{ __('Confirmar nueva contraseña') }}</label>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    @error('password-confirm', 'updatePassword')
+                    <small><span style="color: #d01414;">{{ $message }}</span></small>
+                    @enderror
                 </div>
                 <br/>
                 <div class="mb-4">
