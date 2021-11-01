@@ -170,8 +170,13 @@
                     <button type="submit" class="btn btn-warning" style="flex: auto"><i
                             class="fas fa-save"></i> Modificar
                     </button>
-                    <a class="btn-secondary btn" href="{{ route('usuario.index') }}"><i
-                            class="fas fa-arrow-circle-left"></i> Regresar</a>
+                    @can('loginAdministrador')
+                        <a class="btn-secondary btn" href="{{ route('usuario.index') }}"><i
+                                class="fas fa-arrow-circle-left"></i> Regresar</a>
+                    @elsecan('loginSecretaria')
+                        <a class="btn-secondary btn" href="{{ route('home') }}"><i
+                                class="fas fa-arrow-circle-left"></i> Regresar</a>
+                    @endcan
                     </div>
             </form>
             <!--------------------------------------------------------------------------------------------------------->
