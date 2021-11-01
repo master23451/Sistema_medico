@@ -128,7 +128,7 @@
         <script>
             Swal.fire({
                 title: 'Eliminado',
-                text: 'El usuario se elimino correctamente del sistema',
+                text: 'El usuario se elimino correctamente del sistema. Se le envio un correo al usuario.',
                 icon: 'success',
                 confirmButtonColor: '#d01414',
                 confirmButtonText: 'Aceptar'
