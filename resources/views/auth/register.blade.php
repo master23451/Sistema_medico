@@ -16,6 +16,7 @@
                 <div class="form-group text-center pt-3">
                     <img src="{{ asset('img/logo.jpg') }}" alt="logo" style="width: 40%">
                     <h1 class="text-black">Bienvenido</h1>
+                    <h5 class="text-black">Registrar un nuevo usuario.</h5>
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
                     <input name="name" id="name" type="name" autofocus value="{{ old('name') }}" placeholder="Ingrese un nombre nombre" class="form-control" required>

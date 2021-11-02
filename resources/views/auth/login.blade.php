@@ -16,6 +16,7 @@
                 <div class="form-group text-center pt-3">
                     <img src="{{ asset('img/logo.jpg') }}" alt="logo" style="width: 40%">
                     <h1 class="text-black">Bienvenido</h1>
+                    <h5 class="text-black">Inicio de sesión</h5>
                     @if (session('status'))
                         <div class="text-success">
                             {{ session('status') }}
@@ -42,7 +43,7 @@
                 <hr>
                 <div class="form-group mx-sm-4 pt-3">
                     <a  href="{{ route('register') }}" class="btn btn-secondary" style="width: 37%">Registrarse</a>
-                    <a href="{{ route('password.request') }}" style="padding-left: 5px; text-decoration: none; color: #000000">¿Ustes olvido su contraseña?</a>
+                    <a href="{{ route('password.request') }}" style="padding-left: 5px; text-decoration: none; color: #000000">¿Usted olvido su contraseña?</a>
                 </div>
             </form>
         </div>

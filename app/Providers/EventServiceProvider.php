@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Paciente;
+use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -27,6 +30,81 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Event::listen(BuildingMenu::class, function (BuildingMenu $event){
+            $conteoUser=User::all()->count();
+            $conteoPaciente=Paciente::all()->count();
+
+            //Opciones del panel administrador
+            $event->menu->add(
+                [
+                'header' => 'Panel Administrador',
+                'can' => 'loginAdministrador',
+                'classes'   => 'text-yellow text-center'
+                ],
+                [
+                    'text' => 'Dashboard',
+                    'url' => '',
+                    'icon'=> 'fas fa-chart-pie',
+                    'can' => 'loginAdministrador'
+                ],
+                [
+                    'text' => 'Usuarios',
+                    'route' => 'usuario.index',
+                    'icon'=> 'fas fa-user-shield',
+                    'label' =>  $conteoUser,
+                    'label_color' => 'warning',
+                    'can' => 'loginAdministrador'
+                ],
+                [
+                    'text' => 'Personal',
+                    'icon' => 'fas fa-users',
+                    'can' => 'loginAdministrador',
+                    'submenu' => [
+                        [
+                            'text' => 'Doctores',
+                            'icon' => 'fas fa-stethoscope',
+                            'route' => 'doctor.index'
+                        ],
+                        [
+                            'text' => 'Secretarias',
+                            'icon' => 'fas fa-user-nurse',
+                            'route' => 'secretaria.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Pacientes',
+                    'icon' => 'fas fa-hospital-user',
+                    'route' => 'paciente.index',
+                    'label' =>  $conteoPaciente,
+                    'label_color' =>'info',
+                    'can' => 'loginAdministrador',
+                ],
+                [
+                'text' => 'Consultorios',
+                'url'  => '#',
+                'icon' => 'fas fa-clinic-medical',
+                'can' => 'loginAdministrador',
+                ],
+                [
+                    'text' => 'Post',
+                    'icon' => 'fas fa-sticky-note',
+                    'can' => 'loginAdministrador',
+                    'submenu' => [
+                        [
+                            'text' => 'Lista de post',
+                            'route'  => 'administrador.lista.post',
+                            'icon' => 'fas fa-list',
+                        ],
+                        [
+                            'text' => 'Crear post',
+                            'route'  => 'administrador.crear.post',
+                            'icon' => 'far fa-edit',
+                        ],
+                    ],
+                ]
+            );
+        });
     }
+
 }

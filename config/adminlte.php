@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-info',
+    'usermenu_header_class' => 'bg-success',
     'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => true,
@@ -102,7 +102,7 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline card-info',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
@@ -122,14 +122,14 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'bg-info',
+    'classes_brand' => 'bg-success',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-success elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-info navbar-light',
+    'classes_topnav' => 'navbar-success navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -170,7 +170,7 @@ return [
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
-    'right_sidebar_slide' => false,
+    'right_sidebar_slide' => true,
     'right_sidebar_push' => false,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
@@ -224,6 +224,7 @@ return [
     |
     */
 
+
     'menu' => [
         // Navbar items:
         [
@@ -243,80 +244,12 @@ return [
             'can' =>'#'
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-            'can' => '#',
-        ],
-        ['header' => 'Administrador', 'can' => 'loginAdministrador', 'classes'   => 'text-yellow text-center'],
-        [
             'text' => 'Pagian principal',
-            'route' => 'administrador.index',
+            'route' => 'home',
             'icon' => 'fas fa-tachometer-alt',
-            'can' => 'loginAdministrador',
-        ],
-        [
-            'text' => 'Post',
-            'icon' => 'fas fa-sticky-note',
-            'can' => 'loginAdministrador',
-            'submenu' => [
-              [
-                  'text' => 'Lista de post',
-                  'route'  => 'administrador.lista.post',
-                  'icon' => 'fas fa-list',
-              ],
-              [
-                  'text' => 'Crear post',
-                  'route'  => 'administrador.crear.post',
-                  'icon' => 'far fa-edit',
-              ],
-            ],
-        ],
-        [
-            'text' => 'Usuarios',
-            'route' => 'usuario.index',
-            'icon' => 'fas fa-user-shield',
-            'can' => 'loginAdministrador',
-        ],
-        [
-            'text' => 'Personal',
-            'icon' => 'fas fa-users',
-            'can' => 'loginAdministrador',
-            'submenu' => [
-                [
-                    'text' => 'Doctores',
-                    'icon' => 'fas fa-stethoscope',
-                    'route' => 'doctor.index'
-                ],
-                [
-                    'text' => 'Secretarias',
-                    'icon' => 'fas fa-user-nurse',
-                    'route' => 'secretaria.index'
-                ],
-
-            ],
-        ],
-        [
-            'text' => 'Pacientes',
-            'icon' => 'fas fa-hospital-user',
-            'route' => 'paciente.index',
-            'can' => 'loginAdministrador',
-        ],
-        [
-            'text' => 'Consultorios',
-            'url'  => '#',
-            'icon' => 'fas fa-clinic-medical',
-            'can' => 'loginAdministrador',
+            'can' => ['loginAdministrador', 'loginSecretaria'],
         ],
         ['header' => 'Secretarias', 'can' => 'loginSecretaria', 'classes'   => 'text-info text-center'],
-        [
-            'text' => 'Pagina principal',
-            'url'  => '#',
-            'icon' => 'fas fa-sticky-note',
-            'can' => 'loginSecretaria',
-        ],
         [
             'text' => 'Citas',
             'url'  => '#',

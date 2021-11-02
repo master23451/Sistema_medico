@@ -97,7 +97,6 @@ class UserController extends Controller
                     }
                 }
                 $user->notify(new RegistrarUsuarioNotificacion($user->email=$request->input('email'), $rolAsignado));
-
                 return redirect()->route('usuario.edit', $user->id)->with('guardado','ok');
             }
 
