@@ -22,7 +22,7 @@
             <div class="col">
                 <div class="small-box bg-gradient-primary">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3>{{ $contadorPaciente }}</h3>
                         <p>Pacientes registrados</p>
                     </div>
                     <div class="icon">
@@ -52,7 +52,7 @@
         <div class="mb-4">
             <div class="small-box bg-gradient-danger">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{ $contadorConsultorio }}</h3>
                     <p>Especialidades registradas</p>
                 </div>
                 <div class="icon">
@@ -82,7 +82,7 @@
             <div class="col">
                 <div class="small-box bg-gradient-warning">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3>{{ $contadorSecretaria }}</h3>
                         <p>Secretaria registradas</p>
                     </div>
                     <div class="icon">
