@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Paginas_principal\PaginasPrincipalController;
 use App\Http\Controllers\UserController as Usuario;
 use App\Http\Controllers\HomeController as Home;
+use App\Http\Controllers\DashboardController;
 /*--------------------------------------------------------------------------------------------------------------------*/
 use App\Http\Controllers\Administrador\DoctorAdminController;
 use App\Http\Controllers\Administrador\SecretariaAdminController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
 Route::group(['middleware' => 'verified'], function(){
 
     Route::get('home',  [Home::class, 'index'])->name('home');
+    Route::get('administardor/dashboard',[DashboardController::class,'dashboardAdmin'])->name('dashboard.admin');
     /*----------------------------------------------------------------------------------------------------------------*/
     Route::get('administrador/usuario', [Usuario::class, 'index'])->name('usuario.index');
     Route::get('administrador/usuario/crear', [Usuario::class, 'create'])->name('usuario.create');

@@ -75,7 +75,12 @@
                     @error('email')
                     <small><span style="color: #d01414;">{{ $message }}</span></small>
                     @enderror
-                    </div>
+                    @if(Auth()->user()->email_verified_at != null)
+                        <small class="text-success">Correo verificado.</small>
+                    @else
+                        <small class="text-danger">EL usuario no a verificado su correo.</small>
+                    @endif
+                </div>
                     <!------------------------------------------------------------------------------------------------->
                 <div class="row">
                     <div class="col">

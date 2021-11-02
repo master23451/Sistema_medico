@@ -43,7 +43,7 @@ class EventServiceProvider extends ServiceProvider
                 ],
                 [
                     'text' => 'Dashboard',
-                    'url' => '',
+                    'route' => 'dashboard.admin',
                     'icon'=> 'fas fa-chart-pie',
                     'can' => 'loginAdministrador'
                 ],

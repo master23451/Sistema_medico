@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Restablecer contraseña</title>
+    <title>Verificacion de correo</title>
     <link rel="stylesheet" href="{{ asset('bootstrap-5.1.1/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styleLogin.css') }}" id="{{ rand() }}">
 
