@@ -10,12 +10,13 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="info-box bg-gradient-warning">
-            <span class="info-box-icon"><i class="fas fa-clock"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Reloj</span>
-                <span class="info-box-number" id="datos_reloj"></span>
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3 id="datos_fecha"></h3>
+                <h4 id="datos_reloj"></h4>
             </div>
+            <div class="icon"><i class="fas fa-clock"></i></div>
+            <br/>
         </div>
         <!------------------------------------------------------------------------------------------------------------->
         <div class="row">
@@ -132,7 +133,8 @@
                     mes = fecha.getMonth(),
                     ano = fecha.getFullYear();
 
-                var pfecha = document.getElementById('datos_reloj');
+                var pfecha = document.getElementById('datos_fecha'),
+                preloj =document.getElementById('datos_reloj');
 
                 var semana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
                     meses= ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -160,7 +162,8 @@
                     segundos = '0'+segundos;
                 }
 
-                pfecha.textContent = semana[dia]+' '+dia+' de '+meses[mes]+' del '+ano+"\n"+ horas+' : '+minutos+' : '+segundos+' '+ampm;
+                pfecha.textContent = semana[dia]+' '+dia+' de '+meses[mes]+' del '+ano;
+                preloj.textContent = horas+' : '+minutos+' : '+segundos+' '+ampm
             }
             actualizarhora();
 
