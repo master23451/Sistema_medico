@@ -169,20 +169,26 @@ class UserController extends Controller
             $user->status=$request->input('status');
             $user->rol=$request->input('rol');
 
+            $restablecer=$request->input('restablecer');
 
             if($request->hasFile('inputImgPerfil')){
                 Storage::delete($user->profile_photo_path);
                 $user->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
             }
 
-
             if($user->update()){
+                if($restablecer == true){
+                    $user->password=Hash::make('12345678');
+                    $restablecido='si, su contraseña de restablecimiento es 12345678';
+                    $msj_extra=$request->input('msj-restablecer');
 
-                $user->notify(new ActualizarUsuarioNotificacion(Auth()->user()->user, $user->name=$request->input('nombre')));
-
-                return redirect()->route('usuario.edit', $id)->with('modificado','ok');
+                    $user->notify(new ActualizarUsuarioNotificacion(Auth()->user()->user, $user->name=$request->input('nombre'), $restablecido, $msj_extra));
+                    return redirect()->route('usuario.edit', $id)->with('modificado','ok');
+                }else{
+                    $user->notify(new ActualizarUsuarioNotificacion(Auth()->user()->user, $user->name=$request->input('nombre')));
+                    return redirect()->route('usuario.edit', $id)->with('modificado','ok');
+                }
             }
-
             return redirect()->route('usuario.edit', $id)->with('form_error','error');
         }
     }

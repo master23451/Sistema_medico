@@ -27,7 +27,7 @@
                     @error('email')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
-                    <input name="password" id="password" type="text" placeholder="Ingrese su contraseña" class="form-control" required>
+                    <input name="password" id="password" type="password" placeholder="Ingrese su contraseña" class="form-control" required>
                     @error('password')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-4">

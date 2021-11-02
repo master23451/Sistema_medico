@@ -154,6 +154,19 @@
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
                     </div>
+                    <div class="form-group mx-sm-4 pt-4">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"  name="restablecer" id="restablecer" {{ old('restablecer') ? 'checked' : '' }}> {{ __('Restablecer contraseña') }}
+                            <span class="form-check-sign"><span class="check"></span></span>
+                        </label>
+                        <div class="mb-4" id="div_restablecer">
+                            <label for="msj-restablecer" id="lavel-restablecer" >Mensaje de restablecimiento</label>
+                            <textarea id="msj-restablecer" name="msj-restablecer" placeholder="Ingrese la razon porque se restablecio la contraseña del usuario" class="form-control"></textarea>
+                            @error('email')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                    </div>
                     <!--------------------------------------------------------------------------------------------------------->
                     <div class="mb-4">
                         <hr/>
@@ -276,4 +289,17 @@
             })
         </script>
     @endif
+
+    <script>
+        $('#div_restablecer').hide();
+           $(function(){
+               $('#restablecer').change(function(){
+                   if(!$(this).prop('checked')){
+                       $('#div_restablecer').hide();
+                   }else{
+                       $('#div_restablecer').show();
+                   }
+               })
+           })
+    </script>
 @stop

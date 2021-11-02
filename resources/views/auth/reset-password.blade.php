@@ -22,11 +22,11 @@
                     @error('email')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
-                    <input name="password" id="password" type="text" placeholder="Ingrese una contraseña" class="form-control" required>
+                    <input name="password" id="password" type="password" placeholder="Ingrese una contraseña" class="form-control" required>
                     @error('password')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
-                    <input name="password_confirmation" id="password_confirmation" type="text" placeholder="Confirme su contraseña" class="form-control" required>
+                    <input name="password_confirmation" id="password_confirmation" type="password" placeholder="Confirme su contraseña" class="form-control" required>
                     @error('password_confirmation')<span style="color: #d01414"> {{$message}} </span>@enderror
                 </div>
                 <div class="form-group mx-sm-4 pt-4">
