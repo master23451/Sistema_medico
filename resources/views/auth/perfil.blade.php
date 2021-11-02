@@ -261,7 +261,7 @@
         <script>
             Swal.fire({
                 title: 'Guardado',
-                text: 'El administrador se registro correctamente',
+                text: 'El usuario se registro correctamente',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'
@@ -317,7 +317,7 @@
         <script>
             Swal.fire({
                 title: 'Modificado',
-                text: 'Los datos del administrador se han actualizado correctamente',
+                text: 'Los datos del usuario se han actualizado correctamente',
                 icon: 'success',
                 confirmButtonColor: '#5dd91a',
                 confirmButtonText: 'Aceptar'
@@ -347,22 +347,6 @@
 
         });
     </script>
-
-    @if (session('status') == "password-updated")
-        <script>
-            Swal.fire({
-                title: 'Contraseña',
-                text: 'La contraseña se actualizo correctamente',
-                icon: 'success',
-                confirmButtonColor: '#5dd91a',
-                confirmButtonText: 'Aceptar'
-            })
-        </script>
-        verification.notice
-       <!-- <div class="alert alert-success" role="alert">
-
-        </div> -->
-    @endif
 
     @if (session('status') == "password-updated")
         <script>
