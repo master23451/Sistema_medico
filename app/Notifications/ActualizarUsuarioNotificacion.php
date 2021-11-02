@@ -17,7 +17,7 @@ class ActualizarUsuarioNotificacion extends Notification
      *
      * @return void
      */
-    public function __construct($usuarioAdmin, $usuario, $extra='no', $msj_extra='sin mensaje')
+    public function __construct($usuarioAdmin, $usuario, $extra='no', $msj_extra='sin mensaje extra')
     {
         $this->usuarioAdmin=$usuarioAdmin;
         $this->usuario=$usuario;
