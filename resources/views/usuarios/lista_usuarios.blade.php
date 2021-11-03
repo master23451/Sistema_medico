@@ -14,84 +14,88 @@
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="container-fluid card-body">
-            <table class="table table-striped" id="tablaUsuarios">
-                <!----------------------------------------------------------------------------------------->
-                <thead>
-                <tr style="text-align: center;">
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Estatus</th>
-                    <th scope="col">Perfil</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($datos_usuario as $itemUsuarion)
-                    <tr style="text-align: center;">
-                        <td class="px-2 py-4">
-                            <div>{{ $itemUsuarion->id  }}</div>
-                        </td>
-                        <td class="px-2 py-4">
-                            <div>
-                                @if($itemUsuarion -> profile_photo_path != '')
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body table-responsive-xl">
+                <div class="table-responsive-xl">
+                    <table class="table table-hover" id="tablaUsuarios">
+                        <!----------------------------------------------------------------------------------------->
+                        <thead class="thead-dark">
+                        <tr style="text-align: center;">
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Rol</th>
+                            <th scope="col">Estatus</th>
+                            <th scope="col">Perfil</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($datos_usuario as $itemUsuarion)
+                            <tr style="text-align: center;">
+                                <td class="px-2 py-4">
+                                    <div>{{ $itemUsuarion->id  }}</div>
+                                </td>
+                                <td class="px-2 py-4">
                                     <div>
-                                        <img src="{{ Illuminate\Support\Facades\Storage::url($itemUsuarion -> profile_photo_path) }}" alt="{{ $itemUsuarion -> nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                        @if($itemUsuarion -> profile_photo_path != '')
+                                            <div>
+                                                <img src="{{ Illuminate\Support\Facades\Storage::url($itemUsuarion -> profile_photo_path) }}" alt="{{ $itemUsuarion -> nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                            </div>
+                                        @else
+                                            <div>
+                                                <img src="https://ui-avatars.com/api/?name={{$itemUsuarion->name}}" alt="{{ $itemUsuarion -> name }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <div>{{ $itemUsuarion->name }}</div>
+                                        </div>
                                     </div>
-                                @else
-                                    <div>
-                                        <img src="https://ui-avatars.com/api/?name={{$itemUsuarion->name}}" alt="{{ $itemUsuarion -> name }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
-                                    </div>
-                                @endif
-                                <div>
-                                    <div>{{ $itemUsuarion->name }}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-2 py-4">{{ $itemUsuarion->user }}</td>
-                        <td class="px-2 py-4">{{ $itemUsuarion->email }}</td>
-                        <td class="px-2 py-4"><span
-                            @switch($itemUsuarion->rol)
-                                @case(1)
-                                class="badge badge-warning"
-                                @break
-                                @case(2)
-                                class="badge badge-info"
-                                @break
-                                @case(3)
-                                class="badge badge-success"
-                                @break
-                                @case(4)
-                                class="badge badge-primary"
-                                @break
-                                @default
-                                class="badge badge-light"
+                                </td>
+                                <td class="px-2 py-4">{{ $itemUsuarion->user }}</td>
+                                <td class="px-2 py-4">{{ $itemUsuarion->email }}</td>
+                                <td class="px-2 py-4"><span
+                                        @switch($itemUsuarion->rol)
+                                        @case(1)
+                                        class="badge badge-warning"
+                                        @break
+                                        @case(2)
+                                        class="badge badge-info"
+                                        @break
+                                        @case(3)
+                                        class="badge badge-success"
+                                        @break
+                                        @case(4)
+                                        class="badge badge-primary"
+                                        @break
+                                        @default
+                                        class="badge badge-light"
                             @endswitch
                             >{{ $itemUsuarion->nombre_rol }}</span></td>
-                        <td class="px-2 py-4">
-                            @switch($itemUsuarion->status)
-                                @case(1)
-                                <span class="badge badge-success">Activo</span>
-                                @break
-                                @case(0)
-                                <span class="badge badge-danger">Inactivo</span>
-                                @break
-                            @endswitch
-                        </td>
-                        <td class="px-2 py-4">
-                            @if($itemUsuarion->id != auth()->user()->id)
-                                <a class="btn btn-warning" href="{{ route('usuario.edit', $itemUsuarion->id) }}"><i class="fas fa-info-circle"></i> Info</a>
-                            @else
-                                <small><span class="badge badge-secondary">Este es su perfil</span></small>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                                <td class="px-2 py-4">
+                                    @switch($itemUsuarion->status)
+                                        @case(1)
+                                        <span class="badge badge-success">Activo</span>
+                                        @break
+                                        @case(0)
+                                        <span class="badge badge-danger">Inactivo</span>
+                                        @break
+                                    @endswitch
+                                </td>
+                                <td class="px-2 py-4">
+                                    @if($itemUsuarion->id != auth()->user()->id)
+                                        <a class="btn btn-warning" href="{{ route('usuario.edit', $itemUsuarion->id) }}"><i class="fas fa-info-circle"></i> Info</a>
+                                    @else
+                                        <small><span class="badge badge-secondary">Este es su perfil</span></small>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @stop
@@ -119,6 +123,7 @@
                      sPrevious: "Anterior"
                     },
                     sProcessing: "Procesando",
+                    responsive: true,
                 }
             });
         });
