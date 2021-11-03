@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-body table-responsive-xl">
                 <div class="table-responsive-xl">
-                    <table class="table table-hover" id="tablaUsuarios">
+                    <table class="table table-hover" id="tablaDatos">
                         <!----------------------------------------------------------------------------------------->
                         <thead class="thead-dark">
                         <tr style="text-align: center;">
@@ -107,8 +107,7 @@
 @section('js')
     <script>
         $(document).ready( function () {
-            $('#tablaUsuarios').DataTable({
-                responsive: true,
+            $('#tablaDatos').DataTable({
                 language:{
                  sLengthMenu: "Mostrar _MENU_ Registros",
                     sZeroRecords:  "No se encontraron registros",

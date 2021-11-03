@@ -19,7 +19,7 @@
                     <hr/>
                     <p class="card-text">{{ $ver_post->mensaje }}</p>
                     <p class="card-text"><small class="text-muted">{{ $ver_post->updated_at }}</small></p>
-                    <a class="btn btn-warning" href="{{ route('administrador.editar.post', $ver_post->id) }}"><i class="fas fa-info-circle"></i> Editar</a>
+                    <a class="btn btn-warning" href="{{ route('administrador.editar.publicaciones', $ver_post->id) }}"><i class="fas fa-info-circle"></i> Editar</a>
                 </div>
             </div>
         </div>

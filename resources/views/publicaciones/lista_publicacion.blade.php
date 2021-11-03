@@ -1,43 +1,45 @@
 @extends('adminlte::page')
 
-@section('title', 'Admin || Post')
+@section('title', 'Publicaciones')
 
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1>Mensajes</h1>
-    <p>Lista de mensajes del administrador.</p>
+    <h1>Publicaciónes</h1>
+    <p>Lista de publicaciones hechas por administradores.</p>
     <!----------------------------------------------------------------------------------------------------------------->
-    <a class="btn btn-success" href="{{ route('administrador.crear.post') }}"><i class="fa fa-plus"></i> Registrar nuevo post</a>
+    <a class="btn btn-success" href="{{ route('publicacion.create') }}"><i class="fa fa-plus"></i> Registrar nuevo post</a>
     <br/>
     <!----------------------------------------------------------------------------------------------------------------->
 @stop
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <div class="container">
-            <table class="table table-striped" id="tablaPostAdmin">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body table-responsive-xl">
+            <table class="table table-hover" id="tablaDatos">
                 <!----------------------------------------------------------------------------------------->
-                <thead>
+                <thead class="thead-dark">
                 <tr style="text-align: center;">
                     <th scope="col">Codigo</th>
                     <th scope="col">Titulo</th>
                     <th scope="col">Imagen</th>
-                    <th scope="col">fecha de publicacion</th>
-                    <th scope="col">Editar</th>
+                    <th scope="col">Fecha de publicacion</th>
+                    <th scope="col">Fecha de modificación</th>
+                    <th scope="col">Controles</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($lista_post as $lPost)
+                @foreach ($publicaciones as $item)
                     <tr style="text-align: center;">
-                        <td class="px-2 py-4"><div>{{ $lPost->id  }}</div></td>
-                        <td class="px-2 py-4"><div>{{ $lPost->titulo }}</div></td>
-                        <td class="px-2 py-4"><img src="{{ Illuminate\Support\Facades\Storage::url($lPost->imagen) }}" alt="{{ $lPost->titulo }}" style="width: 50px; height: 50px;"></td>
-                        <td class="px-2 py-4"><div>{{ $lPost->fecha_publicacion }}</div></td>
+                        <td class="px-2 py-4"><div>{{ $item->id  }}</div></td>
+                        <td class="px-2 py-4"><div>{{ $item->titulo }}</div></td>
+                        <td class="px-2 py-4"><img src="{{ Illuminate\Support\Facades\Storage::url($item->imagen) }}" alt="{{ $item->titulo }}" style="width: 50px; height: 50px;"></td>
+                        <td class="px-2 py-4"><div>{{ $item->created_at }}</div></td>
+                        <td class="px-2 py-4"><div>{{ $item->updated_at }}</div></td>
                         <td class="px-2 py-4">
-                            <a class="btn btn-success" href="{{ route('administrador.ver.post', $lPost->id) }}"><i class="fas fa-eye"></i> Ver</a>
-                            <a class="btn btn-warning" href="{{ route('administrador.editar.post', $lPost->id) }}"><i class="fas fa-info-circle"></i> Info</a>
+                            <a class="btn btn-success" href="#"><i class="fas fa-eye"></i> Ver</a>
+                            <a class="btn btn-warning" href="{{ route('publicacion.edit', $item->id) }}"><i class="fas fa-info-circle"></i> Info</a>
                         </td>
                     </tr>
                 @endforeach
@@ -55,7 +57,7 @@
 @section('js')
     <script>
         $(document).ready( function () {
-            $('#tablaPostAdmin').DataTable({
+            $('#tablaDatos').DataTable({
                 responsive: true,
                 language:{
                     sLengthMenu: "Mostrar _MENU_ Registros",

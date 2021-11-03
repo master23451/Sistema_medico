@@ -92,13 +92,13 @@ class EventServiceProvider extends ServiceProvider
                     'can' => 'loginAdministrador',
                     'submenu' => [
                         [
-                            'text' => 'Lista de post',
-                            'route'  => 'administrador.lista.post',
+                            'text' => 'Lista de publicaciones',
+                            'route'  => 'publicacion.index',
                             'icon' => 'fas fa-list',
                         ],
                         [
-                            'text' => 'Crear post',
-                            'route'  => 'administrador.crear.post',
+                            'text' => 'Crear publicaciones',
+                            'url'  => '#',
                             'icon' => 'far fa-edit',
                         ],
                     ],

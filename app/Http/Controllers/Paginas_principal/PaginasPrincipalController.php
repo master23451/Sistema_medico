@@ -36,11 +36,11 @@ class PaginasPrincipalController extends Controller
 
     }
 
-    /*-------------------------Creacion de post administrador---------------------------------------------------------*/
+    /*-------------------------Creacion de publicaciones administrador---------------------------------------------------------*/
     public function lista_post(){
 
         $post=Mensaje_administrador::all();
-        $vista=view('vista_paginas.administrador.post.lista_post')
+        $vista=view('vista_paginas.administrador.publicaciones.lista_post')
         ->with('lista_post', $post);
         return $vista;
 
@@ -48,7 +48,7 @@ class PaginasPrincipalController extends Controller
 
     public function crear_post(){
 
-        $vista=view('vista_paginas.administrador.post.crear_post');
+        $vista=view('vista_paginas.administrador.publicaciones.crear_post');
         return $vista;
     }
 
@@ -62,13 +62,13 @@ class PaginasPrincipalController extends Controller
 
         $post->save();
 
-        return redirect()->route('administrador.lista.post')->with('guardado','ok');
+        return redirect()->route('administrador.lista.publicaciones')->with('guardado','ok');
     }
 
     public function editar_post($id){
 
         $post=Mensaje_administrador::find($id);
-        $vista=view('vista_paginas.administrador.post.editar_post')
+        $vista=view('vista_paginas.administrador.publicaciones.editar_post')
         ->with('dato_post',$post);
 
         return $vista;
@@ -89,7 +89,7 @@ class PaginasPrincipalController extends Controller
 
         $post->save();
 
-        return redirect()->route('administrador.lista.post')->with('modificado','ok');
+        return redirect()->route('administrador.lista.publicaciones')->with('modificado','ok');
 
     }
 
@@ -99,13 +99,13 @@ class PaginasPrincipalController extends Controller
         Storage::delete($post->imagen);
         $post->delete();
 
-        return redirect()->route('administrador.lista.post')->with('eliminado','ok');
+        return redirect()->route('administrador.lista.publicaciones')->with('eliminado','ok');
     }
 
     public function vista_post($id){
 
         $post=Mensaje_administrador::find($id);
-        return view('vista_paginas.administrador.post.ver_post')->with('ver_post',$post);
+        return view('vista_paginas.administrador.publicaciones.ver_post')->with('ver_post',$post);
     }
     /*----------------------------------------------------------------------------------------------------------------*/
     public function indexSecretaria(){

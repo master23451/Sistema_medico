@@ -39,7 +39,7 @@
                    <div class="col">
                        <div class="small-box bg-gradient-info">
                            <div class="inner">
-                               <h3>44</h3>
+                               <h3>{{ $contadorDoctor }}</h3>
                                <p>Doctores registrados</p>
                            </div>
                            <div class="icon">
@@ -160,8 +160,8 @@
                     ampm = 'AM'
                 }
 
-                if(horas == 0){
-                    horas == 12;
+                if(horas === 0){
+                    horas = 12;
                 }
 
                 if(minutos < 10){

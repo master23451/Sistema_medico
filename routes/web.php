@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Paginas_principal\PaginasPrincipalController;
+use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\UserController as Usuario;
 use App\Http\Controllers\HomeController as Home;
 use App\Http\Controllers\DashboardController;
@@ -47,26 +47,20 @@ Route::group(['middleware' => 'verified'], function(){
     /*----------------------------------------------------------------------------------------------------------------*/
     Route::get('usuario/perfil', [Usuario::class, 'editPerfil'])->name('perfil');
     Route::put('usuario/perfil{id}/actualizar', [Usuario::class, 'actualizar_perfil'])->name('usuario.perfil.update');
-    Route::delete('usuario/perfil{id}/eliminar', [Usuario::class, 'eliminar_perfil'])->name('usuario.perfil.destroy');
+    Route::delete('usuario/perfil/{id}/eliminar', [Usuario::class, 'eliminar_perfil'])->name('usuario.perfil.destroy');
+    /*----------------------------------------------------------------------------------------------------------------*/
+    Route::get('administrador/publicaciones', [PublicacionController::class,'index'])->name('publicacion.index');
+    Route::get('administrador/publicaciones/crear', [PublicacionController::class,'create'])->name('publicacion.create');
+    Route::post('administrador/publicaciones', [PublicacionController::class,'store'])->name('publicacion.store');
+    Route::get('administrador/publicaciones/{id}/editar', [PublicacionController::class,'edit'])->name('publicacion.edit');
+    Route::put('administrador/publicaciones/{id}/modificar', [PublicacionController::class,'update'])->name('publicacion.update');
+    Route::delete('administrador/publicaciones/{id}/eliminado', [PublicacionController::class,'destroy'])->name('publicacion.destroy');
 });
 
 
 /*--------------------------------------------------Indexes-----------------------------------------------------------*/
 Route::get('administrador/index', [PaginasPrincipalController::class,'indexInfoGeneralAdministrador'])->name('administrador.index')->middleware('auth');
 /*--------------------------------------------------------------------------------------------------------------------*/
-
-/*---------------------------------------Ruta del mensajes administrador----------------------------------------------*/
-Route::group(['middleware' => 'auth'], function(){
-
-    Route::get('administrador/post', [PaginasPrincipalController::class,'lista_post'])->name('administrador.lista.post');
-    Route::get('administrador/post/crear', [PaginasPrincipalController::class,'crear_post'])->name('administrador.crear.post');
-    Route::post('administrador/post', [PaginasPrincipalController::class,'guardar_post'])->name('administrador.guardar.post');
-    Route::get('administrador/post/{id}/editar', [PaginasPrincipalController::class,'editar_post'])->name('administrador.editar.post');
-    Route::put('administrador/post/{id}', [PaginasPrincipalController::class,'actualizar_post'])->name('administrador.actualizar.post');
-    Route::get('administrador/post/{id}', [PaginasPrincipalController::class,'vista_post'])->name('administrador.ver.post');
-    Route::delete('administrador/post/{id}', [PaginasPrincipalController::class,'eliminar_post'])->name('administrador.elimianr.post');
-    /*--------------------------------------------------------------------------------------------------------------------*/
-});
 
 /*--------------------------------Rutas de administrador--------------------------------------------------------------*/
 Route::group(['middleware' => 'auth'], function (){

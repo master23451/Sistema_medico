@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => true,
-    'dashboard_url' => 'usuario.index',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',

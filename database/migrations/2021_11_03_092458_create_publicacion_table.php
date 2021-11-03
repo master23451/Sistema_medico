@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMensajeAdministradsorTable extends Migration
+class CreatePublicacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMensajeAdministradsorTable extends Migration
      */
     public function up()
     {
-        Schema::create('mensaje_administradsor', function (Blueprint $table) {
+        Schema::create('publicacion', function (Blueprint $table) {
             $table->id();
             $table->string('titulo',255)->nullable();
             $table->text('mensaje')->nullable();
             $table->string('imagen',255)->nullable();
-            $table->dateTime('fecha_publicacion')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateMensajeAdministradsorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mensaje_administradsor');
+        Schema::dropIfExists('publicacion');
     }
 }
