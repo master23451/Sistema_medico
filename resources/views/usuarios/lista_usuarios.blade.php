@@ -16,7 +16,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="card">
-            <div class="card-body table-responsive-xl">
+            <div class="card-body">
                 <div class="table-responsive-xl">
                     <table class="table table-hover" id="tablaDatos">
                         <!----------------------------------------------------------------------------------------->
