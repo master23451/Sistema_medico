@@ -87,7 +87,7 @@
                                     @if($itemUsuarion->id != auth()->user()->id)
                                         <a class="btn btn-warning" href="{{ route('usuario.edit', $itemUsuarion->id) }}"><i class="fas fa-info-circle"></i> Info</a>
                                     @else
-                                        <small><span class="badge badge-secondary">Este es su perfil</span></small>
+                                        <small><span class="badge badge-success">Logueado</span></small>
                                     @endif
                                 </td>
                             </tr>

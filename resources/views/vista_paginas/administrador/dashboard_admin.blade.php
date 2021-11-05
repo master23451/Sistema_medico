@@ -13,6 +13,9 @@
        <div class="row">
            <div class="col">
                <div class="card">
+                   <div class="card-header">
+                       <h3 class="h3"><i class="fas fa-tachometer-alt"></i> Panel de control.</h3>
+                   </div>
                    <div class="card-body">
                        <div class="small-box bg-warning">
                            <div class="inner">
@@ -121,11 +124,11 @@
            <div class="col">
               <div class="card">
                   <div class="card-header">
-                      <h3 class="h3">Publicaciones del administrador</h3>
+                      <h3 class="h3"><i class="fas fa-clipboard"></i> Publicaciones del administrador</h3>
                   </div>
                   <div class="card-body">
                       @foreach($publicaciones as $item)
-                          <div class="info-box">
+                        <a href="{{ route('usuario.index') }}" style="text-decoration: none; color: #000000;"><div class="info-box">
                               <span class="info-box-icon bg-warning">@if($item->imagen != '')<img src="{{ \Illuminate\Support\Facades\Storage::url($item->imagen) }}" alt="img_publicacion" class="img-fluid"/> @else <i class="far fa-bookmark"></i> @endif</span>
                               <div class="info-box-content">
                                   <span class="info-box-text"><h4>{{ $item->titulo }}</h4></span>
@@ -135,7 +138,7 @@
                                   </div>
                                   <span class="progress-description"><small>Publicado: {{ $item->created_at }}</small></span>
                               </div>
-                          </div>
+                          </div></a>
                       @endforeach
                   </div>
               </div>
@@ -191,7 +194,7 @@
                 }
 
                 pfecha.textContent = semana[dia]+' '+dia+' de '+meses[mes]+' del '+ano;
-                preloj.textContent = horas+' : '+minutos+' : '+segundos+' '+ampm
+                preloj.textContent = horas+':'+minutos+':'+segundos+' '+ampm;
             }
             actualizarhora();
 

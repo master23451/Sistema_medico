@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $contadorSecretaria=Secretaria::all()->count();
         $contadorPaciente=Paciente::all()->count();
         $contadorDoctor=Doctor::all()->count();
-        $publicaciones=Publicacion::orderBy('id', 'DESC')->take(5)->get();
+        $publicaciones=Publicacion::orderBy('id', 'DESC')->take(6)->get();
         return view('vista_paginas.administrador.dashboard_admin',
             compact('contadorUser','contadorConsultorio', 'contadorSecretaria', 'contadorPaciente', 'contadorDoctor','publicaciones'));
 
