@@ -8,7 +8,7 @@
     <h1>Publicaciónes</h1>
     <p>Lista de publicaciones hechas por administradores.</p>
     <!----------------------------------------------------------------------------------------------------------------->
-    <a class="btn btn-success" href="{{ route('publicacion.create') }}"><i class="fa fa-plus"></i> Registrar nuevo post</a>
+    <a class="btn btn-success" href="{{ route('publicacion.create') }}"><i class="fa fa-plus"></i> Crear nueva publicación</a>
     <br/>
     <!----------------------------------------------------------------------------------------------------------------->
 @stop

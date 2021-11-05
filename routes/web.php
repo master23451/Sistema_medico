@@ -58,10 +58,6 @@ Route::group(['middleware' => 'verified'], function(){
 });
 
 
-/*--------------------------------------------------Indexes-----------------------------------------------------------*/
-Route::get('administrador/index', [PaginasPrincipalController::class,'indexInfoGeneralAdministrador'])->name('administrador.index')->middleware('auth');
-/*--------------------------------------------------------------------------------------------------------------------*/
-
 /*--------------------------------Rutas de administrador--------------------------------------------------------------*/
 Route::group(['middleware' => 'auth'], function (){
 

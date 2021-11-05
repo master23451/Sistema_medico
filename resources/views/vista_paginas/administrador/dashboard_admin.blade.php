@@ -12,119 +12,133 @@
     <div class="container-fluid">
        <div class="row">
            <div class="col">
-               <div class="small-box bg-warning">
-                   <div class="inner">
-                       <h3 id="datos_fecha" style="font-size: 22px"></h3>
-                       <h4 id="datos_reloj"></h4>
-                   </div>
-                   <div class="icon"><i class="fas fa-clock"></i></div>
-                   <br/>
-               </div>
-               <!------------------------------------------------------------------------------------------------------------->
-               <div class="row">
-                   <div class="col">
-                       <div class="small-box bg-gradient-primary">
+               <div class="card">
+                   <div class="card-body">
+                       <div class="small-box bg-warning">
                            <div class="inner">
-                               <h3>{{ $contadorPaciente }}</h3>
-                               <p>Pacientes registrados</p>
+                               <h3 id="datos_fecha" style="font-size: 22px"></h3>
+                               <h4 id="datos_reloj"></h4>
                            </div>
-                           <div class="icon">
-                               <i class="fas fa-hospital-user"></i>
-                           </div>
-                           <a href="#" class="small-box-footer">
-                               Mas informacion <i class="fas fa-arrow-circle-right"></i>
-                           </a>
+                           <div class="icon"><i class="fas fa-clock"></i></div>
+                           <br/>
                        </div>
-                   </div>
-                   <div class="col">
-                       <div class="small-box bg-gradient-info">
-                           <div class="inner">
-                               <h3>{{ $contadorDoctor }}</h3>
-                               <p>Doctores registrados</p>
+                       <!------------------------------------------------------------------------------------------------------------->
+                       <div class="row">
+                           <div class="col">
+                               <div class="small-box bg-gradient-primary">
+                                   <div class="inner">
+                                       <h3>{{ $contadorPaciente }}</h3>
+                                       <p>Pacientes registrados</p>
+                                   </div>
+                                   <div class="icon">
+                                       <i class="fas fa-hospital-user"></i>
+                                   </div>
+                                   <a href="#" class="small-box-footer">
+                                       Mas informacion <i class="fas fa-arrow-circle-right"></i>
+                                   </a>
+                               </div>
                            </div>
-                           <div class="icon">
-                               <i class="fas fa-user-md"></i>
+                           <div class="col">
+                               <div class="small-box bg-gradient-info">
+                                   <div class="inner">
+                                       <h3>{{ $contadorDoctor }}</h3>
+                                       <p>Doctores registrados</p>
+                                   </div>
+                                   <div class="icon">
+                                       <i class="fas fa-user-md"></i>
+                                   </div>
+                                   <a href="#" class="small-box-footer">
+                                       Mas informacion <i class="fas fa-arrow-circle-right"></i>
+                                   </a>
+                               </div>
                            </div>
-                           <a href="#" class="small-box-footer">
-                               Mas informacion <i class="fas fa-arrow-circle-right"></i>
-                           </a>
                        </div>
+                       <!------------------------------------------------------------------------------------------------------------->
+                       <div class="mb-4">
+                           <div class="small-box bg-gradient-danger">
+                               <div class="inner">
+                                   <h3>{{ $contadorConsultorio }}</h3>
+                                   <p>Especialidades registradas</p>
+                               </div>
+                               <div class="icon">
+                                   <i class="fas fa-clinic-medical"></i>
+                               </div>
+                               <a href="#" class="small-box-footer">
+                                   Mas informacion <i class="fas fa-arrow-circle-right"></i>
+                               </a>
+                           </div>
+                       </div>
+                       <!------------------------------------------------------------------------------------------------------------->
+                       <div class="row">
+                           <div class="col">
+                               <div class="small-box bg-gradient-success">
+                                   <div class="inner">
+                                       <h3>{{ $contadorUser }}</h3>
+                                       <p>Usuarios registrados</p>
+                                   </div>
+                                   <div class="icon">
+                                       <i class="fas fa-user-shield"></i>
+                                   </div>
+                                   <a href="{{ route('usuario.index') }}" class="small-box-footer">
+                                       Mas informacion <i class="fas fa-arrow-circle-right"></i>
+                                   </a>
+                               </div>
+                           </div>
+                           <div class="col">
+                               <div class="small-box bg-gradient-warning">
+                                   <div class="inner">
+                                       <h3>{{ $contadorSecretaria }}</h3>
+                                       <p>Secretaria registradas</p>
+                                   </div>
+                                   <div class="icon">
+                                       <i class="fas fa-female"></i>
+                                   </div>
+                                   <a href="#" class="small-box-footer">
+                                       Mas informacion <i class="fas fa-arrow-circle-right"></i>
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
+                       <!------------------------------------------------------------------------------------------------------------->
+                       <div class="mb-4">
+                           <div class="small-box bg-gradient-light">
+                               <div class="inner">
+                                   <h3>44</h3>
+                                   <p>Citas registradas</p>
+                               </div>
+                               <div class="icon">
+                                   <i class="fas fa-calendar-day"></i>
+                               </div>
+                               <a href="#" class="small-box-footer" style=" color: #000000">
+                                   Mas informacion <i class="fas fa-arrow-circle-right"></i>
+                               </a>
+                           </div>
+                       </div>
+                       <!------------------------------------------------------------------------------------------------------------->
                    </div>
                </div>
-               <!------------------------------------------------------------------------------------------------------------->
-               <div class="mb-4">
-                   <div class="small-box bg-gradient-danger">
-                       <div class="inner">
-                           <h3>{{ $contadorConsultorio }}</h3>
-                           <p>Especialidades registradas</p>
-                       </div>
-                       <div class="icon">
-                           <i class="fas fa-clinic-medical"></i>
-                       </div>
-                       <a href="#" class="small-box-footer">
-                           Mas informacion <i class="fas fa-arrow-circle-right"></i>
-                       </a>
-                   </div>
-               </div>
-               <!------------------------------------------------------------------------------------------------------------->
-               <div class="row">
-                   <div class="col">
-                       <div class="small-box bg-gradient-success">
-                           <div class="inner">
-                               <h3>{{ $contadorUser }}</h3>
-                               <p>Usuarios registrados</p>
-                           </div>
-                           <div class="icon">
-                               <i class="fas fa-user-shield"></i>
-                           </div>
-                           <a href="{{ route('usuario.index') }}" class="small-box-footer">
-                               Mas informacion <i class="fas fa-arrow-circle-right"></i>
-                           </a>
-                       </div>
-                   </div>
-                   <div class="col">
-                       <div class="small-box bg-gradient-warning">
-                           <div class="inner">
-                               <h3>{{ $contadorSecretaria }}</h3>
-                               <p>Secretaria registradas</p>
-                           </div>
-                           <div class="icon">
-                               <i class="fas fa-female"></i>
-                           </div>
-                           <a href="#" class="small-box-footer">
-                               Mas informacion <i class="fas fa-arrow-circle-right"></i>
-                           </a>
-                       </div>
-                   </div>
-               </div>
-               <!------------------------------------------------------------------------------------------------------------->
-               <div class="mb-4">
-                   <div class="small-box bg-gradient-light">
-                       <div class="inner">
-                           <h3>44</h3>
-                           <p>Citas registradas</p>
-                       </div>
-                       <div class="icon">
-                           <i class="fas fa-calendar-day"></i>
-                       </div>
-                       <a href="#" class="small-box-footer" style=" color: #000000">
-                           Mas informacion <i class="fas fa-arrow-circle-right"></i>
-                       </a>
-                   </div>
-               </div>
-               <!------------------------------------------------------------------------------------------------------------->
            </div>
            <div class="col">
-               <h3>Publicaciones del administrador</h3>
-               <hr/>
-               <div class="position-relative">
-                   <img src="{{ asset('img/banner-login.jpg') }}" alt="Photo 1" class="img-fluid">
-                   <div class="ribbon-wrapper ribbon-lg">
-                       <div class="ribbon bg-success text-lg">
-                           Hola
-                       </div>
-                   </div>
-               </div>
+              <div class="card">
+                  <div class="card-header">
+                      <h3 class="h3">Publicaciones del administrador</h3>
+                  </div>
+                  <div class="card-body">
+                      @foreach($publicaciones as $item)
+                          <div class="info-box">
+                              <span class="info-box-icon bg-warning">@if($item->imagen != '')<img src="{{ \Illuminate\Support\Facades\Storage::url($item->imagen) }}" alt="img_publicacion" class="img-fluid"/> @else <i class="far fa-bookmark"></i> @endif</span>
+                              <div class="info-box-content">
+                                  <span class="info-box-text"><h4>{{ $item->titulo }}</h4></span>
+                                  <span class="info-box-more">{{ $item->mensaje }}</span>
+                                  <div class="progress">
+                                      <div class="progress-bar bg-warning" style="width: 100%"></div>
+                                  </div>
+                                  <span class="progress-description"><small>Publicado: {{ $item->created_at }}</small></span>
+                              </div>
+                          </div>
+                      @endforeach
+                  </div>
+              </div>
            </div>
        </div>
     </div>

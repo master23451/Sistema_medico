@@ -89,19 +89,8 @@ class EventServiceProvider extends ServiceProvider
                 [
                     'text' => 'Post',
                     'icon' => 'fas fa-sticky-note',
+                    'route' => 'publicacion.index',
                     'can' => 'loginAdministrador',
-                    'submenu' => [
-                        [
-                            'text' => 'Lista de publicaciones',
-                            'route'  => 'publicacion.index',
-                            'icon' => 'fas fa-list',
-                        ],
-                        [
-                            'text' => 'Crear publicaciones',
-                            'url'  => '#',
-                            'icon' => 'far fa-edit',
-                        ],
-                    ],
                 ]
             );
         });
