@@ -15,18 +15,18 @@ class CreatePacienteTable extends Migration
     {
         Schema::create('paciente', function (Blueprint $table) {
 
-            $table->id();
-            $table->string('nombre',100)->nullable();
-            $table->string('apellidos', 150)->nullable();
+            $table->bigInteger('id')->unique()->unsigned()->primary();
             $table->string('expediente', 255)->nullable()->unique();
+            $table->string('nombre',100)->nullable();
+            $table->string('apellido_P', 150)->nullable();
+            $table->string('apellido_M', 150)->nullable();
             $table->string('profile_photo_path',255)->nullable();
-            $table->string('usuario',100)->nullable();
-            $table->string('contra',250)->nullable();
-            $table->string('email')->unique();
+            $table->string('direccion',255)->nullable();
             $table->string('telefono',10)->nullable();
             $table->string('celular',10)->nullable();
+            $table->string('email',255)->nullable();
             $table->string('sexo',10)->nullable();
-            $table->string('rol',20)->nullable();
+            $table->bigInteger('rol')->nullable();
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });

@@ -15,16 +15,16 @@ class CreateSecretariaTable extends Migration
     {
         Schema::create('secretaria', function (Blueprint $table) {
 
-            $table->id();
+            $table->bigInteger('id')->unique()->unsigned()->primary();
             $table->string('nombre',100)->nullable();
-            $table->string('apellidos',100)->nullable();
-            $table->string('profile_photo_path',100)->nullable();
-            $table->string('usuario',100)->nullable();
-            $table->string('contra',250)->nullable();
-            $table->string('email',50)->nullable()->unique();
+            $table->string('apellido_P', 150)->nullable();
+            $table->string('apellido_M', 150)->nullable();
+            $table->string('profile_photo_path',255)->nullable();
+            $table->string('direccion',255)->nullable();
             $table->string('telefono',10)->nullable();
             $table->string('celular',10)->nullable();
-            $table->string('rol',20)->nullable();
+            $table->string('email',255)->nullable();
+            $table->bigInteger('rol')->nullable();
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });

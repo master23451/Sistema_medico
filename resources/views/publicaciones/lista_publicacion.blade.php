@@ -38,7 +38,7 @@
                         <td class="px-2 py-4"><div>{{ $item->created_at }}</div></td>
                         <td class="px-2 py-4"><div>{{ $item->updated_at }}</div></td>
                         <td class="px-2 py-4">
-                            <a class="btn btn-success" href="#"><i class="fas fa-eye"></i> Ver</a>
+                            <a class="btn btn-success" href="{{ route('publicacion.show', $item->id) }}"><i class="fas fa-eye"></i> Ver</a>
                             <a class="btn btn-warning" href="{{ route('publicacion.edit', $item->id) }}"><i class="fas fa-info-circle"></i> Info</a>
                         </td>
                     </tr>

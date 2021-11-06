@@ -87,7 +87,7 @@ class EventServiceProvider extends ServiceProvider
                 'can' => 'loginAdministrador',
                 ],
                 [
-                    'text' => 'Post',
+                    'text' => 'Publicaciones',
                     'icon' => 'fas fa-sticky-note',
                     'route' => 'publicacion.index',
                     'can' => 'loginAdministrador',

@@ -52,6 +52,7 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('administrador/publicaciones', [PublicacionController::class,'index'])->name('publicacion.index');
     Route::get('administrador/publicaciones/crear', [PublicacionController::class,'create'])->name('publicacion.create');
     Route::post('administrador/publicaciones', [PublicacionController::class,'store'])->name('publicacion.store');
+    Route::get('administrador/publicaciones/{id}/ver', [PublicacionController::class, 'show'])->name('publicacion.show');
     Route::get('administrador/publicaciones/{id}/editar', [PublicacionController::class,'edit'])->name('publicacion.edit');
     Route::put('administrador/publicaciones/{id}/modificar', [PublicacionController::class,'update'])->name('publicacion.update');
     Route::delete('administrador/publicaciones/{id}/eliminado', [PublicacionController::class,'destroy'])->name('publicacion.destroy');

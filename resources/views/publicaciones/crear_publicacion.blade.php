@@ -30,7 +30,7 @@
                     <h5>Imagen del post</h5>
                     <div class="mb-2 mt-2">
                         <button class="btn btn-secondary" id="btnImgPublicacion" type="button"><i class="fas fa-portrait"></i> Elige una imagen</button>
-                        <input type="file" class="form-control"  id="inputImgPublicacion" name="inputImgPublicacion" style="display: none"/>
+                        <input type="file" class="form-control"  id="inputImgPublicacion" name="inputImgPublicacion" style="display: none" accept="image/*"/>
                     </div>
                     <div>
                         <img src="..." class="img-fluid" id="imgpreview" alt="">

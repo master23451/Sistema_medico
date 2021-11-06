@@ -61,7 +61,8 @@ class PublicacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $publicacion=Publicacion::find($id);
+        return view('publicaciones.ver_publicacion', compact('publicacion'));
     }
 
     /**
