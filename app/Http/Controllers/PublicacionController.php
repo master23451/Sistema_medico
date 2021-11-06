@@ -38,6 +38,11 @@ class PublicacionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'inputImgPublicacion' => 'image',
+            'titulo' => 'required'
+        ]);
+
         $publicacion = new Publicacion();
         $publicacion->titulo=$request->input('titulo');
         $publicacion->mensaje=$request->input('mensjae');
@@ -86,6 +91,12 @@ class PublicacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $request->validate([
+            'inputImgPublicacion' => 'image',
+            'titulo' => 'required'
+        ]);
+
         $publicacion = Publicacion::find($id);
         $publicacion->titulo=$request->input('titulo');
         $publicacion->mensaje=$request->input('mensjae');

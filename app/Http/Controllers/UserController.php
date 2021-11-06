@@ -28,7 +28,7 @@ class UserController extends Controller
     {
         if(Gate::authorize('loginAdministrador')){
         $datos_usuario = Vw_usuario_roles::all();
-        $vista=view('usuarios.lista_usuarios', compact('datos_usuario',$datos_usuario));
+        $vista=view('usuarios.lista_usuarios', compact('datos_usuario'));
 
         return $vista;
 
@@ -44,7 +44,8 @@ class UserController extends Controller
     {
         if(Gate::authorize('loginAdministrador')){
             $roles=Roles::all();
-            $vista=view('usuarios.crear_usuario', compact('roles', $roles));
+            $vista=view('usuarios.crear_usuario', compact('roles'));
+
             return $vista;
         }
     }
@@ -127,7 +128,7 @@ class UserController extends Controller
 
             $roles=Roles::all();
             $usuario=User::find($id);
-            $vista=view('usuarios.editar_usuario', compact('usuario', $usuario), compact('roles', $roles));
+            $vista=view('usuarios.editar_usuario', compact('usuario','roles'));
 
             return $vista;
 

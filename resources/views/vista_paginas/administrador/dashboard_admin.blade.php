@@ -127,7 +127,7 @@
                       <h3 class="h3"><i class="fas fa-clipboard"></i> Publicaciones del administrador</h3>
                   </div>
                   <div class="card-body">
-                      @foreach($publicaciones as $item)
+                      @forelse($publicaciones as $item)
                         <a href="{{ route('usuario.index') }}" style="text-decoration: none; color: #000000;"><div class="info-box">
                               <span class="info-box-icon bg-warning">@if($item->imagen != '')<img src="{{ \Illuminate\Support\Facades\Storage::url($item->imagen) }}" alt="img_publicacion" class="img-fluid"/> @else <i class="far fa-bookmark"></i> @endif</span>
                               <div class="info-box-content">
@@ -139,7 +139,9 @@
                                   <span class="progress-description"><small>Publicado: {{ $item->created_at }}</small></span>
                               </div>
                           </div></a>
-                      @endforeach
+                      @empty
+                          <p>No ahi publicaciones</p>
+                      @endforelse
                   </div>
               </div>
            </div>
@@ -148,7 +150,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/css/admin_custom.css"/>
 @stop
 
 @section('js')
