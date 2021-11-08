@@ -63,13 +63,19 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('administrador/doctores/{id}/editar', [DoctorAdminController::class, 'edit'])->name('doctor.admin.edit');
     Route::put('administrador/doctores/{id}/modificar', [DoctorAdminController::class, 'update'])->name('doctor.admin.update');
     Route::delete('administrador/doctores/{id}/eliminar', [DoctorAdminController::class, 'destroy'])->name('doctor.admin.destroy');
+
+    Route::get('administrador/secretaria', [SecretariaAdminController::class, 'index'])->name('secretaria.admin.index');
+    Route::get('administrador/secretaria/crear', [SecretariaAdminController::class, 'create'])->name('secretaria.admin.create');
+    Route::post('administrador/secretaria/guardado', [SecretariaAdminController::class, 'store'])->name('secretaria.admin.store');
+    Route::get('administrador/secretaria/{id}/editar', [SecretariaAdminController::class, 'edit'])->name('secretaria.admin.edit');
+    Route::put('administrador/secretaria/{id}/modificar', [SecretariaAdminController::class, 'update'])->name('secretaria.admin.update');
+    Route::delete('administrador/secretaria/{id}/eliminar', [SecretariaAdminController::class, 'destroy'])->name('secretaria.admin.destroy');
 });
 
 
 /*--------------------------------Rutas de administrador--------------------------------------------------------------*/
 Route::group(['middleware' => 'auth'], function (){
 
-    Route::resource('administrador/secretaria', SecretariaAdminController::class);
     Route::resource('administrador/paciente', PacienteAdminController::class);
     /*--------------------------------------------------------------------------------------------------------------------*/
 

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Doctor;
 use App\Models\Paciente;
+use App\Models\Secretaria;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -33,6 +35,8 @@ class EventServiceProvider extends ServiceProvider
         Event::listen(BuildingMenu::class, function (BuildingMenu $event){
             $conteoUser=User::all()->count();
             $conteoPaciente=Paciente::all()->count();
+            $contadorDoctor=Doctor::all()->count();
+            $contadorSecretaria=Secretaria::all()->count();
 
             //Opciones del panel administrador
             $event->menu->add(
@@ -63,12 +67,16 @@ class EventServiceProvider extends ServiceProvider
                         [
                             'text' => 'Doctores',
                             'icon' => 'fas fa-stethoscope',
+                            'label' => $contadorDoctor,
+                            'label_color' => 'info',
                             'route' => 'doctor.admin.index'
                         ],
                         [
                             'text' => 'Secretarias',
                             'icon' => 'fas fa-user-nurse',
-                            'route' => 'secretaria.index'
+                            'label' => $contadorSecretaria,
+                            'label_color' => 'warning',
+                            'route' => 'secretaria.admin.index'
                         ],
                     ],
                 ],
@@ -77,7 +85,7 @@ class EventServiceProvider extends ServiceProvider
                     'icon' => 'fas fa-hospital-user',
                     'route' => 'paciente.index',
                     'label' =>  $conteoPaciente,
-                    'label_color' =>'info',
+                    'label_color' =>'primary',
                     'can' => 'loginAdministrador',
                 ],
                 [

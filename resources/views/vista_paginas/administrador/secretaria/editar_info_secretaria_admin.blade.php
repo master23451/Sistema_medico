@@ -1,131 +1,179 @@
 @extends('adminlte::page')
 
-@section('title', 'Admin || Secretaria')
+@section('title', 'datos de la secretaria || '.  $secretaria->nombre. " ".  $secretaria->apellido_P)
 
 @section('content_header')
     <h1>Ficha de información de la secretaria</h1>
-    <h4>{{ $datos_secretaria->nombre }} {{ $datos_secretaria->apellidos }}</h4>
+    <h4>{{ $secretaria->nombre }} {{ $secretaria->apellido_P }}</h4>
 @stop
 
 @section('content')
-  <div class="card">
-      <div class="card-body">
-          <H4>Datos personales</H4>
-          <hr>
-          <div class="container-fluid">
-              <form action="{{ route('secretaria.update', $datos_secretaria->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
-              @csrf
-              @method('put')
-              <!------------------------------------------------------>
-                  <div class="mb-4">
-                      <h5>Foto de perfil</h5>
-                      <div>
-                          <img
-                              src="{{ Illuminate\Support\Facades\Storage::url($datos_secretaria->profile_photo_path)}}"
-                              alt="{{ $datos_secretaria->nombre }}"
-                              style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                              id="perfilImgPreview"
-                          >
-                      </div>
-                      <div class="mb-2 mt-2">
-                          <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i class="fas fa-portrait"></i> Cambiar foto de perfil</button>
-                          <input type="file" class="form-control" id="inputImgPerfil" name="inputImgPerfil" style="display: none" accept="image/*"/>
-                          @error('inputImgPerfil')
-                          <small><span style="color: #d01414;">{{ $message }}</span></small>
-                          @enderror
-                      </div>
-                  </div>
-                  <!------------------------------------------------------------------------------>
-                  <div class="row">
-                      <div class="col">
-                          <label for="nombre">Nombre</label>
-                          <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre o los nombres de la secretaria" class="form-control" value="{{ $datos_secretaria->nombre }}" required/>
-                          @error('nombre')
-                          <small><span style="color: #d01414;">{{ $message }}</span></small>
-                          @enderror
-                      </div>
-                      <div class="col">
-                          <label for="apellido">Apellidos</label>
-                          <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos" class="form-control" value="{{ $datos_secretaria->apellidos }}" required/>
-                          @error('apellido')
-                          <small><span style="color: #d01414;">{{ $message }}</span></small>
-                          @enderror
-                      </div>
-                      <div class="col">
-                          <label for="usuario">Usuario</label>
-                          <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario" class="form-control" value="{{ $datos_secretaria->usuario }}" required/>
-                          @error('usuario')
-                          <small><span style="color: #d01414;">{{ $message }}</span></small>
-                          @enderror
-                      </div>
-                  </div>
-                  <!------------------------------------------------------------------------------>
-                  <br>
-                  <div class="mb-4">
-                      <label for="email">E-mail</label>
-                      <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $datos_secretaria->email }}" required/>
-                      @error('email')
-                      <small><span style="color: #d01414;">{{ $message }}</span></small>
-                      @enderror
-                  </div>
-                  <!------------------------------------------------------------------------------>
-                  <div class="row">
-                      <div class="col">
-                          <label for="telefono">Telefono</label>
-                          <input id="telefono" name="telefono" type="tel" maxlength="10"
-                                 placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $datos_secretaria->telefono }}" required/>
-                          @error('telefono')
-                          <small><span style="color: #d01414;">{{ $message }}</span></small>
-                          @enderror
-                      </div>
-                      <div class="col">
-                          <label for="celular">Celular</label>
-                          <input id="celular" name="celular" type="tel" maxlength="10"
-                                 placeholder="Ingrese un numero de celular" class="form-control" value="{{ $datos_secretaria->celular }}" required/>
-                          @error('celular')
-                          <small><span style="color: #d01414;">{{ $message }}</span></small>
-                          @enderror
-                      </div>
-                  </div>
-                  <!----------------------------------------------------------------------------------------------------->
-                  <br>
-                  <div class="mb-4">
-                      <label for="status">Estatus</label>
-                      <select id="status" name="status" class="form-control" style="width: 49%" required>
-                          <option value="" disabled>Seleccionar...</option>
-                          @switch($datos_secretaria->status)
-                              @case(1)
-                              <option value="1" selected>Activo</option>
-                              <option value="0">Inactivo</option>
-                              @break
-                              @case(0)
-                              <option value="1">Activo</option>
-                              <option value="0" selected>Inactivo</option>
-                              @break
-                          @endswitch
-                      </select>
-                      @error('status')
-                      <small><span style="color: #d01414;">{{ $message }}</span></small>
-                      @enderror
-                  </div>
-                  <!----------------------------------------------------------------------------------------------------->
-                  <div class="mb-4">
-                      <hr/>
-                      <button type="submit" class="btn btn-warning" style="flex: auto"><i class="fas fa-save"></i> Modificar</button>
-                      <a class="btn-secondary btn" href="{{ route('secretaria.index') }}"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
-                  </div>
-              </form>
-              <!--------------------------------------------------------------------------------------------->
-              <form action="{{ route('secretaria.destroy',  $datos_secretaria->id) }}" method="post" id="borrar_datos">
-                  @csrf
-                  @method('delete')
-                  <div class="mb-4">
-                      <button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar definitivamente</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ route('secretaria.admin.update', $secretaria->id) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('put')
+                <!-------------------------------Seleccion de fotos-------------------------------------------------------->
+                    <div class="mb-4">
+                        <h4>Foto de perfil</h4>
+                        @if($secretaria->profile_photo_path != '')
+                            <div>
+                                <img
+                                    src="{{ Illuminate\Support\Facades\Storage::url($secretaria->profile_photo_path)}}"
+                                    alt="{{ $secretaria->nombre }}"
+                                    style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                                    id="perfilImgPreview">
+                            </div>
+                        @else
+                            <img
+                                src="https://ui-avatars.com/api/?name={{ $secretaria->nombre }}"
+                                alt="{{ $secretaria->nombre }}"
+                                style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                                id="perfilImgPreview">
+                        @endif
+                        <div class="mb-2 mt-2">
+                            <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
+                                    class="fas fa-portrait" style=""></i> Cambiar foto de perfil
+                            </button>
+                            <input type="file" class="form-control" id="inputImgPerfil"
+                                   name="inputImgPerfil" style="display: none" accept="image/*"/>
+                            @error('inputImgPerfil')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                    </div>
+                    <!--------------------------------------------------------------------------------------------------------->
+                    <div class="row">
+                        <div class="col">
+                            <label for="nombre">Nombre</label>
+                            <input id="nombre" name="nombre" type="text"
+                                   placeholder="Ingrese el nombre o los nombres del doctor" class="form-control"
+                                   value="{{$secretaria->nombre}}" required/>
+                            @error('nombre')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label for="apellido_paterno">Apellido paterno</label>
+                            <input id="apellido_paterno" name="apellido_paterno" type="text" placeholder="Ingrese su apellido paterno"
+                                   class="form-control" value="{{$secretaria->apellido_P}}" required/>
+                            @error('apellido_paterno')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label for="apellido_materno">Pellido materno</label>
+                            <input id="apellido_materno" name="apellido_materno" type="text"
+                                   placeholder="ingrese su apellido materno" class="form-control"
+                                   value="{{$secretaria->apellido_M}}" required/>
+                            @error('apellido_materno')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                    </div>
+                    <!--------------------------------------------------------------------------------------------------------->
+                    <br>
+                    <div class="mb-4">
+                        <label for="direccion">Dirección</label>
+                        <input id="direccion" name="direccion" type="text"
+                               placeholder="Ingrese un correo electronico" class="form-control"
+                               value="{{$secretaria->direccion}}" required/>
+                        @error('direccion')
+                        <small><span style="color: #d01414;">{{ $message }}</span></small>
+                        @enderror
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="cp">CP</label>
+                            <input id="cp" name="cp" type="text"
+                                   placeholder="Ingrese su codigo postal" class="form-control" maxlength="10"
+                                   value="{{$secretaria->cp}}" required/>
+                            @error('cp')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label for="colonia">Colonia</label>
+                            <input id="colonia" name="colonia" type="text"
+                                   placeholder="Ingrese su colonia" class="form-control" value="{{$secretaria->colonia}}" required/>
+                            @error('colonia')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                    </div>
+                    <!--------------------------------------------------------------------------------------------------------->
+                    <br/>
+                    <div class="mb-4">
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email"
+                               placeholder="Ingrese un correo electronico" class="form-control"
+                               value="{{ $secretaria->email }}" required/>
+                        @error('e-mail')
+                        <small><span style="color: #d01414;">{{ $message }}</span></small>
+                        @enderror
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="telefono">Telefono</label>
+                            <input id="telefono" name="telefono" type="tel" maxlength="10"
+                                   placeholder="Ingrese un numero de telefono" class="form-control"
+                                   value="{{ $secretaria->telefono }}" required/>
+                            @error('telefono')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label for="celular">Celular</label>
+                            <input id="celular" name="celular" type="tel" maxlength="10"
+                                   placeholder="Ingrese un numero de celular" class="form-control"
+                                   value="{{ $secretaria->celular }}" required/>
+                            @error('celular')
+                            <small><span style="color: #d01414;">{{ $message }}</span></small>
+                            @enderror
+                        </div>
+                    </div>
+                    <br>
+                    <!--------------------------------------------------------------------------------------------------------->
+                    <div class="mb-4">
+                        <label for="status">Estatus</label>
+                        <select id="status" name="status" class="form-control" style="width: 49%" required>
+                            <option value="" disabled>Seleccionar...</option>
+                            @switch($secretaria->status)
+                                @case(1)
+                                <option value="1" selected>Activo</option>
+                                <option value="0">Inactivo</option>
+                                @break
+                                @case(0)
+                                <option value="1">Activo</option>
+                                <option value="0" selected>Inactivo</option>
+                                @break
+                            @endswitch
+                        </select>
+                        @error('status')
+                        <small><span style="color: #d01414;">{{ $message }}</span></small>
+                        @enderror
+                    </div>
+                    <!--------------------------------------------------------------------------------------------------------->
+                    <div class="mb-4">
+                        <hr/>
+                        <button type="submit" class="btn btn-warning" style="flex: auto"><i
+                                class="fas fa-save"></i> Modificar
+                        </button>
+                        <a class="btn-secondary btn" href="{{ route('secretaria.admin.index') }}"><i
+                                class="fas fa-arrow-circle-left"></i> Regresar</a>
+                    </div>
+            </form>
+            <form action="{{ route('secretaria.admin.destroy',  $secretaria->id) }}" method="post" id="borrar_datos">
+                @csrf
+                @method('delete')
+                <div class="mb-4">
+                    <button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar definitivamente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')

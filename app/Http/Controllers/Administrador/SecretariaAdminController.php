@@ -17,8 +17,7 @@ class SecretariaAdminController extends Controller
     public function index()
     {
         $secretaria=Secretaria::all();
-        $vista=view('vista_paginas.administrador.secretaria.vista_lista_secretaria_admin')
-        ->with('datos_Secretaria',$secretaria);
+        $vista=view('vista_paginas.administrador.secretaria.lista_secretaria_admin', compact('secretaria'));
 
         return $vista;
     }
@@ -31,6 +30,7 @@ class SecretariaAdminController extends Controller
     public function create()
     {
         $vista=view('vista_paginas.administrador.secretaria.crear_secretaria_admin');
+
         return $vista;
     }
 
@@ -42,25 +42,28 @@ class SecretariaAdminController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate([
+        $secretaria=new Secretaria();
+     /*   $request->validate([
             'inputImgPerfil' => ['image',],
             'nombre' => 'required',
             'apellido' => 'required',
             'email' => ['required', 'email'],
             'telefono' => ['required', 'integer'],
             'celular' => ['required', 'integer'],
-        ]);
+        ]);*/
 
-        $secretaria=new Secretaria();
+        $idr=rand();
+        $secretaria->id=$idr;
         $secretaria->nombre=$request->input('nombre');
-        $secretaria->apellidos=$request->input('apellido');
-        $secretaria->usuario=$request->input('nombre').rand();
+        $secretaria->apellido_P=$request->input('apellido_paterno');
+        $secretaria->apellido_M=$request->input('apellido_materno');
+        $secretaria->direccion=$request->input('direccion');
+        $secretaria->cp=$request->input('cp');
+        $secretaria->colonia=$request->input('colonia');
         $secretaria->email=$request->input('email');
         $secretaria->telefono=$request->input('telefono');
         $secretaria->celular=$request->input('celular');
-        $secretaria->rol="Secretaria";
-
+        $secretaria->rol=3;
 
         if($request->hasFile('inputImgPerfil')){
             $secretaria->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
@@ -68,7 +71,7 @@ class SecretariaAdminController extends Controller
 
         $secretaria->save();
 
-        return redirect()->route('secretaria.edit', $secretaria->id)->with('guardado','ok');
+        return redirect()->route('secretaria.admin.edit', $idr)->with('guardado','ok');
     }
 
     /**
@@ -91,8 +94,7 @@ class SecretariaAdminController extends Controller
     public function edit($id)
     {
         $secretaria=Secretaria::find($id);
-        $vista=view('vista_paginas.administrador.secretaria.editar_info_secretaria_admin')
-        ->with('datos_secretaria',$secretaria);
+        $vista=view('vista_paginas.administrador.secretaria.editar_info_secretaria_admin',compact('secretaria'));
 
         return $vista;
     }
@@ -106,7 +108,9 @@ class SecretariaAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $secretaria=Secretaria::find($id);
+
+        /*$request->validate([
             'inputImgPerfil' => ['image',],
             'nombre' => 'required',
             'apellido' => 'required',
@@ -115,28 +119,28 @@ class SecretariaAdminController extends Controller
             'telefono' => ['required', 'integer'],
             'celular' => ['required', 'integer'],
             'status' => 'required',
-        ]);
+        ]);*/
 
-
-        $secretaria=Secretaria::find($id);
         $secretaria->nombre=$request->input('nombre');
-        $secretaria->apellidos=$request->input('apellido');
-        $secretaria->usuario=$request->input('usuario');
+        $secretaria->apellido_P=$request->input('apellido_paterno');
+        $secretaria->apellido_M=$request->input('apellido_materno');
+        $secretaria->direccion=$request->input('direccion');
+        $secretaria->cp=$request->input('cp');
+        $secretaria->colonia=$request->input('colonia');
         $secretaria->email=$request->input('email');
         $secretaria->telefono=$request->input('telefono');
         $secretaria->celular=$request->input('celular');
-        $secretaria->rol="Secretaria";
+        $secretaria->rol=2;
         $secretaria->status=$request->input('status');
 
         if($request->hasFile('inputImgPerfil')){
             Storage::delete($secretaria->profile_photo_path);
             $secretaria->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
-
         }
 
         $secretaria->update();
 
-        return redirect()->route('secretaria.edit',  $id)->with('modificado','ok');
+        return redirect()->route('secretaria.admin.edit',$id)->with('modificado','ok');
 
     }
 
@@ -152,7 +156,7 @@ class SecretariaAdminController extends Controller
         Storage::delete($secretaria->profile_photo_path);
         $secretaria->delete();
 
-        return redirect()->route('secretaria.index')->with('eliminado','ok');
+        return redirect()->route('secretaria.admin.index')->with('eliminado','ok');
 
     }
 }
