@@ -1,35 +1,38 @@
 @extends('adminlte::page')
 
-@section('title',  'Paciente ||'." ".$dato_paciente->nombre." ".$dato_paciente->apellidos)
+@section('title',  'Paciente ||'." ".$paciente->nombre." ".$paciente->apellido_P)
 
 @section('content_header')
     <h1>Ficha de informaón del paciente</h1>
-    <h4>{{ $dato_paciente->nombre }} {{ $dato_paciente->apellidos }}</h4>
+    <h4>{{ $paciente->nombre }} {{ $paciente->apellido_P }}</h4>
 @stop
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <H4>Datos personales</H4>
-        <hr>
-        <div class="container-fluid">
-            <!--------------------------------------------------------------------------------------------->
-            <form action="{{ route('paciente.update', $dato_paciente->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h4>Datos personales</h4>
+            <hr>
+            <form action="{{ route('paciente.admin.update', $paciente->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
             @csrf
             @method('put')
-            <!--------------------------------------------------------------------------------------------------------->
+            <!-------------------------------Seleccion de fotos-------------------------------------------------------->
                 <div class="mb-4">
-                    <h5>Foto de perfil</h5>
-                    <div>
-                        <img
-                            src="{{ Illuminate\Support\Facades\Storage::url($dato_paciente->profile_photo_path)}}"
-                            alt="{{ $dato_paciente->nombre }}"
-                            style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                            id="perfilImgPreview">
-                    </div>
+                    <h4>Foto de perfil</h4>
+                    <img
+                        src=" @if($paciente->profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url($paciente->profile_photo_path)}}
+                        @else https://ui-avatars.com/api/?name={{ $paciente->nombre }}
+                        @endif"
+                        alt="{{ $paciente->nombre }}"
+                        style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                        id="perfilImgPreview">
+
                     <div class="mb-2 mt-2">
-                        <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i class="fas fa-portrait"></i> Cambiar foto de perfil</button>
-                        <input type="file" class="form-control" id="inputImgPerfil" name="inputImgPerfil" style="display: none" accept="image/*"/>
+                        <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
+                                class="fas fa-portrait" style=""></i> Cambiar foto de perfil
+                        </button>
+                        <input type="file" class="form-control" id="inputImgPerfil"
+                               name="inputImgPerfil" style="display: none" accept="image/*"/>
                         @error('inputImgPerfil')
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
@@ -39,22 +42,66 @@
                 <div class="row">
                     <div class="col">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre o los nombres de la secretaria" class="form-control" value="{{ $dato_paciente->nombre }}" required/>
+                        <input id="nombre" name="nombre" type="text"
+                               placeholder="Ingrese el nombre o los nombres del paciente" class="form-control"
+                               value="{{$paciente->nombre}}" required/>
                         @error('nombre')
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
                     </div>
                     <div class="col">
-                        <label for="apellido">Apellidos</label>
-                        <input id="apellido" name="apellido" type="text" placeholder="Ingrese los apellidos" class="form-control" value="{{ $dato_paciente->apellidos }}" required/>
-                        @error('apellido')
+                        <label for="apellido_paterno">Apellido paterno</label>
+                        <input id="apellido_paterno" name="apellido_paterno" type="text" placeholder="Ingrese su apellido paterno"
+                               class="form-control" value="{{$paciente->apellido_P}}" required/>
+                        @error('apellido_paterno')
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
                     </div>
                     <div class="col">
-                        <label for="usuario">Usuario</label>
-                        <input id="usuario" name="usuario" type="text" placeholder="Ingrese un usuario" class="form-control" value="{{ $dato_paciente->usuario }}" required/>
-                        @error('usuario')
+                        <label for="apellido_materno">Pellido materno</label>
+                        <input id="apellido_materno" name="apellido_materno" type="text"
+                               placeholder="ingrese su apellido materno" class="form-control"
+                               value="{{$paciente->apellido_M}}" required/>
+                        @error('apellido_materno')
+                        <small><span style="color: #d01414;">{{ $message }}</span></small>
+                        @enderror
+                    </div>
+                </div>
+                <!--------------------------------------------------------------------------------------------------------->
+                <br>
+                <div class="mb-4">
+                    <label for="exp">Expediente</label>
+                    <input id="exp" name="exp" type="text"
+                           placeholder="Registre el numero de expediente del paciente" class="form-control"
+                           value="{{$paciente->expediente}}" required/>
+                    @error('exp')
+                    <small><span style="color: #d01414;">{{ $message }}</span></small>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="direccion">Dirección</label>
+                    <input id="direccion" name="direccion" type="text"
+                           placeholder="Ingrese su domicilio" class="form-control"
+                           value="{{$paciente->direccion}}" required/>
+                    @error('direccion')
+                    <small><span style="color: #d01414;">{{ $message }}</span></small>
+                    @enderror
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="cp">CP</label>
+                        <input id="cp" name="cp" type="text"
+                               placeholder="Ingrese su codigo postal" class="form-control" maxlength="10"
+                               value="{{$paciente->cp}}" required/>
+                        @error('cp')
+                        <small><span style="color: #d01414;">{{ $message }}</span></small>
+                        @enderror
+                    </div>
+                    <div class="col">
+                        <label for="colonia">Colonia</label>
+                        <input id="colonia" name="colonia" type="text"
+                               placeholder="Ingrese su colonia" class="form-control" value="{{$paciente->colonia}}" required/>
+                        @error('colonia')
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
                     </div>
@@ -63,32 +110,28 @@
                 <br/>
                 <div class="mb-4">
                     <label for="email">E-mail</label>
-                    <input id="email" name="email" type="email" placeholder="Ingrese un correo electronico" class="form-control" value="{{ $dato_paciente->email }}" required/>
-                    @error('email')
-                    <small><span style="color: #d01414;">{{ $message }}</span></small>
-                    @enderror
-                </div>
-                <!--------------------------------------------------------------------------------------------------------->
-                <br/>
-                <div class="mb-4">
-                    <label for="expediente">Expediente</label>
-                    <input id="expediente" name="expediente" type="text"
-                           placeholder="Verifique si su expediente es el correcto" class="form-control" value="{{ $dato_paciente->expediente }}" required/>
-                    @error('expediente')
+                    <input id="email" name="email" type="email"
+                           placeholder="Ingrese un correo electronico" class="form-control"
+                           value="{{ $paciente->email }}" required/>
+                    @error('e-mail')
                     <small><span style="color: #d01414;">{{ $message }}</span></small>
                     @enderror
                 </div>
                 <div class="row">
                     <div class="col">
                         <label for="telefono">Telefono</label>
-                        <input id="telefono" name="telefono" type="tel" maxlength="10" placeholder="Ingrese un numero de telefono" class="form-control" value="{{ $dato_paciente->telefono }}" required/>
+                        <input id="telefono" name="telefono" type="tel" maxlength="10"
+                               placeholder="Ingrese un numero de telefono" class="form-control"
+                               value="{{ $paciente->telefono }}" required/>
                         @error('telefono')
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
                     </div>
                     <div class="col">
                         <label for="celular">Celular</label>
-                        <input id="celular" name="celular" type="tel" maxlength="10" placeholder="Ingrese un numero de celular" class="form-control" value="{{ $dato_paciente->celular }}" required/>
+                        <input id="celular" name="celular" type="tel" maxlength="10"
+                               placeholder="Ingrese un numero de celular" class="form-control"
+                               value="{{ $paciente->celular }}" required/>
                         @error('celular')
                         <small><span style="color: #d01414;">{{ $message }}</span></small>
                         @enderror
@@ -98,8 +141,8 @@
                 <div class="mb-4">
                     <label for="sexo">Sexo</label>
                     <select id="sexo" name="sexo" class="form-control" required>
-                        <option  disabled>Seleccionar...</option>
-                        @switch($dato_paciente->sexo)
+                        <option disabled>Seleccionar...</option>
+                        @switch($paciente->sexo)
                             @case('Hombre')
                             <option value="Hombre" selected>Hombre</option>
                             <option value="Mujer">Mujer</option>
@@ -114,12 +157,12 @@
                     <small><span style="color: #d01414;">{{ $message }}</span></small>
                     @enderror
                 </div>
-                <!--------------------------------------------------------------------------------------------->
+                <!--------------------------------------------------------------------------------------------------------->
                 <div class="mb-4">
                     <label for="status">Estatus</label>
                     <select id="status" name="status" class="form-control" style="width: 49%" required>
                         <option value="" disabled>Seleccionar...</option>
-                        @switch($dato_paciente->status)
+                        @switch($paciente->status)
                             @case(1)
                             <option value="1" selected>Activo</option>
                             <option value="0">Inactivo</option>
@@ -134,14 +177,17 @@
                     <small><span style="color: #d01414;">{{ $message }}</span></small>
                     @enderror
                 </div>
-                <!--------------------------------------------------------------------------------------------->
-                <hr>
-                <button class="btn btn-warning" type="submit"><i class="fas fa-save"></i> Modificar</button>
-                <a class="btn btn-secondary" href="{{ route('paciente.index') }}"><i class="fas fa-arrow-circle-left"></i> Cancelar</a>
+                <!--------------------------------------------------------------------------------------------------------->
+                <div class="mb-4">
+                    <hr/>
+                    <button type="submit" class="btn btn-warning" style="flex: auto"><i
+                            class="fas fa-save"></i> Modificar
+                    </button>
+                    <a class="btn-secondary btn" href="{{ route('paciente.admin.index') }}"><i
+                            class="fas fa-arrow-circle-left"></i> Regresar</a>
+                </div>
             </form>
-            <br>
-            <!--------------------------------------------------------------------------------------------->
-            <form action="{{ route('paciente.destroy', $dato_paciente->id) }}" method="post" id="borrar_datos">
+            <form action="{{ route('paciente.admin.destroy',  $paciente->id) }}" method="post" id="borrar_datos">
                 @csrf
                 @method('delete')
                 <div class="mb-4">

@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Doctores || Admin')
+@section('title', 'Pacientes || Admin')
 
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1>Lista de doctores</h1>
-    <p>Doctores registrados en el sistema.</p>
-    <!----------------------------------------------------------------------------------------------------------------->
-    <a class="btn btn-success" href="{{ route('doctor.admin.create') }}"><i class="fa fa-plus"></i> Registrar nuevo doctor</a>
-    <!----------------------------------------------------------------------------------------------------------------->
+    <h1>Pacientes</h1>
+    <p>Pacientes registrados en el sistema.</p>
+    <!--------------------------------------------------------------------------------------------->
+    <a class="btn btn-success" href="{{ route('paciente.admin.create') }}"><i class="fa fa-plus"></i> Registrar nuevo paciente</a>
+    <!--------------------------------------------------------------------------------------------->
 @stop
 
 @section('content')
@@ -23,24 +23,23 @@
                         <th scope="col">Codigo</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">E-mail</th>
-                        <th scope="col">Especialidad</th>
+                        <th scope="col">Expediente</th>
                         <th scope="col">Estatus</th>
                         <th scope="col">Info</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($datosDoctores as $itemDoctor)
+                    @foreach($paciente as $itemPaciente)
                         <tr style="text-align: center;">
-                            <td class="px-2 py-4"><div>{{ $itemDoctor->id }}</div></td>
+                            <td class="px-2 py-4">{{ $itemPaciente->id }}</td>
                             <td class="px-2 py-4">
-                                <img src=" @if($itemDoctor->profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url($itemDoctor->profile_photo_path) }}
-                                @else https://ui-avatars.com/api/?name={{ $itemDoctor->nombre }} @endif" alt="{{ $itemDoctor->nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
-                                <div>{{ $itemDoctor->nombre }} {{ $itemDoctor->apellido_P }} {{ $itemDoctor->apellido_M }}</div>
+                                <img src="@if($itemPaciente->profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url($itemPaciente->profile_photo_path) }} @else https://ui-avatars.com/api/?name={{ $itemPaciente->nombre }} @endif" alt="{{ $itemPaciente->nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                <div>{{ $itemPaciente->nombre }} {{ $itemPaciente->apellido_P }} {{ $itemPaciente->apellido_M }}</div>
                             </td>
-                            <td class="px-2 py-4">{{ $itemDoctor->email }}</td>
-                            <td class="px-2 py-4">{{ $itemDoctor->n_consultorio }}</td>
+                            <td class="px-2 py-4">{{ $itemPaciente->email}}</td>
+                            <td class="px-2 py-4">{{ $itemPaciente->expediente }}</td>
                             <td class="px-2 py-4">
-                                @switch($itemDoctor->status)
+                                @switch($itemPaciente->status)
                                     @case(1)
                                     <span class="badge badge-success">Activo</span>
                                     @break
@@ -50,7 +49,7 @@
                                 @endswitch
                             </td>
                             <td class="px-2 py-4">
-                                <a class="btn btn-warning" href="{{ route('doctor.admin.edit',  $itemDoctor->id) }}"><i class="fas fa-info-circle"></i> Info</a>
+                                <a class="btn btn-warning" href="{{ route('paciente.admin.edit', $itemPaciente->id) }}"><i class="fas fa-info-circle"></i> Info</a>
                             </td>
                         </tr>
                     @endforeach
@@ -94,7 +93,7 @@
         <script>
             Swal.fire({
                 title: 'Eliminado',
-                text: 'El doctor se elimino de manera correcta del sistema',
+                text: 'El paciente se elimino de manera correcta del sistema',
                 icon: 'success',
                 confirmButtonColor: '#d01414',
                 confirmButtonText: 'Aceptar'

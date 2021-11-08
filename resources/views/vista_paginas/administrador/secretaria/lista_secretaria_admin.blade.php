@@ -9,7 +9,6 @@
     <p>Secretarias registradas en el sistema.</p>
     <!--------------------------------------------------------------------------------------------->
     <a class="btn btn-success" href="{{ route('secretaria.admin.create') }}"><i class="fa fa-plus"></i> Registrar nueva secretaria</a>
-    <br/>
     <!--------------------------------------------------------------------------------------------->
 @stop
 
@@ -33,7 +32,8 @@
                         <tr style="text-align: center;">
                             <td class="px-2 py-4">{{ $itemsecretaria->id }}</td>
                             <td class="px-2 py-4">
-                                <img src="{{ Illuminate\Support\Facades\Storage::url($itemsecretaria->profile_photo_path) }}" alt="{{ $itemsecretaria->nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                <img src=" @if($itemsecretaria->profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url($itemsecretaria->profile_photo_path) }}
+                                    @else https://ui-avatars.com/api/?name={{ $itemsecretaria->nombre }} @endif" alt="{{ $itemsecretaria->nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
                                 <div>{{ $itemsecretaria->nombre }} {{ $itemsecretaria->apellido_P }} {{ $itemsecretaria->apellido_M }}</div>
                             </td>
                             <td class="px-2 py-4">{{ $itemsecretaria->email }}</td>

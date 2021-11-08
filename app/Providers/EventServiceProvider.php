@@ -83,7 +83,7 @@ class EventServiceProvider extends ServiceProvider
                 [
                     'text' => 'Pacientes',
                     'icon' => 'fas fa-hospital-user',
-                    'route' => 'paciente.index',
+                    'route' => 'paciente.admin.index',
                     'label' =>  $conteoPaciente,
                     'label_color' =>'primary',
                     'can' => 'loginAdministrador',

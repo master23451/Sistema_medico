@@ -11,27 +11,22 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('secretaria.admin.update', $secretaria->id) }}" method="post" enctype="multipart/form-data">
+            <h4>Datos personales</h4>
+            <hr>
+            <form action="{{ route('secretaria.admin.update', $secretaria->id) }}" method="post" enctype="multipart/form-data" id="modificar_datos">
                 @csrf
                 @method('put')
                 <!-------------------------------Seleccion de fotos-------------------------------------------------------->
                     <div class="mb-4">
                         <h4>Foto de perfil</h4>
-                        @if($secretaria->profile_photo_path != '')
-                            <div>
-                                <img
-                                    src="{{ Illuminate\Support\Facades\Storage::url($secretaria->profile_photo_path)}}"
-                                    alt="{{ $secretaria->nombre }}"
-                                    style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                    id="perfilImgPreview">
-                            </div>
-                        @else
-                            <img
-                                src="https://ui-avatars.com/api/?name={{ $secretaria->nombre }}"
-                                alt="{{ $secretaria->nombre }}"
-                                style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview">
-                        @endif
+                        <img
+                            src=" @if($secretaria->profile_photo_path != '')  {{ Illuminate\Support\Facades\Storage::url($secretaria->profile_photo_path)}}
+                            @else https://ui-avatars.com/api/?name={{ $secretaria->nombre }}
+                            @endif"
+                            alt="{{ $secretaria->nombre }}"
+                            style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                            id="perfilImgPreview">
+
                         <div class="mb-2 mt-2">
                             <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
                                     class="fas fa-portrait" style=""></i> Cambiar foto de perfil

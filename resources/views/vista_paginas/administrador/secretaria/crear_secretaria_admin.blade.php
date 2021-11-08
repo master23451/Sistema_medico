@@ -11,17 +11,18 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
+            <h4>Datos personales</h4>
+            <hr>
           <form action="{{ route('secretaria.admin.store') }}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="mb-4">
-                  <h5>Foto de perfil</h5>
-                  <div>
-                      <img
-                          src="https://ui-avatars.com/api/?name={{ __('SIN') }}"
-                          alt="sin imagen"
-                          style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                          id="perfilImgPreview">
-                  </div>
+                  <h4>Foto de perfil</h4>
+                  <img
+                      src="https://ui-avatars.com/api/?name={{ __('SIN') }}"
+                      alt="sin imagen"
+                      style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                      id="perfilImgPreview">
+
                   <div class="mb-2 mt-2">
                       <button class="btn btn-secondary" type="button" id="btnSelectImgPerfil"><i class="fas fa-portrait"></i> Elige una foto de perfil</button>
                       <input type="file" class="form-control"  id="inputImgPerfil" name="inputImgPerfil" style="display: none;" accept="image/*"/>
@@ -63,7 +64,7 @@
               <br/>
               <div class="mb-4">
                   <label for="direccion">Dirección</label>
-                  <input id="direccion" name="direccion" type="text" placeholder="Ingrese su dirección actual"
+                  <input id="direccion" name="direccion" type="text" placeholder="Ingrese su domicilio"
                          class="form-control" required/>
                   @error('direccion')
                   <small><span style="color: #d01414;">{{ $message }}</span></small>

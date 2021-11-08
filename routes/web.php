@@ -56,6 +56,7 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('administrador/publicaciones/{id}/editar', [PublicacionController::class,'edit'])->name('publicacion.edit');
     Route::put('administrador/publicaciones/{id}/modificar', [PublicacionController::class,'update'])->name('publicacion.update');
     Route::delete('administrador/publicaciones/{id}/eliminado', [PublicacionController::class,'destroy'])->name('publicacion.destroy');
+
     /*----------------------------Rutas de administrador--------------------------------------------------------------*/
     Route::get('administrador/doctores', [DoctorAdminController::class, 'index'])->name('doctor.admin.index');
     Route::get('administrador/doctores/crear', [DoctorAdminController::class, 'create'])->name('doctor.admin.create');
@@ -70,16 +71,15 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('administrador/secretaria/{id}/editar', [SecretariaAdminController::class, 'edit'])->name('secretaria.admin.edit');
     Route::put('administrador/secretaria/{id}/modificar', [SecretariaAdminController::class, 'update'])->name('secretaria.admin.update');
     Route::delete('administrador/secretaria/{id}/eliminar', [SecretariaAdminController::class, 'destroy'])->name('secretaria.admin.destroy');
+
+    Route::get('administrador/paciente', [PacienteAdminController::class, 'index'])->name('paciente.admin.index');
+    Route::get('administrador/paciente/crear', [PacienteAdminController::class, 'create'])->name('paciente.admin.create');
+    Route::post('administrador/paciente/guardado', [PacienteAdminController::class, 'store'])->name('paciente.admin.store');
+    Route::get('administrador/paciente/{id}/editar', [PacienteAdminController::class, 'edit'])->name('paciente.admin.edit');
+    Route::put('administrador/paciente/{id}/modificado', [PacienteAdminController::class, 'update'])->name('paciente.admin.update');
+    Route::delete('administrador/paciente/{id}/eliminar', [PacienteAdminController::class, 'destroy'])->name('paciente.admin.destroy');
 });
 
-
-/*--------------------------------Rutas de administrador--------------------------------------------------------------*/
-Route::group(['middleware' => 'auth'], function (){
-
-    Route::resource('administrador/paciente', PacienteAdminController::class);
-    /*--------------------------------------------------------------------------------------------------------------------*/
-
-});
 
 /*----------------------------------Rutas de secretaria---------------------------------------------------------------*/
     Route::group(['middleware' => 'auth'], function (){

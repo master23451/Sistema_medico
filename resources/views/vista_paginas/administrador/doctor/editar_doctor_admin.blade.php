@@ -8,12 +8,11 @@
 @stop
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <h4>Datos personales</h4>
-        <hr>
-        <!------------------------------------------------------------------------------------------------->
-        <div class="container-fluid">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h4>Datos personales</h4>
+            <hr>
             <form action="{{ route('doctor.admin.update', $doctor->id) }}" method="post"
                   enctype="multipart/form-data" id="modificar_datos">
             @csrf
@@ -21,21 +20,14 @@
             <!-------------------------------Seleccion de fotos-------------------------------------------------------->
                 <div class="mb-4">
                     <h4>Foto de perfil</h4>
-                    @if($doctor->profile_photo_path != '')
-                        <div>
-                            <img
-                                src="{{ Illuminate\Support\Facades\Storage::url($doctor->profile_photo_path)}}"
-                                alt="{{ $doctor->nombre }}"
-                                style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview">
-                        </div>
-                    @else
-                        <img
-                            src="https://ui-avatars.com/api/?name={{ $doctor->nombre }}"
-                            alt="{{ $doctor->nombre }}"
-                            style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                            id="perfilImgPreview">
-                    @endif
+                    <img
+                        src=" @if($doctor->profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url($doctor->profile_photo_path)}}
+                        @else https://ui-avatars.com/api/?name={{ $doctor->nombre }}
+                        @endif"
+                        alt="{{ $doctor->nombre }}"
+                        style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                        id="perfilImgPreview">
+
                     <div class="mb-2 mt-2">
                         <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
                                 class="fas fa-portrait" style=""></i> Cambiar foto de perfil
@@ -81,7 +73,7 @@
                 <div class="mb-4">
                     <label for="direccion">Dirección</label>
                     <input id="direccion" name="direccion" type="text"
-                           placeholder="Ingrese un correo electronico" class="form-control"
+                           placeholder="Ingrese su domicilio" class="form-control"
                            value="{{$doctor->direccion}}" required/>
                     @error('direccion')
                     <small><span style="color: #d01414;">{{ $message }}</span></small>
@@ -216,8 +208,7 @@
                             class="fas fa-arrow-circle-left"></i> Regresar</a>
                 </div>
             </form>
-            <!------------------------------------------------------------------------------------------------->
-            <form action="{{ route('doctor.admin.destroy', $doctor->id) }}" method="post" id="borrar_datos">
+            <form action="{{ route('doctor.admin.destroy',  $doctor->id) }}" method="post" id="borrar_datos">
                 @csrf
                 @method('delete')
                 <div class="mb-4">
@@ -225,7 +216,6 @@
                 </div>
             </form>
         </div>
-        <!------------------------------------------------------------------------------------------------->
     </div>
 </div>
 @stop

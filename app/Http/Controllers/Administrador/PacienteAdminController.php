@@ -17,8 +17,7 @@ class PacienteAdminController extends Controller
     public function index()
     {
         $paciente=Paciente::all();
-        $vista=view('vista_paginas.administrador.paciente.vista_lista_paciente_admin')
-            ->with('datos_paciente', $paciente);
+        $vista=view('vista_paginas.administrador.paciente.lista_paciente_admin', compact('paciente'));
 
         return $vista;
     }
@@ -42,8 +41,9 @@ class PacienteAdminController extends Controller
      */
     public function store(Request $request)
     {
+        $paciente=new Paciente();
 
-        $request->validate([
+      /*  $request->validate([
             'inputImgPerfil' => ['image',],
             'nombre' => 'required',
             'apellido' => 'required',
@@ -52,18 +52,22 @@ class PacienteAdminController extends Controller
             'celular1' => ['required', 'integer'],
             'expediente' => 'required',
             'sexo' => 'required',
-        ]);
+        ]);*/
 
-        $paciente=new Paciente();
+        $idr=rand();
+        $paciente->id=$idr;
+        $paciente->expediente=$request->input('exp');
         $paciente->nombre=$request->input('nombre');
-        $paciente->apellidos=$request->input('apellido');
-        $paciente->usuario=$request->input('nombre').rand();
+        $paciente->apellido_P=$request->input('apellido_paterno');
+        $paciente->apellido_M=$request->input('apellido_materno');
+        $paciente->direccion=$request->input('direccion');
+        $paciente->cp=$request->input('cp');
+        $paciente->colonia=$request->input('colonia');
         $paciente->email=$request->input('email');
-        $paciente->telefono=$request->input('telefono1');
-        $paciente->celular=$request->input('celular1');
-        $paciente->expediente=$request->input('expediente');
+        $paciente->telefono=$request->input('telefono');
+        $paciente->celular=$request->input('celular');
         $paciente->sexo=$request->input('sexo');
-        $paciente->rol="Paciente";
+        $paciente->rol=4;
 
         if($request->hasFile('inputImgPerfil')){
             $paciente->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
@@ -71,7 +75,8 @@ class PacienteAdminController extends Controller
 
         $paciente->save();
 
-        return redirect()->route('paciente.edit', $paciente->id)->with('guardado','ok');
+        return redirect()->route('paciente.admin.edit', $idr)->with('guardado','ok');
+
     }
 
     /**
@@ -94,8 +99,7 @@ class PacienteAdminController extends Controller
     public function edit($id)
     {
         $paciente=Paciente::find($id);
-        $vista=view('vista_paginas.administrador.paciente.editar_info_paciente_admin')
-            ->with('dato_paciente', $paciente);
+        $vista=view('vista_paginas.administrador.paciente.editar_info_paciente_admin', compact('paciente'));
 
         return $vista;
     }
@@ -110,7 +114,9 @@ class PacienteAdminController extends Controller
     public function update(Request $request, $id)
     {
 
-        $request->validate([
+        $paciente = Paciente::find($id);
+
+      /*  $request->validate([
             'inputImgPerfil' => ['image',],
             'nombre' => 'required',
             'apellido' => 'required',
@@ -121,18 +127,20 @@ class PacienteAdminController extends Controller
             'expediente' => 'required',
             'sexo' => 'required',
             'status' => 'required',
-        ]);
+        ]); */
 
-        $paciente = Paciente::find($id);
         $paciente->nombre=$request->input('nombre');
-        $paciente->apellidos=$request->input('apellido');
-        $paciente->usuario=$request->input('usuario');
+        $paciente->apellido_P=$request->input('apellido_paterno');
+        $paciente->apellido_M=$request->input('apellido_materno');
+        $paciente->direccion=$request->input('direccion');
+        $paciente->cp=$request->input('cp');
+        $paciente->colonia=$request->input('colonia');
         $paciente->email=$request->input('email');
         $paciente->telefono=$request->input('telefono');
         $paciente->celular=$request->input('celular');
-        $paciente->expediente=$request->input('expediente');
+        $paciente->expediente=$request->input('exp');
         $paciente->sexo=$request->input('sexo');
-        $paciente->rol="Paciente";
+        $paciente->rol=2;
         $paciente->status=$request->input('status');
 
         if($request->hasFile('inputImgPerfil')){
@@ -142,7 +150,7 @@ class PacienteAdminController extends Controller
 
         $paciente->update();
 
-        return redirect()->route('paciente.edit', $id)->with('modificado','ok');
+        return redirect()->route('paciente.admin.edit', $id)->with('modificado','ok');
 
     }
 
@@ -158,6 +166,6 @@ class PacienteAdminController extends Controller
         Storage::delete($paciente->profile_photo_path);
         $paciente->delete();
 
-        return redirect()->route('paciente.index')->with('eliminado', 'ok');
+        return redirect()->route('paciente.admin.index')->with('eliminado', 'ok');
     }
 }
