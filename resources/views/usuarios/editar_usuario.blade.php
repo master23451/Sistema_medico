@@ -13,8 +13,6 @@
         <div class="card-body">
             <H4>Datos personales</H4>
             <hr>
-            <!------------------------------------------------------------------------------------------------->
-            <!------------------------------------------------------------------------------------------------->
             <form action="{{ route('usuario.update', $usuario->id) }}" method="post"
                   enctype="multipart/form-data" id="modificar_datos">
             @csrf
@@ -22,21 +20,13 @@
             <!-------------------------------Seleccion de fotos-------------------------------------------------------->
                 <div class="mb-4">
                     <h5>Foto de perfil</h5>
-                    @if($usuario->profile_photo_path != '')
-                        <div>
-                            <img
-                                src="{{ Illuminate\Support\Facades\Storage::url($usuario->profile_photo_path)}}"
-                                alt="{{ $usuario->name }}"
-                                style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview">
-                        </div>
-                    @else
                         <img
-                            src="https://ui-avatars.com/api/?name={{ $usuario->name }}"
+                            src=" @if($usuario->profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url($usuario->profile_photo_path)}}
+                            @else https://ui-avatars.com/api/?name={{ $usuario->name }}
+                            @endif"
                             alt="{{ $usuario->name }}"
                             style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
                             id="perfilImgPreview">
-                    @endif
 
                     <div class="mb-2 mt-2">
                         <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i

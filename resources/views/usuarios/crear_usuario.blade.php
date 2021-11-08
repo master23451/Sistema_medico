@@ -17,14 +17,12 @@
             @csrf
             <!-------------------------------Seleccion de fotos-------------------------------------------------------->
                 <div class="mb-4">
-                    <h5>Foto de perfil</h5>
-                    <div>
+                    <h4>Foto de perfil</h4>
                         <img
                             src="https://ui-avatars.com/api/?name={{ __('SIN') }}"
                             alt="sin imagen"
                             style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
                             id="perfilImgPreview">
-                    </div>
                     <div class="mb-2 mt-2">
                         <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i class="fas fa-portrait"></i> Elige una foto de perfil</button>
                         <input type="file" class="form-control"  id="inputImgPerfil" name="inputImgPerfil" style="display: none" accept="image/*"/>

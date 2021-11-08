@@ -34,24 +34,11 @@
                         <tbody>
                         @foreach($datos_usuario as $itemUsuarion)
                             <tr style="text-align: center;">
+                                <td class="px-2 py-4">{{ $itemUsuarion->id  }}</td>
                                 <td class="px-2 py-4">
-                                    <div>{{ $itemUsuarion->id  }}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                    <div>
-                                        @if($itemUsuarion -> profile_photo_path != '')
-                                            <div>
-                                                <img src="{{ Illuminate\Support\Facades\Storage::url($itemUsuarion -> profile_photo_path) }}" alt="{{ $itemUsuarion -> nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
-                                            </div>
-                                        @else
-                                            <div>
-                                                <img src="https://ui-avatars.com/api/?name={{$itemUsuarion->name}}" alt="{{ $itemUsuarion -> name }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
-                                            </div>
-                                        @endif
-                                        <div>
-                                            <div>{{ $itemUsuarion->name }}</div>
-                                        </div>
-                                    </div>
+                                    <img src=" @if($itemUsuarion -> profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url($itemUsuarion -> profile_photo_path) }}
+                                    @else https://ui-avatars.com/api/?name={{$itemUsuarion->name}} @endif" alt="{{ $itemUsuarion -> nombre }}" style="border-radius: 100%; width: 50px; height: 50px; float: left">
+                                    <div>{{ $itemUsuarion->name }}</div>
                                 </td>
                                 <td class="px-2 py-4">{{ $itemUsuarion->user }}</td>
                                 <td class="px-2 py-4">{{ $itemUsuarion->email }}</td>

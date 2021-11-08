@@ -7,33 +7,26 @@
 @stop
 
 @section('content')
+<div class="container-fluid">
     <div class="card">
-        <div class="card-body container-fluid">
+        <div class="card-body">
             <h4>Actualizar datos personales</h4>
             <hr>
-            <!------------------------------------------------------------------------------------------------->
             <form action="{{ route('usuario.perfil.update', Auth()->user()->id) }}" method="post"
                   enctype="multipart/form-data" id="modificar_datos">
             @csrf
             @method('put')
             <!-------------------------------Seleccion de fotos-------------------------------------------------------->
                 <div class="mb-4">
-                    <h5>Foto de perfil</h5>
-                    <div>
-                        @if(Auth()->user()->profile_photo_path != '')
-                            <img
-                                src="{{ Illuminate\Support\Facades\Storage::url(Auth()->user()->profile_photo_path)}}"
-                                alt="{{ Auth()->user()->name }}"
-                                style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview">
-                        @else
-                            <img
-                                src="https://ui-avatars.com/api/?name={{Auth()->user()->name}}"
-                                alt="{{ Auth()->user()->name }}"
-                                style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
-                                id="perfilImgPreview">
-                        @endif
-                    </div>
+                    <h4>Foto de perfil</h4>
+                    <img
+                        src=" @if(Auth()->user()->profile_photo_path != '') {{ Illuminate\Support\Facades\Storage::url(Auth()->user()->profile_photo_path)}}
+                        @else https://ui-avatars.com/api/?name={{Auth()->user()->name}}
+                        @endif"
+                        alt="{{ Auth()->user()->name }}"
+                        style="border-radius: 100%; width: 150px; height: 150px; margin-left: 25px;"
+                        id="perfilImgPreview">
+
                     <div class="mb-2 mt-2">
                         <button class="btn btn-secondary" id="btnSelectImgPerfil" type="button"><i
                                 class="fas fa-portrait" style=""></i> Cambiar foto de perfil
@@ -81,7 +74,7 @@
                         <small class="text-danger">EL usuario no a verificado su correo.</small>
                     @endif
                 </div>
-                    <!------------------------------------------------------------------------------------------------->
+                <!------------------------------------------------------------------------------------------------->
                 <div class="row">
                     <div class="col">
                         <label for="telefono">Telefono</label>
@@ -116,15 +109,15 @@
                             <option value="Hombre">Hombre</option>
                             <option value="Mujer">Mujer</option>
                         @endswitch
-                        </select>
-                        @error('sexo')
-                        <small><span style="color: #d01414;">{{ $message }}</span></small>
-                        @enderror
+                    </select>
+                    @error('sexo')
+                    <small><span style="color: #d01414;">{{ $message }}</span></small>
+                    @enderror
                 </div>
-                    <!------------------------------------------------------------------------------------------------->
-                    @php
-                      $roles =  \App\Models\Roles::all();
-                    @endphp
+                <!------------------------------------------------------------------------------------------------->
+                @php
+                    $roles =  \App\Models\Roles::all();
+                @endphp
                 <div class="mb-4">
                     <label for="rol">Rol</label>
                     @can('loginAdministrador')
@@ -140,11 +133,11 @@
                             </option>
                         @endforeach
                     </select>
-                        @error('rol')
-                        <small><span style="color: #d01414;">{{ $message }}</span></small>
-                        @enderror
-                    </div>
-                    <!--------------------------------------------------------------------------------------------------------->
+                    @error('rol')
+                    <small><span style="color: #d01414;">{{ $message }}</span></small>
+                    @enderror
+                </div>
+                <!--------------------------------------------------------------------------------------------------------->
                 <div class="mb-4">
                     <label for="status">Estatus</label>
                     @can('loginAdministrador')
@@ -182,7 +175,7 @@
                         <a class="btn-secondary btn" href="{{ route('home') }}"><i
                                 class="fas fa-arrow-circle-left"></i> Regresar</a>
                     @endcan
-                    </div>
+                </div>
             </form>
             <!--------------------------------------------------------------------------------------------------------->
             <h4>Actualizar contraseña</h4>
@@ -228,6 +221,7 @@
             </form>
         </div>
     </div>
+</div>
 @stop
 
 @section('css')
