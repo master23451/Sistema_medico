@@ -51,18 +51,24 @@ Route::group(['middleware' => 'verified'], function(){
     /*----------------------------------------------------------------------------------------------------------------*/
     Route::get('administrador/publicaciones', [PublicacionController::class,'index'])->name('publicacion.index');
     Route::get('administrador/publicaciones/crear', [PublicacionController::class,'create'])->name('publicacion.create');
-    Route::post('administrador/publicaciones', [PublicacionController::class,'store'])->name('publicacion.store');
+    Route::post('administrador/publicaciones/guardado', [PublicacionController::class,'store'])->name('publicacion.store');
     Route::get('administrador/publicaciones/{id}/ver', [PublicacionController::class, 'show'])->name('publicacion.show');
     Route::get('administrador/publicaciones/{id}/editar', [PublicacionController::class,'edit'])->name('publicacion.edit');
     Route::put('administrador/publicaciones/{id}/modificar', [PublicacionController::class,'update'])->name('publicacion.update');
     Route::delete('administrador/publicaciones/{id}/eliminado', [PublicacionController::class,'destroy'])->name('publicacion.destroy');
+    /*----------------------------Rutas de administrador--------------------------------------------------------------*/
+    Route::get('administrador/doctores', [DoctorAdminController::class, 'index'])->name('doctor.admin.index');
+    Route::get('administrador/doctores/crear', [DoctorAdminController::class, 'create'])->name('doctor.admin.create');
+    Route::post('administrador/doctores/guardado', [DoctorAdminController::class, 'store'])->name('doctor.admin.store');
+    Route::get('administrador/doctores/{id}/editar', [DoctorAdminController::class, 'edit'])->name('doctor.admin.edit');
+    Route::put('administrador/doctores/{id}/modificar', [DoctorAdminController::class, 'update'])->name('doctor.admin.update');
+    Route::delete('administrador/doctores/{id}/eliminar', [DoctorAdminController::class, 'destroy'])->name('doctor.admin.destroy');
 });
 
 
 /*--------------------------------Rutas de administrador--------------------------------------------------------------*/
 Route::group(['middleware' => 'auth'], function (){
 
-    Route::resource('administrador/doctor', DoctorAdminController::class);
     Route::resource('administrador/secretaria', SecretariaAdminController::class);
     Route::resource('administrador/paciente', PacienteAdminController::class);
     /*--------------------------------------------------------------------------------------------------------------------*/

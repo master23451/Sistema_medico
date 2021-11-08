@@ -22,9 +22,12 @@ class CreateDoctorTable extends Migration
             $table->string('apellido_M', 150)->nullable();
             $table->string('profile_photo_path',255)->nullable();
             $table->string('direccion',255)->nullable();
+            $table->string('cp',50)->nullable();
+            $table->string('colonia',100)->nullable();
             $table->string('telefono',10)->nullable();
             $table->string('celular',10)->nullable();
-            $table->string('email',255)->nullable();
+            $table->string('email',255)->nullable()->unique();
+            $table->string('sexo',50)->nullable();
             $table->time('horario_E')->nullable();
             $table->time('horario_S')->nullable();
             $table->bigInteger('rol')->nullable();

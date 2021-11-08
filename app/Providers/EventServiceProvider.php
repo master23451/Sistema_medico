@@ -63,7 +63,7 @@ class EventServiceProvider extends ServiceProvider
                         [
                             'text' => 'Doctores',
                             'icon' => 'fas fa-stethoscope',
-                            'route' => 'doctor.index'
+                            'route' => 'doctor.admin.index'
                         ],
                         [
                             'text' => 'Secretarias',

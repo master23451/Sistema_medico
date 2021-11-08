@@ -8,6 +8,8 @@ use App\Models\Doctor;
 use App\Models\Vistas\Vw_doctor_consultorio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Ramsey\Uuid\Uuid;
 
 class DoctorAdminController extends Controller
 {
@@ -18,9 +20,8 @@ class DoctorAdminController extends Controller
      */
     public function index()
     {
-        $vw_cmedico_consultorio=Vw_doctor_consultorio::all();
-        $vista=view('vista_paginas.administrador.doctor.vista_lista_doctor_admin')
-            ->with('listado_doctores',$vw_cmedico_consultorio);
+        $datosDoctores=Vw_doctor_consultorio::all();
+        $vista=view('vista_paginas.administrador.doctor.lista_doctor_admin', compact('datosDoctores'));
         return $vista;
     }
 
@@ -31,9 +32,8 @@ class DoctorAdminController extends Controller
      */
     public function create()
     {
-        $consultorio=Consultorio::all();
-        $vista=view('vista_paginas.administrador.doctor.crear_doctor_admin')
-        ->with('consultorios', $consultorio);
+        $consultorios=Consultorio::all();
+        $vista=view('vista_paginas.administrador.doctor.crear_doctor_admin', compact('consultorios'));
         return $vista;
     }
 
@@ -45,28 +45,34 @@ class DoctorAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $doctor=new Doctor();
+
+      /*  $request->validate([
             'inputImgPerfil' => ['image',],
             'consultorio' => 'required',
             'nombre' => 'required',
             'apellido' => 'required',
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', Rule::unique('doctor')->ignore($doctor->id)],
             'telefono' => ['required', 'integer'],
             'celular' => ['required', 'integer'],
             'sexo' => 'required',
-        ]);
-
-        $doctor=new Doctor();
+        ]);*/
+        $idr=rand();
+        $doctor->id=$idr;
         $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');
-        $doctor->apellidos=$request->input('apellido');
-        $doctor->usuario=$request->input('nombre').rand();
+        $doctor->apellido_P=$request->input('apellido_paterno');
+        $doctor->apellido_M=$request->input('apellido_materno');
+        $doctor->direccion=$request->input('direccion');
+        $doctor->cp=$request->input('cp');
+        $doctor->colonia=$request->input('colonia');
         $doctor->email=$request->input('email');
         $doctor->telefono=$request->input('telefono');
         $doctor->celular=$request->input('celular');
         $doctor->sexo=$request->input('sexo');
-        $doctor->horarios=$request->input('horarios');
-        $doctor->rol="Doctor";
+        $doctor->horario_E=$request->input('horarioE');
+        $doctor->horario_S=$request->input('horarioS');
+        $doctor->rol=3;
 
         if($request->hasFile('inputImgPerfil')){
             $doctor->profile_photo_path=$request->file('inputImgPerfil')->store('public/fotos_perfil');
@@ -74,8 +80,7 @@ class DoctorAdminController extends Controller
 
         $doctor->save();
 
-
-        return redirect()->route('doctor.edit',$doctor->id)->with('guardado','ok');
+        return redirect()->route('doctor.admin.edit', $idr)->with('guardado','ok');
     }
 
     /**
@@ -98,11 +103,8 @@ class DoctorAdminController extends Controller
     public function edit($id)
     {
         $doctor = Doctor::find($id);
-        $consultorio=Consultorio::all();
-        $vista=view('vista_paginas.administrador.doctor.editar_info_doctor_admin')
-        ->with('datos_doctor',$doctor)
-        ->with('consultorios', $consultorio);
-
+        $consultorios=Consultorio::all();
+        $vista=view('vista_paginas.administrador.doctor.editar_doctor_admin', compact('doctor', 'consultorios'));
         return $vista;
     }
 
@@ -115,8 +117,9 @@ class DoctorAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $doctor=Doctor::find($id);
 
-        $request->validate([
+      /*  $request->validate([
             'inputImgPerfil' => ['image',],
             'consultorio' => 'required',
             'nombre' => 'required',
@@ -127,19 +130,23 @@ class DoctorAdminController extends Controller
             'celular' => ['required', 'integer'],
             'sexo' => 'required',
             'status' => 'required'
-        ]);
+        ]);*/
 
-        $doctor=Doctor::find($id);
+
         $doctor->id_consultorio=$request->input('consultorio');
         $doctor->nombre=$request->input('nombre');
-        $doctor->apellidos=$request->input('apellido');
-        $doctor->usuario=$request->input('usuario');
+        $doctor->apellido_P=$request->input('apellido_paterno');
+        $doctor->apellido_M=$request->input('apellido_materno');
+        $doctor->direccion=$request->input('direccion');
+        $doctor->cp=$request->input('cp');
+        $doctor->colonia=$request->input('colonia');
         $doctor->email=$request->input('email');
         $doctor->telefono=$request->input('telefono');
         $doctor->celular=$request->input('celular');
         $doctor->sexo=$request->input('sexo');
-        $doctor->horarios=$request->input('horarios');
-        $doctor->rol="Doctor";
+        $doctor->horario_E=$request->input('horarioE');
+        $doctor->horario_S=$request->input('horarioS');
+        $doctor->rol=3;
         $doctor->status=$request->input('status');
 
         if($request->hasFile('inputImgPerfil')){
@@ -149,7 +156,7 @@ class DoctorAdminController extends Controller
 
         $doctor->update();
 
-        return redirect()->route('doctor.edit',$id)->with('modificado','ok');
+        return redirect()->route('doctor.admin.edit',$id)->with('modificado','ok');
     }
 
     /**
@@ -165,6 +172,6 @@ class DoctorAdminController extends Controller
         Storage::delete($doctor->profile_photo_path);
         $doctor->delete();
 
-        return redirect()->route('doctor.index')->with('eliminado','ok');
+        return redirect()->route('doctor.admin.index')->with('eliminado','ok');
     }
 }
