@@ -32,6 +32,8 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
 
 });*/
 
+
+
 Route::group(['middleware' => 'verified'], function(){
 
     Route::get('home',  [Home::class, 'index'])->name('home');
@@ -78,17 +80,25 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('administrador/paciente/{id}/editar', [PacienteAdminController::class, 'edit'])->name('paciente.admin.edit');
     Route::put('administrador/paciente/{id}/modificado', [PacienteAdminController::class, 'update'])->name('paciente.admin.update');
     Route::delete('administrador/paciente/{id}/eliminar', [PacienteAdminController::class, 'destroy'])->name('paciente.admin.destroy');
+
+    /*----------------------------Rutas secretaria--------------------------------------------------------------*/
+    Route::get('Secretaria/doctor', [DoctorSecretariaController::class, 'index'])->name('secretaria.doctor.index');
+    Route::get('Secretaria/doctor/crear', [DoctorSecretariaController::class, 'create'])->name('secretaria.doctor.create');
+    Route::post('Secretaria/doctor/guardado', [DoctorSecretariaController::class, 'store'])->name('secretaria.doctor.store');
+    Route::get('Secretaria/doctor/{id}/editar', [DoctorSecretariaController::class, 'edit'])->name('secretaria.doctor.edit');
+    Route::put('Secretaria/doctor/{id}/modificado', [DoctorSecretariaController::class, 'update'])->name('secretaria.doctor.update');
+
 });
 
+Route::get('/consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController@index');
+Route::get('/consultorios/create', 'App\Http\Controllers\Consultorio\ConsultorioController@create');
+
+Route::resource('consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController');
 
 /*----------------------------------Rutas de secretaria---------------------------------------------------------------*/
     Route::group(['middleware' => 'auth'], function (){
 
-        Route::get('Secretaria/doctor', [DoctorSecretariaController::class, 'index'])->name('secretaria.doctor.index');
-        Route::get('Secretaria/doctor/crear', [DoctorSecretariaController::class, 'create'])->name('secretaria.doctor.create');
-        Route::post('Secretaria/doctor', [DoctorSecretariaController::class, 'store'])->name('secretaria.doctor.store');
-        Route::get('Secretaria/doctor/{id}/editar', [DoctorSecretariaController::class, 'edit'])->name('secretaria.doctor.edit');
-        Route::put('Secretaria/doctor/{id}', [DoctorSecretariaController::class, 'update'])->name('secretaria.doctor.update');
+
         /*--------------------------------------------------------------------------------------------------------------------*/
         Route::get('secretaria/paciente', [PacienteSecretariaController::class, 'index'])->name('secretaria.paciente.index');
         Route::get('secretaria/paciente/crear', [PacienteSecretariaController::class, 'create'])->name('secretaria.paciente.create');

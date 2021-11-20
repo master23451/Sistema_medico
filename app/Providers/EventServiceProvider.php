@@ -90,7 +90,7 @@ class EventServiceProvider extends ServiceProvider
                 ],
                 [
                 'text' => 'Consultorios',
-                'url'  => '#',
+                'route'  => 'consultorios.index',
                 'icon' => 'fas fa-clinic-medical',
                 'can' => 'loginAdministrador',
                 ],
