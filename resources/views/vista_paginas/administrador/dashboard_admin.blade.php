@@ -112,7 +112,7 @@
                                <div class="icon">
                                    <i class="fas fa-calendar-day"></i>
                                </div>
-                               <a href="#" class="small-box-footer" style=" color: #000000">
+                               <a href="{{ url('/evento') }}" class="small-box-footer" style=" color: #000000">
                                    Mas informacion <i class="fas fa-arrow-circle-right"></i>
                                </a>
                            </div>
