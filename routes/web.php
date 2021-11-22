@@ -26,7 +26,7 @@ use App\Http\Controllers\Secretaria\PacienteSecretariaController;
 
 /*Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
 /*Route::middleware(['auth:sanctum', 'verified'])->group(function (){
 
@@ -92,10 +92,19 @@ Route::group(['middleware' => 'verified'], function(){
 
 Route::get('/consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController@index');
 Route::get('/consultorios/create', 'App\Http\Controllers\Consultorio\ConsultorioController@create');
-
 Route::resource('consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController');
 
+
+/*----------------------------------------------------------------------------------------------------------------*/
+Route::get('/evento', [App\Http\Controllers\EventoController::class, 'index']);
+Route::get('/evento/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
+Route::post('/evento/agregar', [App\Http\Controllers\EventoController::class, 'store']);
+Route::post('/evento/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+Route::post('/evento/actualizar/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
+Route::post('/evento/borrar/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
+
 /*----------------------------------Rutas de secretaria---------------------------------------------------------------*/
+
     Route::group(['middleware' => 'auth'], function (){
 
 
