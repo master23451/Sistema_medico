@@ -36,7 +36,7 @@
                                    <div class="icon">
                                        <i class="fas fa-hospital-user"></i>
                                    </div>
-                                   <a href="#" class="small-box-footer">
+                                   <a href="{{ route('paciente.admin.index') }}" class="small-box-footer">
                                        Mas informacion <i class="fas fa-arrow-circle-right"></i>
                                    </a>
                                </div>
@@ -50,7 +50,7 @@
                                    <div class="icon">
                                        <i class="fas fa-user-md"></i>
                                    </div>
-                                   <a href="#" class="small-box-footer">
+                                   <a href="{{ route('doctor.admin.index') }}" class="small-box-footer">
                                        Mas informacion <i class="fas fa-arrow-circle-right"></i>
                                    </a>
                                </div>
@@ -66,7 +66,7 @@
                                <div class="icon">
                                    <i class="fas fa-clinic-medical"></i>
                                </div>
-                               <a href="#" class="small-box-footer">
+                               <a href="{{ url('/consultorios') }}" class="small-box-footer">
                                    Mas informacion <i class="fas fa-arrow-circle-right"></i>
                                </a>
                            </div>
@@ -96,7 +96,7 @@
                                    <div class="icon">
                                        <i class="fas fa-female"></i>
                                    </div>
-                                   <a href="#" class="small-box-footer">
+                                   <a href="{{ route('secretaria.admin.index') }}" class="small-box-footer">
                                        Mas informacion <i class="fas fa-arrow-circle-right"></i>
                                    </a>
                                </div>
@@ -106,7 +106,7 @@
                        <div class="mb-4">
                            <div class="small-box bg-gradient-light">
                                <div class="inner">
-                                   <h3>44</h3>
+                                   <h3>{{ $contadorCitas }}</h3>
                                    <p>Citas registradas</p>
                                </div>
                                <div class="icon">

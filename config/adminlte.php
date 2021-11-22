@@ -249,31 +249,6 @@ return [
             'icon' => 'fas fa-tachometer-alt',
             'can' => ['loginAdministrador', 'loginSecretaria'],
         ],
-        ['header' => 'Secretarias', 'can' => ['loginSecretaria', 'loginAdministrador'], 'classes'   => 'text-info text-center'],
-        [
-            'text' => 'Citas',
-            'url'  => '/evento',
-            'icon' => 'far fa-address-book',
-            'can' => ['loginSecretaria', 'loginAdministrador'],
-        ],
-        [
-            'text' => 'Doctores',
-            'route'  => 'secretaria.doctor.index',
-            'icon' => 'fas fa-stethoscope',
-            'can' => ['loginSecretaria', 'loginAdministrador'],
-        ],
-        [
-            'text' => 'Pacientes',
-            'icon' => 'fas fa-hospital-user',
-            'route' => 'secretaria.paciente.index',
-            'can' => ['loginSecretaria', 'loginAdministrador'],
-        ],
-        [
-            'text' => 'Consultorios',
-            'route'  => 'consultorios.index',
-            'icon' => 'fas fa-clinic-medical',
-            'can' => ['loginSecretaria', 'loginAdministrador'],
-        ],
         /*[
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',

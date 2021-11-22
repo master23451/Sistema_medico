@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Doctor;
+use App\Models\Evento;
 use App\Models\Paciente;
 use App\Models\Secretaria;
 use App\Models\User;
@@ -37,7 +38,7 @@ class EventServiceProvider extends ServiceProvider
             $conteoPaciente=Paciente::all()->count();
             $contadorDoctor=Doctor::all()->count();
             $contadorSecretaria=Secretaria::all()->count();
-
+            
             //Opciones del panel administrador
             $event->menu->add(
                 [
@@ -101,6 +102,36 @@ class EventServiceProvider extends ServiceProvider
                     'can' => 'loginAdministrador',
                 ]
             );
+
+            $event->menu->add(
+
+                ['header' => 'Secretarias', 'can' => ['loginSecretaria', 'loginAdministrador'], 'classes'   => 'text-info text-center'],
+                [
+                    'text' => 'Citas',
+                    'url'  => '/evento',
+                    'icon' => 'far fa-address-book',
+                    'can' => ['loginSecretaria', 'loginAdministrador'],
+                ],
+                [
+                    'text' => 'Doctores',
+                    'route'  => 'secretaria.doctor.index',
+                    'icon' => 'fas fa-stethoscope',
+                    'can' => ['loginSecretaria', 'loginAdministrador'],
+                ],
+                [
+                    'text' => 'Pacientes',
+                    'icon' => 'fas fa-hospital-user',
+                    'route' => 'secretaria.paciente.index',
+                    'can' => ['loginSecretaria', 'loginAdministrador'],
+                ],
+                [
+                    'text' => 'Consultorios',
+                    'route'  => 'consultorios.index',
+                    'icon' => 'fas fa-clinic-medical',
+                    'can' => ['loginSecretaria', 'loginAdministrador'],
+                ],
+            );
+
         });
     }
 
