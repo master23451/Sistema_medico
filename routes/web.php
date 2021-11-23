@@ -88,20 +88,21 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('Secretaria/doctor/{id}/editar', [DoctorSecretariaController::class, 'edit'])->name('secretaria.doctor.edit');
     Route::put('Secretaria/doctor/{id}/modificado', [DoctorSecretariaController::class, 'update'])->name('secretaria.doctor.update');
 
+
+    Route::get('/consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController@index');
+    Route::get('/consultorios/create', 'App\Http\Controllers\Consultorio\ConsultorioController@create');
+    Route::resource('consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController');
+
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+    Route::get('/evento', [App\Http\Controllers\EventoController::class, 'index']);
+    Route::get('/evento/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
+    Route::post('/evento/agregar', [App\Http\Controllers\EventoController::class, 'store']);
+    Route::post('/evento/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+    Route::post('/evento/actualizar/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
+    Route::post('/evento/borrar/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
+
 });
-
-Route::get('/consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController@index');
-Route::get('/consultorios/create', 'App\Http\Controllers\Consultorio\ConsultorioController@create');
-Route::resource('consultorios', 'App\Http\Controllers\Consultorio\ConsultorioController');
-
-
-/*----------------------------------------------------------------------------------------------------------------*/
-Route::get('/evento', [App\Http\Controllers\EventoController::class, 'index']);
-Route::get('/evento/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
-Route::post('/evento/agregar', [App\Http\Controllers\EventoController::class, 'store']);
-Route::post('/evento/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
-Route::post('/evento/actualizar/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
-Route::post('/evento/borrar/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
 
 /*----------------------------------Rutas de secretaria---------------------------------------------------------------*/
 
